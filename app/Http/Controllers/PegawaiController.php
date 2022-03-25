@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jabatan;
 use App\Models\Pegawai;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\PegawaiRequest;
 
 class PegawaiController extends Controller
 {
@@ -14,7 +16,12 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        //
+
+        return view('pegawai.pegawai', [
+            'pegawai' => Pegawai::all(),
+            'jabatan' => Jabatan::all(),
+
+        ]);
     }
 
     /**
@@ -24,18 +31,22 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        //
+        return view('pegawai.tes', [
+            'pegawai' => Pegawai::all()
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\PegawaiRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PegawaiRequest $request)
     {
-        //
+        Pegawai::create($request->all());
+
+        return redirect()->route('pegawai.index');
     }
 
     /**
@@ -67,7 +78,7 @@ class PegawaiController extends Controller
      * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pegawai $pegawai)
+    public function update(PegawaiRequest $request, Pegawai $pegawai)
     {
         //
     }
@@ -80,6 +91,8 @@ class PegawaiController extends Controller
      */
     public function destroy(Pegawai $pegawai)
     {
-        //
+        Pegawai::destroy($pegawai->id);
+
+        return redirect()->route('pegawai.index');
     }
 }

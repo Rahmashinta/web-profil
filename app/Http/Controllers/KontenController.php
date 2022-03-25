@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Konten;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\KontenRequest;
 
 class KontenController extends Controller
 {
@@ -14,7 +15,9 @@ class KontenController extends Controller
      */
     public function index()
     {
-        //
+        return view('pegawai.konten', [
+            'konten' => Konten::all()
+        ]);
     }
 
     /**
@@ -30,12 +33,14 @@ class KontenController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\KontenRequest;  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(KontenRequest $request)
     {
-        //
+        Konten::create($request->all());
+
+        return redirect()->route('konten.index');
     }
 
     /**
@@ -63,11 +68,11 @@ class KontenController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\KontenRequest;  $request
      * @param  \App\Models\Konten  $konten
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Konten $konten)
+    public function update(KontenRequest $request, Konten $konten)
     {
         //
     }
@@ -80,6 +85,8 @@ class KontenController extends Controller
      */
     public function destroy(Konten $konten)
     {
-        //
+        Konten::destroy($konten->id);
+
+        return redirect()->route('konten.index');
     }
 }

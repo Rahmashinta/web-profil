@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Menu;
-use Illuminate\Http\Request;
+use App\Http\Requests\MenuRequest;
 
 class MenuController extends Controller
 {
@@ -14,7 +14,9 @@ class MenuController extends Controller
      */
     public function index()
     {
-        //
+        return view('pegawai.kelolamenu', [
+            'menu' => Menu::all()
+        ]);
     }
 
     /**
@@ -30,12 +32,14 @@ class MenuController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\MenuRequest;  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MenuRequest $request)
     {
-        //
+        Menu::create($request->all());
+
+        return redirect()->route('menu.index');
     }
 
     /**
@@ -63,11 +67,11 @@ class MenuController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\MenuRequest;  $request
      * @param  \App\Models\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Menu $menu)
+    public function update(MenuRequest $request, Menu $menu)
     {
         //
     }
@@ -80,6 +84,8 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
-        //
+        Menu::destroy($menu->id);
+
+        return redirect()->route('menu.index');
     }
 }

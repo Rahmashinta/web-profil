@@ -14,28 +14,28 @@
     <ul class="metismenu" id="menu">
         <li>
             <a href="/dashboard">
-                <div class="parent-icon"><i class="bi bi-house-door-fill"></i>
+                <div class="parent-icon"><i class="bi bi-house-door"></i>
                 </div>
                 <div class="menu-title">Dashboard</div>
             </a>
         </li>
         <li>
             <a href="/jabatan">
-                <div class="parent-icon"><i class="bi bi-person-badge-fill"></i>
+                <div class="parent-icon"><i class="bi bi-person-workspace"></i>
                 </div>
                 <div class="menu-title">Jabatan</div>
             </a>
         </li>
         <li>
             <a href="/pegawai">
-                <div class="parent-icon"><i class="bi bi-people-fill"></i>
+                <div class="parent-icon"><i class="bi bi-people"></i>
                 </div>
                 <div class="menu-title">Pegawai</div>
             </a>
         </li>
         <li>
             <a href="/konten">
-                <div class="parent-icon"><i class="bi bi-calendar-event-fill"></i>
+                <div class="parent-icon"><i class="bi bi-calendar4-event"></i>
                 </div>
                 <div class="menu-title">Konten</div>
             </a>
@@ -47,7 +47,7 @@
                 <div class="menu-title">Foto dan Video</div>
             </a>
             <ul>
-                <li> <a href="/foto"><i class="bx bx-right-arrow-alt"></i>Foto</a>
+                <li> <a href="/galeri"><i class="bx bx-right-arrow-alt"></i>Foto</a>
                 </li>
                 <li> <a href="/video"><i class="bx bx-right-arrow-alt"></i>Video</a>
                 </li>
@@ -62,16 +62,23 @@
         </li>
         <li>
             <a href="/kelolamenu">
-                <div class="parent-icon"><i class="bi bi-menu-button-wide-fill"></i>
+                <div class="parent-icon"><i class="bi bi-menu-button-wide"></i>
                 </div>
                 <div class="menu-title">Kelola Menu</div>
             </a>
         </li>
         <li>
             <a href="/kelolapengguna">
-                <div class="parent-icon"><i class="bi bi-person-fill"></i>
+                <div class="parent-icon"><i class="bi bi-person"></i>
                 </div>
                 <div class="menu-title">Kelola Pengguna</div>
+            </a>
+        </li>
+        <li>
+            <a href="/kritiksaran">
+                <div class="parent-icon"><i class="bi bi-card-text"></i>
+                </div>
+                <div class="menu-title">Kritik dan Saran</div>
             </a>
         </li>
 

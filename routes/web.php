@@ -2,6 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\JabatanController;
+use App\Http\Controllers\PegawaiController;
+use App\Http\Controllers\KontenController;
+use App\Http\Controllers\GaleriController;
+use App\Http\Controllers\VideoController;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\LayananController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\KritiksaranController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,40 +41,75 @@ Route::get('/sejarah', function () {
 Route::get('/visimisi', function () {
     return view('masyarakat.visimisi');
 });
+Route::get('/struktur', function () {
+    return view('masyarakat.struktur');
+});
 Route::get('/tugasdanfungsi', function () {
     return view('masyarakat.tugasdanfungsi');
 });
 Route::get('/profilpejabat', function () {
     return view('masyarakat.profilpejabat');
 });
+Route::get('/bidangkerja', function () {
+    return view('masyarakat.bidangkerja');
+});
+Route::get('/berita', function () {
+    return view('masyarakat.berita');
+});
+Route::get('/artikel', function () {
+    return view('masyarakat.artikel');
+});
+Route::get('/pengumuman', function () {
+    return view('masyarakat.pengumuman');
+});
+Route::get('/galerifoto', function () {
+    return view('masyarakat.foto');
+});
+Route::get('/galerivideo', function () {
+    return view('masyarakat.video');
+});
+Route::get('/hubungikami', function () {
+    return view('masyarakat.hubungikami');
+});
+
 
 Route::get('/dashboard', function () {
     return view('pegawai.dashboard');
 });
-Route::get('/jabatan', function () {
-    return view('pegawai.jabatan');
-});
-Route::get('/pegawai', function () {
-    return view('pegawai.pegawai');
-});
-Route::get('/konten', function () {
-    return view('pegawai.konten');
-});
-Route::get('/foto', function () {
-    return view('pegawai.foto');
-});
-Route::get('/video', function () {
-    return view('pegawai.video');
-});
-Route::get('/layanan', function () {
-    return view('pegawai.layanan');
-});
-Route::get('/kelolamenu', function () {
-    return view('pegawai.kelolamenu');
-});
-Route::get('/kelolapengguna', function () {
-    return view('pegawai.kelolapengguna');
-});
 
+
+Route::get('/jabatan', [JabatanController::class, 'index'])->name('jabatan.index');
+Route::post('/jabatan', [JabatanController::class, 'store'])->name('jabatan.store');
+Route::delete('/jabatan/{jabatan}', [JabatanController::class, 'destroy'])->name('jabatan.destroy');
+
+Route::get('/pegawai', [PegawaiController::class, 'index'])->name('pegawai.index');
+Route::post('/pegawai', [PegawaiController::class, 'store'])->name('pegawai.store');
+Route::delete('/pegawai/{pegawai}', [PegawaiController::class, 'destroy'])->name('pegawai.destroy');
+
+Route::get('/konten', [KontenController::class, 'index'])->name('konten.index');
+Route::post('/konten', [KontenController::class, 'store'])->name('konten.store');
+Route::delete('/konten/{konten}', [KontenController::class, 'destroy'])->name('konten.destroy');
+
+Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri.index');
+Route::post('/galeri', [GaleriController::class, 'store'])->name('galeri.store');
+Route::delete('/galeri/{galeri}', [GaleriController::class, 'destroy'])->name('galeri.destroy');
+
+Route::get('/video', [VideoController::class, 'index'])->name('video.index');
+Route::post('/video', [VideoController::class, 'store'])->name('video.store');
+Route::delete('/video/{video}', [VideoController::class, 'destroy'])->name('video.destroy');
+
+Route::get('/layanan', [LayananController::class, 'index'])->name('layanan.index');
+Route::post('/layanan', [LayananController::class, 'store'])->name('layanan.store');
+Route::delete('/layanan/{layanan}', [LayananController::class, 'destroy'])->name('layanan.destroy');
+
+Route::get('/kelolamenu', [MenuController::class, 'index'])->name('menu.index');
+Route::post('/kelolamenu', [MenuController::class, 'store'])->name('menu.store');
+Route::delete('/kelolamenu/{menu}', [MenuController::class, 'destroy'])->name('menu.destroy');
+
+Route::get('/kelolapengguna', [UserController::class, 'index'])->name('user.index');
+Route::post('/kelolapengguna', [UserController::class, 'store'])->name('user.store');
+Route::delete('/kelolapengguna/{user}', [UserController::class, 'destroy'])->name('user.destroy');
+
+Route::get('/kritiksaran', [KritiksaranController::class, 'index'])->name('kritiksaran.index');
 
 require __DIR__ . '/auth.php';

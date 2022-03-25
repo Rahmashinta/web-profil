@@ -29,11 +29,12 @@
 
                                 <div class="card border-top border-0 border-danger">
                                     <div class="card-body p-3">
-                                        <form class="row g-3">
+                                        <form class="row g-3 action=" {{ route('video.store') }}" method="post" enctype="multipart/form-data">
+                                            @csrf
                                             <div class="col-md-12">
-                                                <label for="judulfoto" class="form-label">Judul Video</label>
+                                                <label for="judul" class="form-label">Judul Video</label>
                                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-image"></i></span>
-                                                    <input type="text" class="form-control border-start-0" id="judulfoto" placeholder="Judul Foto" name="judulfoto" />
+                                                    <input type="text" class="form-control border-start-0" id="judul" placeholder="Judul Video" name="judul" />
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -48,14 +49,16 @@
                                                     <input type="text" class="form-control border-start-0" id="keterangan" placeholder="Keterangan" name="keterangan" />
                                                 </div>
                                             </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+                                                <button type="submit" class="btn btn-success">Simpan</button>
+                                            </div>
+
                                         </form>
                                     </div>
                                 </div>
 
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-success">Save</button>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -72,38 +75,27 @@
                                         <th>No</th>
                                         <th>Judul Video</th>
                                         <th>Link</th>
-                                        <th>Keterangan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ( $video as $vd )
+
                                     <tr>
                                         <td>1</td>
-                                        <td>Pelantikan</td>
-                                        <td></td>
-                                        <td>Lorem ipsum dolor sit amet.</td>
+                                        <td>{{ $vd->judul }}</td>
+                                        <td>{{ $vd->link}}</td>
                                         <td>
-                                            <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Hapus</a>
+                                            <a href="#" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
+                                            <a href="#" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                            <form action="/video/{{ $vd->id}}" method="post" class="d-inline">
+                                                @method('delete')
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash3"></i></button>
+                                            </form>
                                     </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Pelantikan</td>
-                                        <td></td>
-                                        <td>Lorem ipsum dolor sit amet.</td>
-                                        <td>
-                                            <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Hapus</a>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Pelantikan</td>
-                                        <td></td>
-                                        <td>Lorem ipsum dolor sit amet.</td>
-                                        <td>
-                                            <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Hapus</a>
-                                    </tr>
+
+                                    @endforeach
 
                                 </tbody>
                             </table>

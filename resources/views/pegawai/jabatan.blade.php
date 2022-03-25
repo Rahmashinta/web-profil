@@ -15,9 +15,9 @@
             <div class="page-content">
                 <div class="col">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleLargeModal">Tambah Data Jabatan</button>
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleLargeModal" tabindex="-1" aria-hidden="true">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambah">Tambah Data Jabatan</button>
+                    <!-- Modal Tambah -->
+                    <div class="modal fade" id="tambah" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -27,30 +27,35 @@
 
                                 <div class="card border-top border-0 border-danger">
                                     <div class="card-body p-3">
-                                        <form class="row g-3">
+                                        <form class="row g-3" action="{{ route('jabatan.store') }}" method="post" enctype="multipart/form-data">
+                                            @csrf
                                             <div class="col-md-12">
-                                                <label for="namajabatan" class="form-label">Nama Jabatan</label>
+                                                <label for="jabatan" class="form-label">Nama Jabatan</label>
                                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person-lines-fill"></i></span>
-                                                    <input type="text" class="form-control border-start-0" id="namajabatan" placeholder="Nama Jabatan" name="namajabatan" />
+                                                    <input type="text" class="form-control border-start-0" id="jabatan" placeholder="Nama Jabatan" name="jabatan" value="{{old ('jabatan') }}" />
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <label for="kodejabatan" class="form-label">Kode Jabatan</label>
+                                                <label for="kode_jabatan" class="form-label">Kode Jabatan</label>
                                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-pencil-square"></i></span>
-                                                    <input type="text" class="form-control border-start-0" id="kodejabatan" placeholder="Kode Jabatan" name="kodejabatan" />
+                                                    <input type="text" class="form-control border-start-0" id="kode_jabatan" placeholder="Kode Jabatan" name="kode_jabatan" value="{{old ('kode_jabatan') }}" />
                                                 </div>
                                             </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+                                                <button type="submit" class="btn btn-success">Simpan</button>
+                                            </div>
+
                                         </form>
                                     </div>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-success">Save</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- End Modal -->
+
+
                 </div>
                 <h6 class="mt-4 text-uppercase">Data Jabatan</h6>
                 <hr />
@@ -67,30 +72,76 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
+                                    @foreach ($jabatan as $jbt )
                                     <tr>
                                         <td>1</td>
-                                        <td>Kepala Bagian</td>
-                                        <td>KB</td>
+                                        <td>{{ $jbt->jabatan}}</td>
+                                        <td>{{ $jbt->kode_jabatan }}</td>
                                         <td>
-                                            <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Hapus</a>
+                                            <a href="/jabatan/{{$jbt->id}}" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
+                                            <a href="/jabatan/{{$jbt->id}}/edit" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#edit"><i class="bi bi-pencil-square"></i></a>
+                                            <form action="/jabatan/{{ $jbt->id}}" method="post" class="d-inline">
+                                                @method('delete')
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash3"></i></button>
+                                            </form>
+                                        </td>
+
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Help Desk</td>
-                                        <td>HD</td>
-                                        <td>
-                                            <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Hapus</a>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Pegawai</td>
-                                        <td>PG</td>
-                                        <td>
-                                            <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Hapus</a>
-                                    </tr>
+
+                                    @endforeach
+
+                                    <!-- Modal Edit -->
+
+                                    @foreach ($jabatan as $jbt)
+
+                                    @if ($jbt->id == $jbt->id)
+
+
+                                    <div class="modal fade" id="edit" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Form Edit Jabatan</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+
+                                                <div class="card border-top border-0 border-danger">
+                                                    <div class="card-body p-3">
+                                                        <form class="row g-3" action="/jabatan/{{$jbt}}" method="post">
+                                                            @method('put')
+                                                            @csrf
+                                                            <div class="col-md-12">
+                                                                <label for="jabatan" class="form-label">Nama Jabatan</label>
+                                                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person-lines-fill"></i></span>
+                                                                    <input type="text" class="form-control border-start-0" id="jabatan" placeholder="Nama Jabatan" name="jabatan" value="{{old ('jabatan', $jbt->id) }}" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <label for="kode_jabatan" class="form-label">Kode Jabatan</label>
+                                                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-pencil-square"></i></span>
+                                                                    <input type="text" class="form-control border-start-0" id="kode_jabatan" placeholder="Kode Jabatan" name="kode_jabatan" value="{{old ('kode_jabatan') }}" />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-success">Save</button>
+                                                            </div>
+
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @endif
+
+                                    @endforeach
 
                                 </tbody>
                             </table>

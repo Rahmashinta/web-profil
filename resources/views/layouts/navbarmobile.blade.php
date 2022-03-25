@@ -7,22 +7,22 @@
             <a href="#">Profil</a>
             <ul class="submenu">
                 <li>
-                    <a href="#">Sejarah </a>
+                    <a href="/sejarah">Sejarah </a>
                 </li>
                 <li>
-                    <a href="#">Visi dan Misi </a>
+                    <a href="/visimisi">Visi dan Misi </a>
                 </li>
                 <li>
-                    <a href="#">Struktur Organisasi </a>
+                    <a href="/struktur">Struktur Organisasi </a>
                 </li>
                 <li>
-                    <a href="#">Tugas dan Fungsi </a>
+                    <a href="/tugasdanfungsi">Tugas dan Fungsi </a>
                 </li>
                 <li>
-                    <a href="#">Profil Pejabat </a>
+                    <a href="/profilpejabat">Profil Pejabat </a>
                 </li>
                 <li>
-                    <a href="#">Bidang Kerja </a>
+                    <a href="/bidangkerja">Bidang Kerja </a>
                 </li>
             </ul>
         </li>
@@ -30,13 +30,13 @@
             <a href="#">Informasi</a>
             <ul class="submenu">
                 <li>
-                    <a href="#">Berita</a>
+                    <a href="/berita">Berita</a>
                 </li>
                 <li>
-                    <a href="#">Artikel</a>
+                    <a href="/artikel">Artikel</a>
                 </li>
                 <li>
-                    <a href="#">Pengumuman</a>
+                    <a href="/pengumuman">Pengumuman</a>
                 </li>
             </ul>
         </li>
@@ -44,10 +44,10 @@
             <a href="#">Galeri</a>
             <ul class="submenu">
                 <li>
-                    <a href="#">Foto</a>
+                    <a href="/galerifoto">Foto</a>
                 </li>
                 <li>
-                    <a href="#">Video</a>
+                    <a href="/galerivideo">Video</a>
                 </li>
             </ul>
         </li>
@@ -68,7 +68,7 @@
             </ul>
         </li>
         <li class="m-2">
-            <a href="shop.html">Hubungi Kami</a>
+            <a href="/hubungikami">Hubungi Kami</a>
         </li>
     </ul>
 </nav>

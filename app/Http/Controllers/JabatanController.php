@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jabatan;
-use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use App\Http\Requests\JabatanRequest;
 
 class JabatanController extends Controller
 {
@@ -14,7 +15,9 @@ class JabatanController extends Controller
      */
     public function index()
     {
-        //
+        return view('pegawai.jabatan', [
+            'jabatan' => Jabatan::all()
+        ]);
     }
 
     /**
@@ -24,18 +27,22 @@ class JabatanController extends Controller
      */
     public function create()
     {
-        //
+        return view('pegawai.jabatan', [
+            'jabatan' => Jabatan::all()
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\PegawaiRequest;  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(JabatanRequest $request)
     {
-        //
+        Jabatan::create($request->all());
+
+        return redirect()->route('jabatan.index');
     }
 
     /**
@@ -46,7 +53,9 @@ class JabatanController extends Controller
      */
     public function show(Jabatan $jabatan)
     {
-        //
+        return view('pegawai.tes', [
+            'jabatan' => $jabatan,
+        ]);
     }
 
     /**
@@ -57,19 +66,30 @@ class JabatanController extends Controller
      */
     public function edit(Jabatan $jabatan)
     {
-        //
+        return view('pegawai.edit', [
+            'jabatan' => $jabatan,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\PegawaiRequest;  $request
      * @param  \App\Models\Jabatan  $jabatan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Jabatan $jabatan)
+    public function update(JabatanRequest $request, Jabatan $jabatan)
     {
-        //
+        $rules = [
+            'jabatan' => 'required|max:255',
+            'kode_jabatan' => 'required|unique:jabatan',
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        Jabatan::where('id', $jabatan->id)->update($validatedData);
+
+        return redirect()->route('jabatan.index');
     }
 
     /**
@@ -80,6 +100,8 @@ class JabatanController extends Controller
      */
     public function destroy(Jabatan $jabatan)
     {
-        //
+        Jabatan::destroy($jabatan->id);
+
+        return redirect()->route('jabatan.index');
     }
 }

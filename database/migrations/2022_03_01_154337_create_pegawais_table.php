@@ -4,6 +4,7 @@ use App\Models\Jabatan;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use PHPUnit\Framework\Constraint\Constraint;
 
 return new class extends Migration
 {
@@ -19,7 +20,7 @@ return new class extends Migration
             $table->foreignIdFor(Jabatan::class);
             $table->string('nama_pegawai');
             $table->string('nip');
-            $table->string('foto_pegawai');
+            $table->string('foto_pegawai')->nullable();
             $table->timestamps();
         });
     }

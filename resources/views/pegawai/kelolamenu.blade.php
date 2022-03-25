@@ -29,11 +29,12 @@
 
                                 <div class="card border-top border-0 border-danger">
                                     <div class="card-body p-3">
-                                        <form class="row g-3">
+                                        <form class="row g-3" action=" {{ route('menu.store') }}" method="post" enctype="multipart/form-data">
+                                            @csrf
                                             <div class="col-md-12">
-                                                <label for="menu" class="form-label">Menu</label>
+                                                <label for="nama_menu" class="form-label">Nama Menu</label>
                                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-list"></i></span>
-                                                    <input type="text" class="form-control border-start-0" id="menu" placeholder="Menu" name="menu" />
+                                                    <input type="text" class="form-control border-start-0" id="nama_menu" placeholder="Nama Menu" name="nama_menu" />
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -42,14 +43,16 @@
                                                     <input type="text" class="form-control border-start-0" id="link" placeholder="Link" name="link" />
                                                 </div>
                                             </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+                                                <button type="submit" class="btn btn-success">Simpan</button>
+                                            </div>
+
                                         </form>
                                     </div>
                                 </div>
 
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-success">Save</button>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -64,36 +67,28 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Menu</th>
+                                        <th>Nama Menu</th>
                                         <th>Link</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($menu as $mn)
                                     <tr>
                                         <td>1</td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{ $mn->nama_menu }}</td>
+                                        <td>{{ $mn->link }}</td>
                                         <td>
-                                            <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Hapus</a>
+                                            <a href="#" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
+                                            <a href="#" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                            <form action="/kelolamenu/{{ $mn->id}}" method="post" class="d-inline">
+                                                @method('delete')
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash3"></i></button>
+                                            </form>
                                     </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Hapus</a>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Hapus</a>
-                                    </tr>
+
+                                    @endforeach
 
                                 </tbody>
                             </table>

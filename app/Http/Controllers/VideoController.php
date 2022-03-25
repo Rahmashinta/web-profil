@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Video;
-use Illuminate\Http\Request;
+use App\Http\Requests\VideoRequest;
 
 class VideoController extends Controller
 {
@@ -14,7 +14,9 @@ class VideoController extends Controller
      */
     public function index()
     {
-        //
+        return view('pegawai.video', [
+            'video' => Video::all()
+        ]);
     }
 
     /**
@@ -30,12 +32,14 @@ class VideoController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\VideoRequest;  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(VideoRequest $request)
     {
-        //
+        Video::create($request->all());
+
+        return redirect()->route('video.index');
     }
 
     /**
@@ -63,11 +67,11 @@ class VideoController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\VideoRequest;  $request
      * @param  \App\Models\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Video $video)
+    public function update(VideoRequest $request, Video $video)
     {
         //
     }
@@ -80,6 +84,8 @@ class VideoController extends Controller
      */
     public function destroy(Video $video)
     {
-        //
+        Video::destroy($video->id);
+
+        return redirect()->route('video.index');
     }
 }

@@ -16,7 +16,6 @@ return new class extends Migration
     {
         Schema::create('kontens', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class);
             $table->string('judul_konten');
             $table->string('tanggal_konten');
             $table->text('isi_konten');

@@ -29,7 +29,8 @@
 
                                 <div class="card border-top border-0 border-danger">
                                     <div class="card-body p-3">
-                                        <form class="row g-3">
+                                        <form class="row g-3" action=" {{ route('user.store') }}" method="post" enctype="multipart/form-data">
+                                            @csrf
                                             <div class="col-md-12">
                                                 <label for="username" class="form-label">Username</label>
                                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person"></i></span>
@@ -39,7 +40,7 @@
                                             <div class="col-md-12">
                                                 <label for="password" class="form-label">Password</label>
                                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-lock"></i></span>
-                                                    <input type="password" class="form-control border-start-0" id="password" placeholder="Password" name="password" />
+                                                    <input type="text" class="form-control border-start-0" id="password" placeholder="Password" name="password" />
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -49,21 +50,22 @@
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <label for="kodejabatan" class="form-label">Role</label>
+                                                <label class="form-label">Role</label>
                                                 <select class="form-select mb-3" aria-label="Default select example">
                                                     <option selected>Pilih Role</option>
-                                                    <option value="1">Pegawai</option>
-                                                    <option value="2">Admin</option>
+                                                    <option value="pegawai">Pegawai</option>
+                                                    <option value="admin">Admin</option>
                                                 </select>
                                             </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+                                                <button type="submit" class="btn btn-success">Simpan</button>
+                                            </div>
+
                                         </form>
                                     </div>
                                 </div>
 
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-success">Save</button>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -86,36 +88,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($user as $us)
+
                                     <tr>
                                         <td>1</td>
-                                        <td>rahmashinta</td>
-                                        <td>123</td>
-                                        <td>Rahma Shinta</td>
-                                        <td>Pegawai</td>
+                                        <td>{{ $us->username }}</td>
+                                        <td>{{ $us->password }}</td>
+                                        <td>{{ $us->nama }}</td>
+                                        <td>{{ $us->role }}</td>
                                         <td>
-                                            <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Hapus</a>
+                                            <a href="#" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
+                                            <a href="#" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                            <form action="/kelolapengguna/{{ $us->id}}" method="post" class="d-inline">
+                                                @method('delete')
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash3"></i></button>
+                                            </form>
                                     </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>rahmashinta</td>
-                                        <td>123</td>
-                                        <td>Rahma Shinta</td>
-                                        <td>Pegawai</td>
-                                        <td>
-                                            <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Hapus</a>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>rahmashinta</td>
-                                        <td>123</td>
-                                        <td>Rahma Shinta</td>
-                                        <td>Pegawai</td>
-                                        <td>
-                                            <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Hapus</a>
-                                    </tr>
+                                    @endforeach
 
                                 </tbody>
                             </table>

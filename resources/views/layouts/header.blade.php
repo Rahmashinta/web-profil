@@ -1,5 +1,5 @@
 <header class="header">
-    <div class="middle header__middle bg--header__middle pt-10 pb-10" style="background-color: 	rgb(105, 105, 105) !important">
+    <div class="middle header__middle bg--header__middle pt-10 pb-10" style="background-color: 	#52aebd !important">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">

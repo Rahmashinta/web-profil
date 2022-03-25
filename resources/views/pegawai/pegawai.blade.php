@@ -13,7 +13,7 @@
         <!--start page wrapper -->
         <div class="page-wrapper">
             <div class="page-content">
-                
+
                 <div class="col">
 
                     <!-- Button trigger modal -->
@@ -29,27 +29,22 @@
 
                                 <div class="card border-top border-0 border-danger">
                                     <div class="card-body p-3">
-                                        <form class="row g-3">
+                                        <form class="row g-3" action="{{ route('pegawai.store') }}" method="post" enctype="multipart/form-data">
+                                            @csrf
                                             <div class="col-md-12">
-                                                <label for="namapegawai" class="form-label">Nama Pegawai</label>
+                                                <label for="nama_pegawai" class="form-label">Nama Pegawai</label>
                                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-people-fill"></i></span>
-                                                    <input type="text" class="form-control border-start-0" id="namapegawai" placeholder="Nama Pegawai" name="namapegawai" />
+                                                    <input type="text" class="form-control border-start-0" id="nama_pegawai" placeholder="Nama Pegawai" name="nama_pegawai" />
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <label for="kodejabatan" class="form-label">Kode Jabatan</label>
-                                                <select class="form-select mb-3" aria-label="Default select example">
-                                                    <option selected>Pilih Kode Jabatan</option>
-                                                    <option value="1">KB</option>
-                                                    <option value="2">HD</option>
-                                                    <option value="3">PG</option>
+                                                <label class="form-label">Nama Jabatan</label>
+                                                <select class="form-select mb-3" aria-label="Default select example" name="jabatan_id">
+                                                    <option selected>Pilih Jabatan</option>
+                                                    <option value="1">Kepala Bagian</option>
+                                                    <option value="2">Help Desk</option>
+                                                    <option value="3">Pegawai</option>
                                                 </select>
-                                            </div>
-                                            <div class="col-12">
-                                                <label for="namajabatan" class="form-label">Nama Jabatan</label>
-                                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person-lines-fill"></i></span>
-                                                    <input type="text" class="form-control border-start-0" id="namajabatan" placeholder="Kode Jabatan" name="namajabatan" />
-                                                </div>
                                             </div>
                                             <div class="col-12">
                                                 <label for="nip" class="form-label">NIP</label>
@@ -59,18 +54,20 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="mb-3">
-                                                    <label for="foto" class="form-label">Foto</label>
-                                                    <input class="form-control" type="file" id="foto" name="foto">
+                                                    <label for="foto_pegawai" class="form-label">Foto Pegawai</label>
+                                                    <input class="form-control" type="file" id="foto_pegawai" name="foto_pegawai">
                                                 </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+                                                <button type="submit" class="btn btn-success">Simpan</button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
 
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-success">Save</button>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -86,43 +83,30 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Pegawai</th>
-                                        <th>Nama Jabatan</th>
                                         <th>NIP</th>
-                                        <th>Foto</th>
+                                        <th>Nama Jabatan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+
+                                    @foreach ($pegawai as $pgw )
                                     <tr>
                                         <td>1</td>
-                                        <td>Budi</td>
-                                        <td>Kepala Bagian</td>
-                                        <td>123456789</td>
-                                        <td></td>
+                                        <td>{{ $pgw->nama_pegawai }}</td>
+                                        <td>{{ $pgw->nip }}</td>
+                                        <td>{{ $pgw->jabatan_id }}</td>
                                         <td>
-                                            <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Hapus</a>
+                                            <a href="#" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
+                                            <a href="#" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                            <form action="/pegawai/{{ $pgw->id}}" method="post" class="d-inline">
+                                                @method('delete')
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash3"></i></button>
+                                            </form>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Ani</td>
-                                        <td>Help Desk</td>
-                                        <td>123456789</td>
-                                        <td></td>
-                                        <td>
-                                            <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Hapus</a>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Caca</td>
-                                        <td>Pegawai</td>
-                                        <td>123456789</td>
-                                        <td></td>
-                                        <td>
-                                            <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Hapus</a>
-                                    </tr>
+
+                                    @endforeach
 
                                 </tbody>
                             </table>

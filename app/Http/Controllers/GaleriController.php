@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Galeri;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\GaleriRequest;
 
 class GaleriController extends Controller
 {
@@ -14,7 +15,9 @@ class GaleriController extends Controller
      */
     public function index()
     {
-        //
+        return view('pegawai.galeri', [
+            'galeri' => Galeri::all()
+        ]);
     }
 
     /**
@@ -30,12 +33,14 @@ class GaleriController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\GaleriRequest;  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(GaleriRequest $request)
     {
-        //
+        Galeri::create($request->all());
+
+        return redirect()->route('galeri.index');
     }
 
     /**
@@ -63,11 +68,11 @@ class GaleriController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\GaleriRequest;  $request
      * @param  \App\Models\Galeri  $galeri
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Galeri $galeri)
+    public function update(GaleriRequest $request, Galeri $galeri)
     {
         //
     }
@@ -80,6 +85,8 @@ class GaleriController extends Controller
      */
     public function destroy(Galeri $galeri)
     {
-        //
+        Galeri::destroy($galeri->id);
+
+        return redirect()->route('galeri.index');
     }
 }

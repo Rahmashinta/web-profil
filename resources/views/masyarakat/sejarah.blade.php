@@ -1,10 +1,23 @@
 <x-main-layout>
-    <section class="shop-details-desc" style="padding: 25px 105px 20px 105px !important">
+    <!-- page banner area start -->
+    <section class="page-banner-area blog-page" data-background="img/bg/tes2.jpg">
+        <div class="container" style="padding: 0px !important">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="banner-text text-center pt-20 pb-20">
+                        <h2 class="f-800" style="color: white;">Sejarah</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- page banner area end -->
+
+    <section class="shop-details-desc m-4" style="padding: 25px 105px 20px 105px !important">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="desc-wrapper">
-                        <h1 style="background-color: rgb(215, 215, 215); margin-left: 25px !important"><b>Sejarah</b></h1>
                         <div class="tab-content" id="myTabContent1">
                             <div class="tab-pane fade show active" id="profile11" role="tabpanel" aria-labelledby="profile-tab11">
                                 <div class="desc-content mt-20">

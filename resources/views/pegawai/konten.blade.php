@@ -29,22 +29,23 @@
 
                                 <div class="card border-top border-0 border-danger">
                                     <div class="card-body p-3">
-                                        <form class="row g-3">
+                                        <form class="row g-3" action="{{ route('konten.store') }}" method="post" enctype="multipart/form-data">
+                                            @csrf
                                             <div class="col-md-12">
-                                                <label for="judulkonten" class="form-label">Judul Konten</label>
+                                                <label for="judul_konten" class="form-label">Judul Konten</label>
                                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-people-fill"></i></span>
-                                                    <input type="text" class="form-control border-start-0" id="judulkonten" placeholder="Judul Konten" name="judulkonten" />
+                                                    <input type="text" class="form-control border-start-0" id="judul_konten" placeholder="Judul Konten" name="judul_konten" />
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                <label for="tanggalKonten" class="form-label">Tanggal Konten</label>
+                                                <label for="tanggal_konten" class="form-label">Tanggal Konten</label>
                                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-people-fill"></i></span>
-                                                    <input type="date" class="form-control border-start-0" id="tanggalKonten" placeholder="Tanggal Konten" name="tanggalKonten" />
+                                                    <input type="date" class="form-control border-start-0" id="tanggal_konten" placeholder="Tanggal Konten" name="tanggal_konten" />
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <label for="kategorikonten" class="form-label">Kategori Konten</label>
-                                                <select class="form-select mb-3" aria-label="Default select example">
+                                                <label class="form-label">Kategori Konten</label>
+                                                <select class="form-select mb-3" aria-label="Default select example" name="kategori_konten">
                                                     <option selected>Pilih Kategori Konten</option>
                                                     <option value="1">Berita</option>
                                                     <option value="2">Artikel</option>
@@ -53,24 +54,27 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="mb-3">
-                                                    <label for="foto" class="form-label">Gambar Konten</label>
-                                                    <input class="form-control" type="file" id="foto" name="foto">
+                                                    <label for="gambar" class="form-label">Gambar Konten</label>
+                                                    <input class="form-control" type="file" id="gambar" name="gambar">
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                <label for="isikonten" class="form-label">Isi Konten</label>
+                                                <label for="isi_konten" class="form-label">Isi Konten</label>
                                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-pencil-fill"></i></span>
-                                                    <input type="text" class="form-control border-start-0" id="isikonten" placeholder="Isi Konten" name="isikonten" />
+                                                    <input type="text" class="form-control border-start-0" id="isi_konten" placeholder="Isi Konten" name="isi_konten" />
                                                 </div>
                                             </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+                                                <button type="submit" class="btn btn-success">Simpan</button>
+                                            </div>
+
                                         </form>
                                     </div>
                                 </div>
 
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-success">Save</button>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -88,47 +92,29 @@
                                         <th>Judul Konten</th>
                                         <th>Tanggal Konten</th>
                                         <th>Kategori Konten</th>
-                                        <th>Gambar</th>
-                                        <th>Isi Konten</th>
+                                        <th>Status Konten</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($konten as $ktn)
                                     <tr>
                                         <td>1</td>
-                                        <td>Berita Kecelakaan</td>
-                                        <td>13 Maret 2022</td>
-                                        <td>Berita</td>
+                                        <td>{{ $ktn->judul_konten }}</td>
+                                        <td>{{ $ktn->tanggal_konten }}</td>
+                                        <td>{{ $ktn->kategori_konten }}</td>
                                         <td></td>
-                                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, quam.</td>
                                         <td>
-                                            <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Hapus</a>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Artikel Kecelakaan</td>
-                                        <td>13 Maret 2022</td>
-                                        <td>Artikel</td>
-                                        <td></td>
-                                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, quam.</td>
-                                        <td>
-                                            <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Hapus</a>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Pengumuman libur</td>
-                                        <td>13 Maret 2022</td>
-                                        <td>Pengumuman</td>
-                                        <td></td>
-                                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, quam.</td>
-                                        <td>
-                                            <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Hapus</a>
+                                            <a href="#" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
+                                            <a href="#" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                            <form action="/konten/{{ $ktn->id}}" method="post" class="d-inline">
+                                                @method('delete')
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash3"></i></button>
+                                            </form>
                                     </tr>
 
-
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

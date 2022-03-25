@@ -24,9 +24,8 @@ class PegawaiRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => 'required|max:255|string',
-            'nip' => 'required|string|max:18',
-            'foto_pegawai' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+            'nama_pegawai' => 'required|max:255|string',
+            'nip' => 'required|string|max:18'
         ];
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Layanan;
-use Illuminate\Http\Request;
+use App\Http\Requests\LayananRequest;
 
 class LayananController extends Controller
 {
@@ -14,7 +14,9 @@ class LayananController extends Controller
      */
     public function index()
     {
-        //
+        return view('pegawai.layanan', [
+            'layanan' => Layanan::all()
+        ]);
     }
 
     /**
@@ -30,12 +32,14 @@ class LayananController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\LayananRequest;  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LayananRequest $request)
     {
-        //
+        Layanan::create($request->all());
+
+        return redirect()->route('layanan.index');
     }
 
     /**
@@ -46,7 +50,7 @@ class LayananController extends Controller
      */
     public function show(Layanan $layanan)
     {
-        //
+        
     }
 
     /**
@@ -63,11 +67,11 @@ class LayananController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\LayananRequest;  $request
      * @param  \App\Models\Layanan  $layanan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Layanan $layanan)
+    public function update(LayananRequest $request, Layanan $layanan)
     {
         //
     }
@@ -80,6 +84,8 @@ class LayananController extends Controller
      */
     public function destroy(Layanan $layanan)
     {
-        //
+        Layanan::destroy($layanan->id);
+
+        return redirect()->route('layanan.index');
     }
 }

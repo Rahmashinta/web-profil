@@ -24,7 +24,7 @@ class MenuRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => 'required|max:255|string',
+            'nama_menu' => 'required|max:255|string',
             'link' => 'required|max:255|string',
         ];
     }
