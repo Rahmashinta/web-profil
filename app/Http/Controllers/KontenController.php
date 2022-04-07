@@ -15,7 +15,7 @@ class KontenController extends Controller
      */
     public function index()
     {
-        return view('pegawai.konten', [
+        return view('pegawai.konten.index', [
             'konten' => Konten::all()
         ]);
     }
@@ -27,7 +27,9 @@ class KontenController extends Controller
      */
     public function create()
     {
-        //
+        return view('pegawai.konten.create', [
+            'konten' => Konten::all()
+        ]);
     }
 
     /**

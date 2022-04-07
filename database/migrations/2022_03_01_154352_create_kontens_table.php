@@ -17,7 +17,6 @@ return new class extends Migration
         Schema::create('kontens', function (Blueprint $table) {
             $table->id();
             $table->string('judul_konten');
-            $table->string('tanggal_konten');
             $table->text('isi_konten');
             $table->string('gambar');
             $table->string('kategori_konten');

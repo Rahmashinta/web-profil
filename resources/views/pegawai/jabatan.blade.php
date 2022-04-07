@@ -14,8 +14,7 @@
         <div class="page-wrapper">
             <div class="page-content">
                 <div class="col">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambah">Tambah Data Jabatan</button>
+                    <a class="btn btn-primary" href="{{ route('jabatan.create') }}">Tambah Data Jabatan</a>
                     <!-- Modal Tambah -->
                     <div class="modal fade" id="tambah" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
@@ -96,8 +95,7 @@
 
                                     @foreach ($jabatan as $jbt)
 
-                                    @if ($jbt->id == $jbt->id)
-
+                                    <!-- Modal Edit -->
 
                                     <div class="modal fade" id="edit" tabindex="-1" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
@@ -115,13 +113,13 @@
                                                             <div class="col-md-12">
                                                                 <label for="jabatan" class="form-label">Nama Jabatan</label>
                                                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person-lines-fill"></i></span>
-                                                                    <input type="text" class="form-control border-start-0" id="jabatan" placeholder="Nama Jabatan" name="jabatan" value="{{old ('jabatan', $jbt->id) }}" />
+                                                                    <input type="text" class="form-control border-start-0" id="jabatan" placeholder="Nama Jabatan" name="jabatan" value="{{old ('jabatan', $jbt->jabatan) }}" />
                                                                 </div>
                                                             </div>
                                                             <div class="col-12">
                                                                 <label for="kode_jabatan" class="form-label">Kode Jabatan</label>
                                                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-pencil-square"></i></span>
-                                                                    <input type="text" class="form-control border-start-0" id="kode_jabatan" placeholder="Kode Jabatan" name="kode_jabatan" value="{{old ('kode_jabatan') }}" />
+                                                                    <input type="text" class="form-control border-start-0" id="kode_jabatan" placeholder="Kode Jabatan" name="kode_jabatan" value="{{old ('kode_jabatan', $jbt->kode_jabatan) }}" />
                                                                 </div>
                                                             </div>
 
@@ -139,9 +137,9 @@
                                         </div>
                                     </div>
 
-                                    @endif
-
                                     @endforeach
+
+                                    <!-- Modal Show -->
 
                                 </tbody>
                             </table>

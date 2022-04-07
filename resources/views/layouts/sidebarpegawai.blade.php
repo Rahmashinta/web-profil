@@ -2,7 +2,7 @@
 <div class="sidebar-wrapper" data-simplebar="true">
     <div class="sidebar-header">
         <div>
-            <img src="assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
+            <img src="{{ asset('assets/images/logo-icon.png') }}" class="logo-icon" alt="logo icon">
         </div>
         <div>
             <h4 class="logo-text" style="font-size: 15px">Biro Pengadaan Barang dan Jasa</h4>
@@ -20,7 +20,7 @@
             </a>
         </li>
         <li>
-            <a href="/jabatan">
+            <a href="{{ route('jabatan.index') }}">
                 <div class="parent-icon"><i class="bi bi-person-workspace"></i>
                 </div>
                 <div class="menu-title">Jabatan</div>

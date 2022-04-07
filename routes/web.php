@@ -77,17 +77,25 @@ Route::get('/dashboard', function () {
     return view('pegawai.dashboard');
 });
 
+// Route::resource('jabatan', JabatanController::class);
 
 Route::get('/jabatan', [JabatanController::class, 'index'])->name('jabatan.index');
+Route::get('/jabatan/create', [JabatanController::class, 'create'])->name('jabatan.create');
+Route::get('/jabatan/{jabatan}/edit', [JabatanController::class, 'edit'])->name('jabatan.edit');
 Route::post('/jabatan', [JabatanController::class, 'store'])->name('jabatan.store');
+Route::get('/jabatan/{jabatan}', [JabatanController::class, 'show'])->name('jabatan.show');
+Route::put('/jabatan/{jabatan}', [JabatanController::class, 'update'])->name('jabatan.update');
 Route::delete('/jabatan/{jabatan}', [JabatanController::class, 'destroy'])->name('jabatan.destroy');
 
 Route::get('/pegawai', [PegawaiController::class, 'index'])->name('pegawai.index');
+Route::get('/pegawai/create', [PegawaiController::class, 'create'])->name('pegawai.create');
 Route::post('/pegawai', [PegawaiController::class, 'store'])->name('pegawai.store');
 Route::delete('/pegawai/{pegawai}', [PegawaiController::class, 'destroy'])->name('pegawai.destroy');
 
 Route::get('/konten', [KontenController::class, 'index'])->name('konten.index');
+Route::get('/konten/create', [KontenController::class, 'create'])->name('konten.create');
 Route::post('/konten', [KontenController::class, 'store'])->name('konten.store');
+Route::get('/konten/{konten}', [KontenController::class, 'show'])->name('konten.show');
 Route::delete('/konten/{konten}', [KontenController::class, 'destroy'])->name('konten.destroy');
 
 Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri.index');
