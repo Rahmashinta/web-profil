@@ -50,6 +50,8 @@
 
     @include('layouts.footerpegawai')
 
+    @yield('judul')
+
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> -->
 
@@ -75,7 +77,18 @@
     </script>
     <script>
         tinymce.init({
-            selector: '#isi_konten'
+
+            selector: "#isi_konten",
+            mode: "textareas",
+            editor_selector: "fulldis",
+            setup: function(editor) {
+                editor.on('change', function() {
+                    editor.save();
+                });
+            },
+            force_br_newlines: true,
+            force_p_newlines: false,
+            toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify "
         });
     </script>
 
@@ -93,6 +106,14 @@
 
             table.buttons().container()
                 .appendTo('#example2_wrapper .col-md-6:eq(0)');
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.add-more').click(function() {
+                var html = $(".show").html();
+                $(".after-add-more").after(html);
+            });
         });
     </script>
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Konten;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\KontenRequest;
+use Illuminate\Support\Facades\Storage;
+
 
 class KontenController extends Controller
 {
@@ -40,7 +42,18 @@ class KontenController extends Controller
      */
     public function store(KontenRequest $request)
     {
-        Konten::create($request->all());
+
+        $file = $request->file('gambar');
+
+        //tujuan upload
+        $tujuan_upload = 'storage/konten';
+
+        //upload file
+        $file->move($tujuan_upload, $file->getClientOriginalName());
+
+        $data = $request->all();
+        $data['gambar'] = $request->file('gambar')->getClientOriginalName();
+        Konten::create($data);
 
         return redirect()->route('konten.index');
     }
@@ -53,7 +66,9 @@ class KontenController extends Controller
      */
     public function show(Konten $konten)
     {
-        //
+        return view('pegawai.konten.show', [
+            'konten' => $konten
+        ]);
     }
 
     /**
@@ -64,7 +79,9 @@ class KontenController extends Controller
      */
     public function edit(Konten $konten)
     {
-        //
+        return view('pegawai.konten.edit', [
+            'konten' => $konten
+        ]);
     }
 
     /**
@@ -74,9 +91,38 @@ class KontenController extends Controller
      * @param  \App\Models\Konten  $konten
      * @return \Illuminate\Http\Response
      */
-    public function update(KontenRequest $request, Konten $konten)
+    public function update(KontenRequest $request, $id)
     {
-        //
+
+
+        // Konten::create([
+        //     'judul_konten' => $request->judul_konten,
+        //     'kategori_konten' => $request->kategori_konten,
+        //     'gambar' => $file->getClientOriginalName(),
+        //     'isi_konten' => $request->isi_konten
+        // ]);
+        $data = $request->all();
+
+        $file = $request->file('gambar');
+
+        if ($file) {
+
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+
+            //tujuan upload
+            $tujuan_upload = 'storage/konten';
+
+            //upload file
+            $file->move($tujuan_upload, $file->getClientOriginalName());
+
+            $data['gambar'] = $request->file('gambar')->getClientOriginalName();
+        }
+
+        Konten::find($id)->update($data);
+
+        return redirect()->route('konten.index')->with('success', 'Data Konten Berhasil Diperbaharui');
     }
 
     /**

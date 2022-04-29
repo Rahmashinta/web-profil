@@ -17,9 +17,9 @@ return new class extends Migration
     {
         Schema::create('pegawais', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Jabatan::class);
             $table->string('nama_pegawai');
             $table->string('nip');
+            $table->string('jabatan');
             $table->string('foto_pegawai')->nullable();
             $table->timestamps();
         });

@@ -89,16 +89,22 @@ Route::delete('/jabatan/{jabatan}', [JabatanController::class, 'destroy'])->name
 
 Route::get('/pegawai', [PegawaiController::class, 'index'])->name('pegawai.index');
 Route::get('/pegawai/create', [PegawaiController::class, 'create'])->name('pegawai.create');
+Route::post('/pegawai/{pegawai}/edit', [PegawaiController::class, 'edit'])->name('pegawai.edit');
 Route::post('/pegawai', [PegawaiController::class, 'store'])->name('pegawai.store');
+Route::get('/pegawai/{pegawai}', [PegawaiController::class, 'show'])->name('pegawai.show');
+Route::put('/pegawai/{pegawai}', [PegawaiController::class, 'update'])->name('pegawai.update');
 Route::delete('/pegawai/{pegawai}', [PegawaiController::class, 'destroy'])->name('pegawai.destroy');
 
 Route::get('/konten', [KontenController::class, 'index'])->name('konten.index');
 Route::get('/konten/create', [KontenController::class, 'create'])->name('konten.create');
+Route::get('/konten/{konten}/edit', [KontenController::class, 'edit'])->name('konten.edit');
 Route::post('/konten', [KontenController::class, 'store'])->name('konten.store');
 Route::get('/konten/{konten}', [KontenController::class, 'show'])->name('konten.show');
+Route::put('/konten/{konten}', [KontenController::class, 'update'])->name('konten.update');
 Route::delete('/konten/{konten}', [KontenController::class, 'destroy'])->name('konten.destroy');
 
 Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri.index');
+Route::get('/galeri/create', [GaleriController::class, 'create'])->name('galeri.create');
 Route::post('/galeri', [GaleriController::class, 'store'])->name('galeri.store');
 Route::delete('/galeri/{galeri}', [GaleriController::class, 'destroy'])->name('galeri.destroy');
 

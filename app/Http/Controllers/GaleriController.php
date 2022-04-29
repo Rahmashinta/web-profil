@@ -15,8 +15,8 @@ class GaleriController extends Controller
      */
     public function index()
     {
-        return view('pegawai.galeri', [
-            'galeri' => Galeri::all()
+        return view('pegawai.foto.index', [
+            'foto' => Galeri::all()
         ]);
     }
 
@@ -27,7 +27,9 @@ class GaleriController extends Controller
      */
     public function create()
     {
-        //
+        return view('pegawai.foto.create', [
+            'foto' => Galeri::all()
+        ]);
     }
 
     /**
@@ -38,7 +40,18 @@ class GaleriController extends Controller
      */
     public function store(GaleriRequest $request)
     {
-        Galeri::create($request->all());
+        $file = $request->file('file');
+
+        //tujuan upload
+        $tujuan_upload = 'storage/foto';
+
+        //upload file
+        $file->move($tujuan_upload, $file->getClientOriginalName());
+
+        $data = $request->all();
+
+        $data['file'] = $file->getClientOriginalName();
+        Galeri::create($data);
 
         return redirect()->route('galeri.index');
     }

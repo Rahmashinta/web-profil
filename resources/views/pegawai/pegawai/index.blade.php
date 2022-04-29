@@ -16,7 +16,7 @@
 
                 <div class="col">
 
-                    <a class="btn btn-primary" href="{{ route('pegawai.create') }}">Tambah Data Jabatan</a>
+                    <a class="btn btn-primary" href="{{ route('pegawai.create') }}">Tambah Data Pegawai</a>
 
                 </div>
 
@@ -42,10 +42,10 @@
                                         <td>1</td>
                                         <td>{{ $pgw->nama_pegawai }}</td>
                                         <td>{{ $pgw->nip }}</td>
-                                        <td>{{ $pgw->jabatan_id }}</td>
+                                        <td>{{ $pgw->jabatan }}</td>
                                         <td>
-                                            <a href="#" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
-                                            <a href="#" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                            <a href="/pegawai/{{ $pgw->id}}" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
+                                            <a href="/pegawai/{{$pgw->id}}/edit" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
                                             <form action="/pegawai/{{ $pgw->id}}" method="post" class="d-inline">
                                                 @method('delete')
                                                 @csrf

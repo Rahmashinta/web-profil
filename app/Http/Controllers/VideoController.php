@@ -14,7 +14,7 @@ class VideoController extends Controller
      */
     public function index()
     {
-        return view('pegawai.video', [
+        return view('pegawai.video.index', [
             'video' => Video::all()
         ]);
     }
@@ -26,7 +26,9 @@ class VideoController extends Controller
      */
     public function create()
     {
-        //
+        return view('pegawai.video.create', [
+            'konten' => Video::all()
+        ]);
     }
 
     /**

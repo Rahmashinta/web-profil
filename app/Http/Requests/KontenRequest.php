@@ -26,7 +26,7 @@ class KontenRequest extends FormRequest
         return [
             'judul_konten' => 'required|max:255|string',
             'isi_konten' => 'required',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+            'gambar' => 'image|mimes:jpeg,png,jpg|max:2048'
         ];
     }
 }

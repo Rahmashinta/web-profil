@@ -15,36 +15,35 @@
             <div class="page-content">
                 <div class="row">
                     <div class="col-xl-10 mx-auto">
-                        <h6 class="mb-0 text-uppercase">Tambah Data Jabatan</h6>
+                        <h6 class="mb-0 text-uppercase">Tambah Data Pegawai</h6>
                         <hr />
                         <div class="card border-top border-primary">
                             <div class="card-body p-5">
-                                <form class="row g-3" action="{{ route('jabatan.store') }}" method="post" enctype="multipart/form-data">
+                                <form class="row g-3" action="{{ route('pegawai.store') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="col-md-6">
-                                        <label for="jabatan" class="form-label">Nama Jabatan</label>
-                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person-lines-fill"></i></span>
-                                            <input type="text" class="form-control border-start-0 " id="jabatan" placeholder="Nama Jabatan" name="jabatan" value="{{old ('jabatan') }}" />
-                                            <!-- @error('jabatan')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                            @enderror -->
+                                        <label for="pegawai" class="form-label">Nama Pegawai</label>
+                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person-fill"></i></span>
+                                            <input type="text" class="form-control border-start-0 " id="pegawai" placeholder="Nama Pegawai" name="pegawai" value="{{old ('pegawai') }}" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <label for="kode_jabatan" class="form-label">Kode Jabatan</label>
-                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-pencil-square"></i></span>
-                                            <input type="text" class="form-control border-start-0 " id="kode_jabatan" placeholder="Kode Jabatan" name="kode_jabatan" value="{{old ('kode_jabatan') }}" />
-                                            <!-- @error('kode_jabatan')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                            @enderror -->
+                                        <label for="nip" class="form-label">NIP</label>
+                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-123"></i></span>
+                                            <input type="text" class="form-control border-start-0 " id="nip" placeholder="NIP" name="nip" value="{{old ('nip') }}" />
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <button type="submit" class="btn btn-primary px-5">Simpan</button>
+                                        <label class="form-label">Jabatan</label>
+                                        <select class="form-select mb-3" aria-label="Default select example" name="jabatan">
+                                            <option selected>Pilih Jabatan</option>
+                                            @foreach ($jabatan as $jbt)
+                                            <option value="{{$jbt->jabatan}}" class="lama">{{$jbt->jabatan}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-success px-5">Simpan</button>
                                     </div>
                                 </form>
                             </div>

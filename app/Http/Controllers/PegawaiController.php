@@ -16,11 +16,8 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-
         return view('pegawai.pegawai.index', [
-            'pegawai' => Pegawai::all(),
-            'jabatan' => Jabatan::all(),
-
+            'pegawai' => Pegawai::all()
         ]);
     }
 
@@ -32,7 +29,8 @@ class PegawaiController extends Controller
     public function create()
     {
         return view('pegawai.pegawai.create', [
-            'pegawai' => Pegawai::all()
+            'pegawai' => Pegawai::all(),
+            'jabatan' => Jabatan::all()
         ]);
     }
 

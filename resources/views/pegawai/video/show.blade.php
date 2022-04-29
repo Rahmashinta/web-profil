@@ -21,7 +21,7 @@
                             <img src="/storage/konten/{{ $konten->gambar }}" class="card-img-top mt-4" alt="..." style="width: 500px; height: 400px; margin:auto; display:block; clear:both ">
                             <div class="card-body">
                                 <h5 class="card-title" style="text-align: center; color:#008cff">{{ $konten->judul_konten }}</h5>
-                                <p class=" card-text"> {!! $konten->isi_konten !!}</p>
+                                <p class=" card-text">{{ $konten->isi_konten }}</p>
                                 </p>
                             </div>
                         </div>

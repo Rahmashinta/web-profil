@@ -15,19 +15,18 @@
             <div class="page-content">
 
                 <div class="row ">
-                    <div class="col ">
-                        <div class="card m-3">
-                            <!-- <img src="{{ asset('assets/images/avatars/avatar-2.png') }}" class="card-img-top" alt="..."> -->
-                            <img src="/storage/konten/{{ $konten->gambar }}" class="card-img-top mt-4" alt="..." style="width: 500px; height: 400px; margin:auto; display:block; clear:both ">
+                    <div class="col">
+                        <div class="card mb-3">
+                            <img src="{{ asset('assets/images/avatars/avatar-2.png') }}" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title" style="text-align: center; color:#008cff">{{ $konten->judul_konten }}</h5>
-                                <p class=" card-text"> {!! $konten->isi_konten !!}</p>
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small>
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
-
 
             </div>
         </div>

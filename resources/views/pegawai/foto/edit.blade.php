@@ -15,7 +15,7 @@
             <div class="page-content">
                 <div class="row">
                     <div class="col-xl-10 mx-auto">
-                        <h6 class="mb-0 text-uppercase">Edit Data Jabatan</h6>
+                        <h6 class="mb-0 text-uppercase">Tambah Data Jabatan</h6>
                         <hr />
                         <div class="card border-top border-primary">
                             <div class="card-body p-5">

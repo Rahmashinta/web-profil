@@ -16,11 +16,11 @@
 
                 <div class="col">
 
-                    <a class="btn btn-primary" href="{{ route('konten.create') }}">Tambah Data Konten</a>
+                    <a class="btn btn-primary" href="{{ route('galeri.create') }}">Tambah Data Foto</a>
 
                 </div>
 
-                <h6 class="mt-4 text-uppercase">Data Konten</h6>
+                <h6 class="mt-4 text-uppercase">Data Foto</h6>
                 <hr />
                 <div class="card">
                     <div class="card-body">
@@ -29,25 +29,18 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Judul Konten</th>
-                                        <th>Tanggal Konten</th>
-                                        <th>Kategori Konten</th>
-                                        <th>Status Konten</th>
+                                        <th>Judul Foto</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($konten as $ktn)
+                                    @foreach ($foto as $ft)
                                     <tr>
                                         <td>1</td>
-                                        <td>{{ $ktn->judul_konten }}</td>
-                                        <td>{{ $ktn->created_at }}</td>
-                                        <td>{{ $ktn->kategori_konten }}</td>
-                                        <td></td>
+                                        <td>{{ $ft->judul }}</td>
                                         <td>
-                                            <a href="/konten/{{ $ktn->id}}" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
-                                            <a href="/konten/{{$ktn->id}}/edit" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
-                                            <form action="/konten/{{ $ktn->id}}" method="post" class="d-inline">
+                                            <a href="/galero/{{$ft->id}}/edit" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                            <form action="/galeri/{{ $ft->id}}" method="post" class="d-inline">
                                                 @method('delete')
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash3"></i></button>

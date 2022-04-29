@@ -25,7 +25,8 @@ class PegawaiRequest extends FormRequest
     {
         return [
             'nama_pegawai' => 'required|max:255|string',
-            'nip' => 'required|string|max:18'
+            'nip' => 'required|string|max:18',
+            'jabatan' => 'required|string|max:255'
         ];
     }
 }
