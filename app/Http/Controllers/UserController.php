@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('pegawai.kelolapengguna', [
+        return view('pegawai.pengguna.index', [
             'user' => User::all()
         ]);
     }
@@ -28,7 +28,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('pegawai.pengguna.create', [
+            'user' => User::all()
+        ]);
     }
 
     /**
@@ -41,7 +43,7 @@ class UserController extends Controller
     {
         User::create($request->all());
 
-        return redirect()->route('user.index');
+        return redirect()->route('pengguna.index');
     }
 
     /**
@@ -61,9 +63,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('pegawai.pengguna.edit', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -75,7 +79,9 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
-        //
+        User::find($id)->update($request->all());
+
+        return redirect()->route('pengguna.index')->with('success', 'Data Konten Berhasil Diperbaharui');
     }
 
     /**
@@ -88,6 +94,6 @@ class UserController extends Controller
     {
         User::destroy($user->id);
 
-        return redirect()->route('user.index');
+        return redirect()->route('pengguna.index');
     }
 }

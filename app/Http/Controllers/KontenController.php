@@ -94,13 +94,6 @@ class KontenController extends Controller
     public function update(KontenRequest $request, $id)
     {
 
-
-        // Konten::create([
-        //     'judul_konten' => $request->judul_konten,
-        //     'kategori_konten' => $request->kategori_konten,
-        //     'gambar' => $file->getClientOriginalName(),
-        //     'isi_konten' => $request->isi_konten
-        // ]);
         $data = $request->all();
 
         $file = $request->file('gambar');

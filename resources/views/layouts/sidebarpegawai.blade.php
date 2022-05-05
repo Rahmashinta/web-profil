@@ -61,14 +61,14 @@
             </a>
         </li>
         <li>
-            <a href="/kelolamenu">
+            <a href="/menu">
                 <div class="parent-icon"><i class="bi bi-menu-button-wide"></i>
                 </div>
                 <div class="menu-title">Kelola Menu</div>
             </a>
         </li>
         <li>
-            <a href="/kelolapengguna">
+            <a href="/pengguna">
                 <div class="parent-icon"><i class="bi bi-person"></i>
                 </div>
                 <div class="menu-title">Kelola Pengguna</div>

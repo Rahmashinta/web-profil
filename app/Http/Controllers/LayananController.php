@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Konten;
 use App\Models\Layanan;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\LayananRequest;
+use Illuminate\Support\Facades\Storage;
 
 class LayananController extends Controller
 {
@@ -14,7 +17,7 @@ class LayananController extends Controller
      */
     public function index()
     {
-        return view('pegawai.layanan', [
+        return view('pegawai.layanan.index', [
             'layanan' => Layanan::all()
         ]);
     }
@@ -26,7 +29,9 @@ class LayananController extends Controller
      */
     public function create()
     {
-        //
+        return view('pegawai.layanan.create', [
+            'layanan' => Layanan::all()
+        ]);
     }
 
     /**
@@ -37,7 +42,17 @@ class LayananController extends Controller
      */
     public function store(LayananRequest $request)
     {
-        Layanan::create($request->all());
+        $file = $request->file('gambar');
+
+        //tujuan upload
+        $tujuan_upload = 'storage/layanan';
+
+        //upload file
+        $file->move($tujuan_upload, $file->getClientOriginalName());
+
+        $data = $request->all();
+        $data['gambar'] = $request->file('gambar')->getClientOriginalName();
+        Layanan::create($data);
 
         return redirect()->route('layanan.index');
     }
@@ -50,7 +65,6 @@ class LayananController extends Controller
      */
     public function show(Layanan $layanan)
     {
-        
     }
 
     /**
@@ -61,7 +75,9 @@ class LayananController extends Controller
      */
     public function edit(Layanan $layanan)
     {
-        //
+        return view('pegawai.layanan.edit', [
+            'layanan' => $layanan
+        ]);
     }
 
     /**
@@ -71,9 +87,30 @@ class LayananController extends Controller
      * @param  \App\Models\Layanan  $layanan
      * @return \Illuminate\Http\Response
      */
-    public function update(LayananRequest $request, Layanan $layanan)
+    public function update(LayananRequest $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $file = $request->file('gambar');
+
+        if ($file) {
+
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+
+            //tujuan upload
+            $tujuan_upload = 'storage/layanan';
+
+            //upload file
+            $file->move($tujuan_upload, $file->getClientOriginalName());
+
+            $data['gambar'] = $request->file('gambar')->getClientOriginalName();
+        }
+
+        Layanan::find($id)->update($data);
+
+        return redirect()->route('layanan.index')->with('success', 'Data Konten Berhasil Diperbaharui');
     }
 
     /**

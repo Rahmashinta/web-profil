@@ -15,30 +15,38 @@
             <div class="page-content">
                 <div class="row">
                     <div class="col-xl-10 mx-auto">
-                        <h6 class="mb-0 text-uppercase">Edit Data Video</h6>
+                        <h6 class="mb-0 text-uppercase">Edit Data Pengguna</h6>
                         <hr />
                         <div class="card border-top border-primary">
                             <div class="card-body p-5">
-                                <form class="row g-3" action="{{ route('video.update', $video->id) }}" method="post" enctype="multipart/form-data">
+                                <form class="row g-3" action="{{ route('pengguna.update', $user->id) }}" method="post" enctype="multipart/form-data">
                                     @method('put')
                                     @csrf
 
                                     <div class="col-md-12">
-                                        <label for="judul" class="form-label">Judul Video</label>
-                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-pencil-fill"></i></span>
-                                            <input type="text" class="form-control border-start-0" id="judul" placeholder="Judul Video" name="judul" value="{{old ('video', $video->judul) }}" />
+                                        <label for="nama" class="form-label">Nama Pengguna</label>
+                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person"></i></span>
+                                            <input type="text" class="form-control border-start-0" id="nama" placeholder="Nama Pengguna" name="nama" value="{{old ('user', $user->nama) }}" />
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <label for="link" class="form-label">Link Video</label>
-                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-link"></i></span>
-                                            <input type="text" class="form-control border-start-0" id="link" placeholder="Link Video" name="link" value="{{old ('video', $video->link) }}" />
+                                        <label for="username" class="form-label">Username</label>
+                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person-square"></i></span>
+                                            <input type="text" class="form-control border-start-0" id="username" placeholder="username" name="username" value="{{old ('user', $user->username) }}" />
                                         </div>
                                     </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Role</label>
+                                        <select class="form-select mb-3" aria-label="Default select example" name="role">
+                                            <option selected value="{{old ('user', $user->role) }}">{{old ('user', $user->role) }}</option>
+                                            <option value=" Admin">Admin</option>
+                                            <option value="Pegawai">Pegawai</option>
+                                        </select>
+                                    </div>
                                     <div class="col-md-12">
-                                        <label for="keterangan" class="form-label">Keterangan Video</label>
-                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-card-text"></i></span>
-                                            <input type="text" class="form-control border-start-0" id="keterangan" placeholder="Keterangan Video" name="keterangan" value="{{old ('video', $video->keterangan) }}" />
+                                        <label for="password" class="form-label">Password</label>
+                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-key"></i></span>
+                                            <input type="text" class="form-control border-start-0" id="password" placeholder="Password" name="password" value="{{old ('user', $user->password) }}" />
                                         </div>
                                     </div>
 

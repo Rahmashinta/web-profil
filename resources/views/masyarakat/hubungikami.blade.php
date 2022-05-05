@@ -14,14 +14,14 @@
                 <div class="row">
                     <div class="">
                         <div class="contact-form">
-                            <h4 class="title">Send A Message</h4>
-                            <form action="#">
+                            <h4 class="title">Kritik dan Saran</h4>
+                            <form action="{{ route('kritiksaran.store') }}" method="post" enctype="multipart/form-data">
+                                @csrf
                                 <div class="field">
-                                    <input type="text" placeholder="Enter Name">
-                                    <input type="email" placeholder="Email Address">
+                                    <input type="text" placeholder="Masukkan Nama Anda" id="nama" name="nama" value="{{old ('nama') }}">
+                                    <input type="email" placeholder="Masukkan Email Anda" name="email" id="email">
                                 </div>
-                                <input type="text" placeholder="Name Of Subject">
-                                <textarea placeholder="Desciption"></textarea>
+                                <textarea placeholder="Kritik dan Saran" name="kritik"></textarea>
                                 <button type="submit" style="margin-top: 0 !important">Submit</button>
                             </form>
                         </div>

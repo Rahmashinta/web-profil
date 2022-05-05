@@ -14,7 +14,7 @@ class MenuController extends Controller
      */
     public function index()
     {
-        return view('pegawai.kelolamenu', [
+        return view('pegawai.menu.index', [
             'menu' => Menu::all()
         ]);
     }
@@ -26,7 +26,9 @@ class MenuController extends Controller
      */
     public function create()
     {
-        //
+        return view('pegawai.menu.create', [
+            'menu' => Menu::all()
+        ]);
     }
 
     /**
@@ -61,7 +63,9 @@ class MenuController extends Controller
      */
     public function edit(Menu $menu)
     {
-        //
+        return view('pegawai.menu.edit', [
+            'menu' => $menu
+        ]);
     }
 
     /**
@@ -71,9 +75,11 @@ class MenuController extends Controller
      * @param  \App\Models\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function update(MenuRequest $request, Menu $menu)
+    public function update(MenuRequest $request, $id)
     {
-        //
+        Menu::find($id)->update($request->all());
+
+        return redirect()->route('menu.index')->with('success', 'Data Konten Berhasil Diperbaharui');
     }
 
     /**

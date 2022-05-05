@@ -89,7 +89,7 @@ Route::delete('/jabatan/{jabatan}', [JabatanController::class, 'destroy'])->name
 
 Route::get('/pegawai', [PegawaiController::class, 'index'])->name('pegawai.index');
 Route::get('/pegawai/create', [PegawaiController::class, 'create'])->name('pegawai.create');
-Route::post('/pegawai/{pegawai}/edit', [PegawaiController::class, 'edit'])->name('pegawai.edit');
+Route::get('/pegawai/{pegawai}/edit', [PegawaiController::class, 'edit'])->name('pegawai.edit');
 Route::post('/pegawai', [PegawaiController::class, 'store'])->name('pegawai.store');
 Route::get('/pegawai/{pegawai}', [PegawaiController::class, 'show'])->name('pegawai.show');
 Route::put('/pegawai/{pegawai}', [PegawaiController::class, 'update'])->name('pegawai.update');
@@ -109,21 +109,36 @@ Route::post('/galeri', [GaleriController::class, 'store'])->name('galeri.store')
 Route::delete('/galeri/{galeri}', [GaleriController::class, 'destroy'])->name('galeri.destroy');
 
 Route::get('/video', [VideoController::class, 'index'])->name('video.index');
+Route::get('/video/create', [VideoController::class, 'create'])->name('video.create');
+Route::get('/video/{video}/edit', [VideoController::class, 'edit'])->name('video.edit');
 Route::post('/video', [VideoController::class, 'store'])->name('video.store');
+Route::put('/video/{video}', [VideoController::class, 'update'])->name('video.update');
 Route::delete('/video/{video}', [VideoController::class, 'destroy'])->name('video.destroy');
 
 Route::get('/layanan', [LayananController::class, 'index'])->name('layanan.index');
+Route::get('/layanan/create', [LayananController::class, 'create'])->name('layanan.create');
+Route::get('/layanan/{layanan}/edit', [LayananController::class, 'edit'])->name('layanan.edit');
 Route::post('/layanan', [LayananController::class, 'store'])->name('layanan.store');
+Route::put('/layanan/{video}', [LayananController::class, 'update'])->name('layanan.update');
 Route::delete('/layanan/{layanan}', [LayananController::class, 'destroy'])->name('layanan.destroy');
 
-Route::get('/kelolamenu', [MenuController::class, 'index'])->name('menu.index');
-Route::post('/kelolamenu', [MenuController::class, 'store'])->name('menu.store');
-Route::delete('/kelolamenu/{menu}', [MenuController::class, 'destroy'])->name('menu.destroy');
+Route::get('/menu', [MenuController::class, 'index'])->name('menu.index');
+Route::get('/menu/create', [MenuController::class, 'create'])->name('menu.create');
+Route::get('/menu/{menu}/edit', [MenuController::class, 'edit'])->name('menu.edit');
+Route::post('/menu', [MenuController::class, 'store'])->name('menu.store');
+Route::put('/menu/{menu}', [MenuController::class, 'update'])->name('menu.update');
+Route::delete('/menu/{menu}', [MenuController::class, 'destroy'])->name('menu.destroy');
 
-Route::get('/kelolapengguna', [UserController::class, 'index'])->name('user.index');
-Route::post('/kelolapengguna', [UserController::class, 'store'])->name('user.store');
-Route::delete('/kelolapengguna/{user}', [UserController::class, 'destroy'])->name('user.destroy');
+Route::get('/pengguna', [UserController::class, 'index'])->name('pengguna.index');
+Route::get('/pengguna/create', [UserController::class, 'create'])->name('pengguna.create');
+Route::get('/pengguna/{user}/edit', [UserController::class, 'edit'])->name('pengguna.edit');
+Route::post('/pengguna', [UserController::class, 'store'])->name('pengguna.store');
+Route::put('/pengguna/{user}', [UserController::class, 'update'])->name('pengguna.update');
+Route::delete('/pengguna/{user}', [UserController::class, 'destroy'])->name('pengguna.destroy');
 
 Route::get('/kritiksaran', [KritiksaranController::class, 'index'])->name('kritiksaran.index');
+Route::post('/kritiksaran', [KritiksaranController::class, 'store'])->name('kritiksaran.store');
+Route::get('/kritiksaran/{kritiksaran}', [KritiksaranController::class, 'show'])->name('kritiksaran.show');
+Route::delete('/kritiksaran/{kritiksaran}', [KritiksaranController::class, 'destroy'])->name('kritiksaran.destroy');
 
 require __DIR__ . '/auth.php';

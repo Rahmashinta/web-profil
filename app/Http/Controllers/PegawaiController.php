@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Konten;
 use App\Models\Jabatan;
 use App\Models\Pegawai;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PegawaiRequest;
+use Illuminate\Support\Facades\Storage;
 
 class PegawaiController extends Controller
 {
@@ -42,7 +44,17 @@ class PegawaiController extends Controller
      */
     public function store(PegawaiRequest $request)
     {
-        Pegawai::create($request->all());
+        $file = $request->file('foto_pegawai');
+
+        //tujuan upload
+        $tujuan_upload = 'storage/pegawai';
+
+        //upload file
+        $file->move($tujuan_upload, $file->getClientOriginalName());
+
+        $data = $request->all();
+        $data['foto_pegawai'] = $request->file('foto_pegawai')->getClientOriginalName();
+        Pegawai::create($data);
 
         return redirect()->route('pegawai.index');
     }
@@ -55,7 +67,9 @@ class PegawaiController extends Controller
      */
     public function show(Pegawai $pegawai)
     {
-        //
+        return view('pegawai.pegawai.show', [
+            'pegawai' => $pegawai
+        ]);
     }
 
     /**
@@ -66,7 +80,10 @@ class PegawaiController extends Controller
      */
     public function edit(Pegawai $pegawai)
     {
-        //
+        return view('pegawai.pegawai.edit', [
+            'pegawai' => $pegawai,
+            'jabatan' => Jabatan::all()
+        ]);
     }
 
     /**
@@ -76,9 +93,30 @@ class PegawaiController extends Controller
      * @param  \App\Models\Pegawai  $pegawai
      * @return \Illuminate\Http\Response
      */
-    public function update(PegawaiRequest $request, Pegawai $pegawai)
+    public function update(PegawaiRequest $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $file = $request->file('foto_pegawai');
+
+        if ($file) {
+
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+
+            //tujuan upload
+            $tujuan_upload = 'storage/pegawai';
+
+            //upload file
+            $file->move($tujuan_upload, $file->getClientOriginalName());
+
+            $data['foto_pegawai'] = $request->file('foto_pegawai')->getClientOriginalName();
+        }
+
+        Pegawai::find($id)->update($data);
+
+        return redirect()->route('pegawai.index')->with('success', 'Data Konten Berhasil Diperbaharui');
     }
 
     /**

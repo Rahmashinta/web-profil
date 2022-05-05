@@ -16,11 +16,11 @@
 
                 <div class="col">
 
-                    <a class="btn btn-primary" href="{{ route('video.create') }}">Tambah Data Video</a>
+                    <a class="btn btn-primary" href="{{ route('layanan.create') }}">Tambah Data Layanan</a>
 
                 </div>
 
-                <h6 class="mt-4 text-uppercase">Data Video</h6>
+                <h6 class="mt-4 text-uppercase">Data Layanan</h6>
                 <hr />
                 <div class="card">
                     <div class="card-body">
@@ -29,24 +29,20 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Judul Video</th>
-                                        <th>Tanggal Video</th>
-                                        <th>Link</th>
-                                        <th>Keterangan</th>
+                                        <th>Gambar</th>
+                                        <th>Link Layanan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($video as $vd)
+                                    @foreach ($layanan as $ly)
                                     <tr>
                                         <td>1</td>
-                                        <td>{{ $vd->judul }}</td>
-                                        <td>{{ $vd->created_at }}</td>
-                                        <td><a href="{{ $vd->link  }}"> {{ $vd->link  }}</a></td>
-                                        <td>{{ $vd->keterangan}}</td>
+                                        <td><img src="/storage/layanan/{{ $ly->gambar }}" style="width: 100px; height: 100px; margin:auto; display:block; clear:both"></td>
+                                        <td><a href=" {{ $ly->link }}">{{ $ly->link }}</a></td>
                                         <td>
-                                            <a href="/video/{{$vd->id}}/edit" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
-                                            <form action="/video/{{ $vd->id}}" method="post" class="d-inline">
+                                            <a href="/layanan/{{$ly->id}}/edit" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                            <form action="/layanan/{{ $ly->id}}" method="post" class="d-inline">
                                                 @method('delete')
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash3"></i></button>

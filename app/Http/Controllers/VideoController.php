@@ -27,7 +27,7 @@ class VideoController extends Controller
     public function create()
     {
         return view('pegawai.video.create', [
-            'konten' => Video::all()
+            'video' => Video::all()
         ]);
     }
 
@@ -63,7 +63,9 @@ class VideoController extends Controller
      */
     public function edit(Video $video)
     {
-        //
+        return view('pegawai.video.edit', [
+            'video' => $video
+        ]);
     }
 
     /**
@@ -73,9 +75,11 @@ class VideoController extends Controller
      * @param  \App\Models\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function update(VideoRequest $request, Video $video)
+    public function update(VideoRequest $request, $id)
     {
-        //
+        Video::find($id)->update($request->all());
+
+        return redirect()->route('video.index')->with('success', 'Data Jabatan Berhasil Diperbaharui');
     }
 
     /**

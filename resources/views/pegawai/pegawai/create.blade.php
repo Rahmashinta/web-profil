@@ -22,9 +22,9 @@
                                 <form class="row g-3" action="{{ route('pegawai.store') }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <div class="col-md-6">
-                                        <label for="pegawai" class="form-label">Nama Pegawai</label>
+                                        <label for="nama_pegawai" class="form-label">Nama Pegawai</label>
                                         <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person-fill"></i></span>
-                                            <input type="text" class="form-control border-start-0 " id="pegawai" placeholder="Nama Pegawai" name="pegawai" value="{{old ('pegawai') }}" />
+                                            <input type="text" class="form-control border-start-0 " id="nama_pegawai" placeholder="Nama Pegawai" name="nama_pegawai" value="{{old ('nama_pegawai') }}" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -41,6 +41,12 @@
                                             <option value="{{$jbt->jabatan}}" class="lama">{{$jbt->jabatan}}</option>
                                             @endforeach
                                         </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label for="foto_pegawai" class="form-label">Foto Pegawai</label>
+                                            <input class="form-control" type="file" id="foto_pegawai" name="foto_pegawai" value="{{old ('foto_pegawai') }}">
+                                        </div>
                                     </div>
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-success px-5">Simpan</button>

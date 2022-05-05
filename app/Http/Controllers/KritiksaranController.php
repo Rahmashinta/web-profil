@@ -14,7 +14,7 @@ class KritiksaranController extends Controller
      */
     public function index()
     {
-        return view('pegawai.kritiksaran', [
+        return view('pegawai.kritiksaran.index', [
             'kritiksaran' => Kritiksaran::all()
         ]);
     }
@@ -38,7 +38,9 @@ class KritiksaranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Kritiksaran::create($request->all());
+
+        return view('masyarakat.hubungikami');
     }
 
     /**
@@ -49,7 +51,9 @@ class KritiksaranController extends Controller
      */
     public function show(Kritiksaran $kritiksaran)
     {
-        //
+        return view('pegawai.kritiksaran.show', [
+            'kritiksaran' => $kritiksaran
+        ]);
     }
 
     /**
@@ -83,6 +87,8 @@ class KritiksaranController extends Controller
      */
     public function destroy(Kritiksaran $kritiksaran)
     {
-        //
+        Kritiksaran::destroy($kritiksaran->id);
+
+        return redirect()->route('kritiksaran.index');
     }
 }

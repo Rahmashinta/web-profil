@@ -25,7 +25,7 @@ class LayananRequest extends FormRequest
     {
         return [
             'link' => 'required|max:255|string',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg|max:2048'//
+            'gambar' => 'image|mimes:jpeg,png,jpg|max:2048'//
         ];
     }
 }
