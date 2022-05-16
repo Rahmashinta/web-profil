@@ -14,7 +14,7 @@ class KritiksaranController extends Controller
      */
     public function index()
     {
-        return view('pegawai.kritiksaran.index', [
+        return view('pegawai.kritiksaran', [
             'kritiksaran' => Kritiksaran::all()
         ]);
     }
@@ -89,6 +89,6 @@ class KritiksaranController extends Controller
     {
         Kritiksaran::destroy($kritiksaran->id);
 
-        return redirect()->route('kritiksaran.index');
+        return redirect()->route('kritiksaran.index')->with('error', 'Data Berhasil Dihapus');
     }
 }

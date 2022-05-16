@@ -1,4 +1,5 @@
 <footer class="footer--area">
+    
     <div class="footer--top pt-20 pb-20">
         <div class="container">
             <div class="row">

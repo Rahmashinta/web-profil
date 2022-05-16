@@ -14,7 +14,7 @@ class MenuController extends Controller
      */
     public function index()
     {
-        return view('pegawai.menu.index', [
+        return view('pegawai.menu', [
             'menu' => Menu::all()
         ]);
     }
@@ -41,7 +41,7 @@ class MenuController extends Controller
     {
         Menu::create($request->all());
 
-        return redirect()->route('menu.index');
+        return redirect()->route('menu.index')->with('menu', 'Data Menu Berhasil Ditambah');
     }
 
     /**
@@ -79,7 +79,7 @@ class MenuController extends Controller
     {
         Menu::find($id)->update($request->all());
 
-        return redirect()->route('menu.index')->with('success', 'Data Konten Berhasil Diperbaharui');
+        return redirect()->route('menu.index')->with('menu', 'Data Menu Berhasil Diperbaharui');
     }
 
     /**
@@ -92,6 +92,6 @@ class MenuController extends Controller
     {
         Menu::destroy($menu->id);
 
-        return redirect()->route('menu.index');
+        return redirect()->route('menu.index')->with('error', 'Data Berhasil Dihapus');
     }
 }

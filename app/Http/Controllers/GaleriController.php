@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Galeri;
+use App\Models\Konten;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GaleriRequest;
+use Illuminate\Support\Facades\Storage;
 
 class GaleriController extends Controller
 {
@@ -15,7 +17,7 @@ class GaleriController extends Controller
      */
     public function index()
     {
-        return view('pegawai.foto.index', [
+        return view('pegawai.foto', [
             'foto' => Galeri::all()
         ]);
     }
@@ -53,7 +55,7 @@ class GaleriController extends Controller
         $data['file'] = $file->getClientOriginalName();
         Galeri::create($data);
 
-        return redirect()->route('galeri.index');
+        return redirect()->route('galeri.index')->with('foto', 'Data Foto Berhasil Ditambah');
     }
 
     /**
@@ -85,9 +87,30 @@ class GaleriController extends Controller
      * @param  \App\Models\Galeri  $galeri
      * @return \Illuminate\Http\Response
      */
-    public function update(GaleriRequest $request, Galeri $galeri)
+    public function update(GaleriRequest $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $file = $request->file('file');
+
+        if ($file) {
+
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+
+            //tujuan upload
+            $tujuan_upload = 'storage/foto';
+
+            //upload file
+            $file->move($tujuan_upload, $file->getClientOriginalName());
+
+            $data['file'] = $request->file('file')->getClientOriginalName();
+        }
+
+        Galeri::find($id)->update($data);
+
+        return redirect()->route('galeri.index')->with('foto', 'Data Konten Berhasil Diperbaharui');
     }
 
     /**

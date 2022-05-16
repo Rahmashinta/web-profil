@@ -17,7 +17,7 @@ class LayananController extends Controller
      */
     public function index()
     {
-        return view('pegawai.layanan.index', [
+        return view('pegawai.layanan', [
             'layanan' => Layanan::all()
         ]);
     }
@@ -54,7 +54,7 @@ class LayananController extends Controller
         $data['gambar'] = $request->file('gambar')->getClientOriginalName();
         Layanan::create($data);
 
-        return redirect()->route('layanan.index');
+        return redirect()->route('layanan.index')->with('layanan', 'Data Layanan Berhasil Ditambah');
     }
 
     /**
@@ -110,7 +110,7 @@ class LayananController extends Controller
 
         Layanan::find($id)->update($data);
 
-        return redirect()->route('layanan.index')->with('success', 'Data Konten Berhasil Diperbaharui');
+        return redirect()->route('layanan.index')->with('layanan', 'Data Layanan Berhasil Diperbaharui');
     }
 
     /**
@@ -123,6 +123,6 @@ class LayananController extends Controller
     {
         Layanan::destroy($layanan->id);
 
-        return redirect()->route('layanan.index');
+        return redirect()->route('layanan.index')->with('error', 'Data Berhasil Dihapus');
     }
 }

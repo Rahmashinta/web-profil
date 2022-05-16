@@ -1,12 +1,12 @@
 <header class="header">
-    <div class="middle header__middle bg--header__middle pt-10 pb-10" style="background-color: 	#52aebd !important">
+    <div class="middle header__middle bg--header__middle pt-10 pb-10" style="background-color: 	#4c6b99 !important">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="content--header__middle d-flex align-items-center ">
                         <div class="logo--header__middle">
                             <div class="logo">
-                                <a class="logo__link" href="index.html"><img src="img/logo/logo.png" alt="" style="width: 50px;"></a>
+                                <a class="logo__link" href="index.html"><img src="{{ asset('assets/images/logo.png') }}" alt="" style="width: 50px;"></a>
                             </div>
                         </div>
                         <div class="search--header__middle h1search--header__middle">

@@ -25,11 +25,11 @@
                                     <!-- <div class="after-add-more"> -->
                                     <div class="col-12">
                                         <label class="form-label">Judul Foto</label>
-                                        <select class="form-select" aria-label="Default select example" name="judul">
+                                        <select class="form-select" onclick="pilih()" aria-label=" Default select example" name="judul">
                                             <option selected>Pilih Judul Foto</option>
-                                            <option id="baru" onclick="pilih()">Baru</option>
+                                            <option id="baru">Baru</option>
                                             @foreach ($foto as $ft)
-                                            <option value="{{$ft->judul}}" class="lama">{{$ft->judul}}</option>
+                                            <option value=" {{$ft->judul}}" class="lama">{{$ft->judul}}</option>
 
                                             @endforeach
 
@@ -84,7 +84,8 @@
     </div>
     <!--end wrapper-->
 
-    @section('judul')
+
+    <!-- @section('judul')
 
     <script>
         let baru = document.getElementById('baru');
@@ -107,5 +108,5 @@
         }
     </script>
 
-    @endsection
+    @endsection -->
 </x-pegawai-layout>

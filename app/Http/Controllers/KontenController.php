@@ -17,7 +17,7 @@ class KontenController extends Controller
      */
     public function index()
     {
-        return view('pegawai.konten.index', [
+        return view('pegawai.konten', [
             'konten' => Konten::all()
         ]);
     }
@@ -52,10 +52,11 @@ class KontenController extends Controller
         $file->move($tujuan_upload, $file->getClientOriginalName());
 
         $data = $request->all();
+        $data['status'] = 'draf';
         $data['gambar'] = $request->file('gambar')->getClientOriginalName();
         Konten::create($data);
 
-        return redirect()->route('konten.index');
+        return redirect()->route('konten.index')->with('konten', 'Data Konten Berhasil Ditambah');
     }
 
     /**
@@ -115,7 +116,7 @@ class KontenController extends Controller
 
         Konten::find($id)->update($data);
 
-        return redirect()->route('konten.index')->with('success', 'Data Konten Berhasil Diperbaharui');
+        return redirect()->route('konten.index')->with('konten', 'Data Konten Berhasil Diperbaharui');
     }
 
     /**
@@ -128,6 +129,6 @@ class KontenController extends Controller
     {
         Konten::destroy($konten->id);
 
-        return redirect()->route('konten.index');
+        return redirect()->route('konten.index')->with('error', 'Data Berhasil Dihapus');
     }
 }

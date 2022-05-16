@@ -18,8 +18,9 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        return view('pegawai.pegawai.index', [
-            'pegawai' => Pegawai::all()
+        return view('pegawai.pegawai', [
+            'pegawai' => Pegawai::all(),
+            'jabatan' => Jabatan::all()
         ]);
     }
 
@@ -56,7 +57,7 @@ class PegawaiController extends Controller
         $data['foto_pegawai'] = $request->file('foto_pegawai')->getClientOriginalName();
         Pegawai::create($data);
 
-        return redirect()->route('pegawai.index');
+        return redirect()->route('pegawai.index')->with('pegawai', 'Data Pegawai Berhasil Ditambah');
     }
 
     /**
@@ -116,7 +117,7 @@ class PegawaiController extends Controller
 
         Pegawai::find($id)->update($data);
 
-        return redirect()->route('pegawai.index')->with('success', 'Data Konten Berhasil Diperbaharui');
+        return redirect()->route('pegawai.index')->with('pegawai', 'Data Pegawai Berhasil Diperbaharui');
     }
 
     /**
@@ -129,6 +130,6 @@ class PegawaiController extends Controller
     {
         Pegawai::destroy($pegawai->id);
 
-        return redirect()->route('pegawai.index');
+        return redirect()->route('pegawai.index')->with('error', 'Data Berhasil Dihapus');
     }
 }

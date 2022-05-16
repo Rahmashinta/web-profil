@@ -14,7 +14,7 @@ class VideoController extends Controller
      */
     public function index()
     {
-        return view('pegawai.video.index', [
+        return view('pegawai.video', [
             'video' => Video::all()
         ]);
     }
@@ -41,7 +41,7 @@ class VideoController extends Controller
     {
         Video::create($request->all());
 
-        return redirect()->route('video.index');
+        return redirect()->route('video.index')->with('video', 'Data Video Berhasil Ditambah');
     }
 
     /**
@@ -79,7 +79,7 @@ class VideoController extends Controller
     {
         Video::find($id)->update($request->all());
 
-        return redirect()->route('video.index')->with('success', 'Data Jabatan Berhasil Diperbaharui');
+        return redirect()->route('video.index')->with('video', 'Data Video Berhasil Diperbaharui');
     }
 
     /**
@@ -92,6 +92,6 @@ class VideoController extends Controller
     {
         Video::destroy($video->id);
 
-        return redirect()->route('video.index');
+        return redirect()->route('video.index')->with('error', 'Data Berhasil Dihapus');
     }
 }

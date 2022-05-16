@@ -7,22 +7,22 @@
             <a href="#">Profil</a>
             <ul class="submenu">
                 <li>
-                    <a href="/sejarah">Sejarah </a>
+                    <a href="{{ route('masyarakat.sejarah') }}">Sejarah </a>
                 </li>
                 <li>
-                    <a href="/visimisi">Visi dan Misi </a>
+                    <a href="{{ route('masyarakat.visimisi') }}">Visi dan Misi </a>
                 </li>
                 <li>
-                    <a href="/struktur">Struktur Organisasi </a>
+                    <a href="{{ route('masyarakat.struktur') }}">Struktur Organisasi </a>
                 </li>
                 <li>
-                    <a href="/tugasdanfungsi">Tugas dan Fungsi </a>
+                    <a href="{{ route('masyarakat.tugasdanfungsi') }}">Tugas dan Fungsi </a>
                 </li>
                 <li>
-                    <a href="/profilpejabat">Profil Pejabat </a>
+                    <a href="{{ route('masyarakat.profilpejabat') }}">Profil Pejabat </a>
                 </li>
                 <li>
-                    <a href="/bidangkerja">Bidang Kerja </a>
+                    <a href="{{ route('masyarakat.bidangkerja') }}">Bidang Kerja </a>
                 </li>
             </ul>
         </li>
@@ -44,10 +44,10 @@
             <a href="#">Galeri</a>
             <ul class="submenu">
                 <li>
-                    <a href="/galerifoto">Foto</a>
+                    <a href="{{ route('masyarakat.foto') }}">Foto</a>
                 </li>
                 <li>
-                    <a href="/galerivideo">Video</a>
+                    <a href="{{ route('masyarakat.video') }}">Video</a>
                 </li>
             </ul>
         </li>

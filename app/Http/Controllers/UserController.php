@@ -6,6 +6,7 @@ use App\Http\Requests\UserRequest;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -16,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('pegawai.pengguna.index', [
+        return view('pegawai.pengguna', [
             'user' => User::all()
         ]);
     }
@@ -41,9 +42,15 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        User::create($request->all());
+        User::create([
+            'nama' => $request->nama,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => $request->role,
+        ]);
 
-        return redirect()->route('pengguna.index');
+        return redirect()->route('pengguna.index')->with('pengguna', 'Data Pengguna Berhasil Ditambah');
     }
 
     /**
@@ -81,7 +88,7 @@ class UserController extends Controller
     {
         User::find($id)->update($request->all());
 
-        return redirect()->route('pengguna.index')->with('success', 'Data Konten Berhasil Diperbaharui');
+        return redirect()->route('pengguna.index')->with('pengguna', 'Data Pengguna Berhasil Diperbaharui');
     }
 
     /**
@@ -94,6 +101,6 @@ class UserController extends Controller
     {
         User::destroy($user->id);
 
-        return redirect()->route('pengguna.index');
+        return redirect()->route('pengguna.index')->with('error', 'Data Berhasil Dihapus');
     }
 }

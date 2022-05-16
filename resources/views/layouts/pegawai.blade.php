@@ -42,7 +42,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/dark-theme.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/semi-dark.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/header-colors.css') }}" />
-    <title>Website Profil</title>
+    <title>Biro Pengadaan Barang dan Jasa</title>
 </head>
 
 <body>
@@ -78,6 +78,7 @@
     </script>
     <script>
         tinymce.init({
+            force_root_block: false,
 
             selector: "#isi_konten",
             mode: "textareas",
@@ -92,6 +93,27 @@
             toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify "
         });
     </script>
+
+    <!-- <script>
+        let baru = document.getElementById('baru');
+        let lama = document.getElementsByClassName('lama');
+        let tampil = document.getElementById('tampil');
+
+        function pilih() {
+            // tampil.style.display = 'block';
+            console.log('haloo');
+        };
+
+        for (let i = 0; i < lama.length; i++) {
+            lama[i].addEventListener('click', function() {
+                if (tampil.style.display === 'none') {
+                    tampil.style.display = 'block';
+                } else {
+                    tampil.style.display = 'none';
+                }
+            })
+        }
+    </script> -->
 
     <script>
         $(document).ready(function() {

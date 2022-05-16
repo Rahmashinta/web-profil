@@ -1,6 +1,6 @@
 <x-main-layout>
     <!-- page banner area start -->
-    <section class="page-banner-area blog-page" data-background="img/bg/tes2.jpg">
+    <section class="page-banner-area blog-page" style="background-color: #4c6b99">
         <div class="container" style="padding: 0px !important">
             <div class="row">
                 <div class="col-sm-12">
@@ -14,89 +14,23 @@
     <!-- page banner area end -->
 
     <!-- about area start -->
-    <section class="about-area pt-40">
+    <section class="about-area pt-40 pb-30">
         <div class="container">
             <div class="row">
+                @foreach ($foto as $ft)
+
                 <div class="col-lg-3 col-sm-6">
                     <div class="about-single mb-10">
                         <div class="about-img">
-                            <img src="img/offer/about__thumb__20.jpg" class="img-fluid" alt="">
+                            <img src="/storage/foto/{{ $ft->file }}" class="img-fluid" alt="" style="position: relative;">
                         </div>
-                        <div class="about-text">
-                            <h6 class="f-700 pt-2"><a href="#" style="text-decoration: none !important">What We Really Do?</a></h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="about-single mb-10">
-                        <div class="about-img">
-                            <img src="img/offer/about__thumb__21.jpg" class="img-fluid" alt="">
-                        </div>
-                        <div class="about-text">
-                            <h6 class="f-700 pt-2"><a href="#" style="text-decoration: none !important">Our Vision & Goal</a></h6>
+                        <div class="about-text" style="text-align: center !important">
+                            <h6 class="f-700 pt-2"><a href="#" style="text-decoration: none !important">{{ $ft->judul }}</a></h6>
+                            <p>{{ $ft->keterangan }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="about-single mb-10">
-                        <div class="about-img">
-                            <img src="img/offer/about__thumb__22.jpg" class="img-fluid" alt="">
-                        </div>
-                        <div class="about-text">
-                            <h6 class="f-700 pt-2"><a href="#" style="text-decoration: none !important">History of Begining</a></h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="about-single mb-10">
-                        <div class="about-img">
-                            <img src="img/offer/about__thumb__23.jpg" class="img-fluid" alt="">
-                        </div>
-                        <div class="about-text">
-                            <h6 class="f-700 pt-2"><a href="#" style="text-decoration: none !important">2000+ Happy Customer</a></h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="about-single mb-10">
-                        <div class="about-img">
-                            <img src="img/offer/about__thumb__20.jpg" class="img-fluid" alt="">
-                        </div>
-                        <div class="about-text">
-                            <h6 class="f-700 pt-2"><a href="#" style="text-decoration: none !important">What We Really Do?</a></h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="about-single mb-10">
-                        <div class="about-img">
-                            <img src="img/offer/about__thumb__21.jpg" class="img-fluid" alt="">
-                        </div>
-                        <div class="about-text">
-                            <h6 class="f-700 pt-2"><a href="#" style="text-decoration: none !important">Our Vision & Goal</a></h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="about-single mb-10">
-                        <div class="about-img">
-                            <img src="img/offer/about__thumb__22.jpg" class="img-fluid" alt="">
-                        </div>
-                        <div class="about-text">
-                            <h6 class="f-700 pt-2"><a href="#" style="text-decoration: none !important">History of Begining</a></h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="about-single mb-10">
-                        <div class="about-img">
-                            <img src="img/offer/about__thumb__23.jpg" class="img-fluid" alt="">
-                        </div>
-                        <div class="about-text">
-                            <h6 class="f-700 pt-2"><a href="#" style="text-decoration: none !important">2000+ Happy Customer</a></h6>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

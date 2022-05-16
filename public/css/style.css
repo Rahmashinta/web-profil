@@ -2173,7 +2173,7 @@ ul.sub__menu.sub__dept--menu li:hover ul.sub__menu.level2 {
     font-size: 30px;
     font-weight: 800;
     color: #000;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 .blog-details-area .content-wrapper ul li {
     display: inline-block;
@@ -3331,7 +3331,7 @@ html .ui-button.ui-state-disabled:active {
 }
 .shop-details-desc {
     background: #f7f7f7;
-    padding: 75px 105px 20px 105px;
+    padding: 35px 105px 20px 105px;
 }
 .shop-details-desc .desc-wrapper {
     text-align: center;

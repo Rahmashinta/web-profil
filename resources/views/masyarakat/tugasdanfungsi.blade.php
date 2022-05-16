@@ -1,6 +1,6 @@
 <x-main-layout>
     <!-- page banner area start -->
-    <section class="page-banner-area blog-page" data-background="img/bg/tes2.jpg">
+    <section class="page-banner-area blog-page" style="background-color: #4c6b99">
         <div class="container" style="padding: 0px !important">
             <div class="row">
                 <div class="col-sm-12">
@@ -27,15 +27,15 @@
                                                     <div class="desc-content mt-20 mb-20" style="background-color: white;">
                                                         <div class="row">
                                                             <div class="col-md-12">
-                                                                <div class="single-content mb-40">
-                                                                    <h5 class="title" style="padding-left:30px; background-color:#5cd0e3">Tugas</h5>
-                                                                    <p style="margin: 10px">Praesent ornare, ex a interdum consectetur, lectus diam sodales elit, vitae egestas massa nisi. Suspendisse potenti. Quisque suscipit vulputate dui quis volutpat.Ut id cursus tellus, non tempor quam. Morbi.</p>
+                                                                <div class="single-content">
+                                                                    <h5 class="title" style="padding-left:30px; background-color:#ffd700">Tugas</h5>
+                                                                    <p style=" margin: 10px">Praesent ornare, ex a interdum consectetur, lectus diam sodales elit, vitae egestas massa nisi. Suspendisse potenti. Quisque suscipit vulputate dui quis volutpat.Ut id cursus tellus, non tempor quam. Morbi.</p>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-12">
-                                                                <div class="single-content mb-40">
-                                                                    <h5 class="title" style="padding-left:30px; background-color:#5cd0e3">Fungsi</h5>
-                                                                    <ol type="a">
+                                                                <div class="single-content">
+                                                                    <h5 class="title" style="padding-left:30px; background-color:#ffd700"">Fungsi</h5>
+                                                                    <ol type=" a">
                                                                         <li>
                                                                             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia veniam sunt ab et, quae iste.</p>
                                                                         </li>
@@ -45,7 +45,7 @@
                                                                         <li>
                                                                             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia veniam sunt ab et, quae iste.</p>
                                                                         </li>
-                                                                    </ol>
+                                                                        </ol>
                                                                 </div>
                                                             </div>
                                                         </div>

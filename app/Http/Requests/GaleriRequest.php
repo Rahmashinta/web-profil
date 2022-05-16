@@ -25,7 +25,7 @@ class GaleriRequest extends FormRequest
     {
         return [
             'judul' => 'required|max:255|string',
-            'file' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+            'file' => 'image|mimes:jpeg,png,jpg|max:2048'
         ];
     }
 }

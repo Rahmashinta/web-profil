@@ -1,6 +1,6 @@
 <x-main-layout>
     <!-- page banner area start -->
-    <section class="page-banner-area blog-page" data-background="img/bg/tes2.jpg">
+    <section class="page-banner-area blog-page" style="background-color: #4c6b99">
         <div class="container" style="padding: 0px !important">
             <div class="row">
                 <div class="col-sm-12">
@@ -17,110 +17,31 @@
     <section class="blog-area-three blog-page pb-20 pt-30">
         <div class="container">
             <div class="row small-padding">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="blog-single mb-60">
-                        <div class="image">
-                            <a href="#"><img src="img/offer/offer__thumb__16.jpg" class="img-fluid" alt=""></a>
-                        </div>
-                        <div class="content">
-                            <span class="dusty__gray-color f-400 pt-15">22 May 2020</span>
-                            <span class="blog-title"><a href="#" class="cod__blue-color f-700">Contrary to Popular Belief Ipsum</a></span>
-                            <p class="f-400">Lorem ipsum dolor sit amet, consectetur adipiscing Sed tincidunt malesuada aliquam,</p>
-                            <a href="#" class="f-600 grenadier-color">Read More <i class="icofont-long-arrow-right grenadier-color"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="blog-single mb-60">
-                        <div class="image">
-                            <a href="#"><img src="img/offer/offer__thumb__17.jpg" class="img-fluid" alt=""></a>
-                        </div>
-                        <div class="content">
-                            <span class="dusty__gray-color f-400 pt-15">22 May 2020</span>
-                            <span class="blog-title"><a href="#" class="cod__blue-color f-700">There are many variations of passages</a></span>
-                            <p class="f-400">Lorem ipsum dolor sit amet, consectetur adipiscing Sed tincidunt malesuada aliquam,</p>
-                            <a href="#" class="f-600 grenadier-color">Read More <i class="icofont-long-arrow-right grenadier-color"></i></a>
+
+                @foreach ($artikel as $ar)
+                <div class="col-sm-6">
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4 " style="margin: auto; padding-left:20px">
+                                <img src="/storage/konten/{{ $ar->gambar }}" class="img-fluid rounded-start" alt="..." pt-20>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <div class="tanggal">
+                                        <span class="dusty__gray-color f-500 pt-15" style="font-size: 13px;">{{ $ar->created_at->format('d-M-Y') }}</span>
+                                    </div>
+                                    <span class="blog-title"><a href="{{ route('masyarakat.detailartikel', $ar->id) }}" class="cod__blue-color f-700">{!! substr($ar->judul_konten, 0, 50); !!}</a></span>
+                                    <p class="f-400">{!! substr($ar->isi_konten, 0, 100); !!} ...</p>
+                                    <a href="{{ route('masyarakat.detailartikel', $ar->id) }}" class="f-600 grenadier-color">Read More <i class="icofont-long-arrow-right grenadier-color"></i></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="blog-single mb-60">
-                        <div class="image">
-                            <a href="#"><img src="img/offer/offer__thumb__18.jpg" class="img-fluid" alt=""></a>
-                        </div>
-                        <div class="content">
-                            <span class="dusty__gray-color f-400 pt-15">22 May 2020</span>
-                            <span class="blog-title"><a href="#" class="cod__blue-color f-700">There are many variations of passages</a></span>
-                            <p class="f-400">Lorem ipsum dolor sit amet, consectetur adipiscing Sed tincidunt malesuada aliquam,</p>
-                            <a href="#" class="f-600 grenadier-color">Read More <i class="icofont-long-arrow-right grenadier-color"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="blog-single mb-60">
-                        <div class="image">
-                            <a href="#"><img src="img/offer/offer__thumb__19.jpg" class="img-fluid" alt=""></a>
-                        </div>
-                        <div class="content">
-                            <span class="dusty__gray-color f-400 pt-15">22 May 2020</span>
-                            <span class="blog-title"><a href="#" class="cod__blue-color f-700">Contrary to Popular Belief Ipsum</a></span>
-                            <p class="f-400">Lorem ipsum dolor sit amet, consectetur adipiscing Sed tincidunt malesuada aliquam,</p>
-                            <a href="#" class="f-600 grenadier-color">Read More <i class="icofont-long-arrow-right grenadier-color"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="blog-single mb-60">
-                        <div class="image">
-                            <a href="#"><img src="img/offer/offer__thumb__26.jpg" class="img-fluid" alt=""></a>
-                        </div>
-                        <div class="content">
-                            <span class="dusty__gray-color f-400 pt-15">22 May 2020</span>
-                            <span class="blog-title"><a href="#" class="cod__blue-color f-700">Contrary to Popular Belief Ipsum</a></span>
-                            <p class="f-400">Lorem ipsum dolor sit amet, consectetur adipiscing Sed tincidunt malesuada aliquam,</p>
-                            <a href="#" class="f-600 grenadier-color">Read More <i class="icofont-long-arrow-right grenadier-color"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="blog-single mb-60">
-                        <div class="image">
-                            <a href="#"><img src="img/offer/offer__thumb__27.jpg" class="img-fluid" alt=""></a>
-                        </div>
-                        <div class="content">
-                            <span class="dusty__gray-color f-400 pt-15">22 May 2020</span>
-                            <span class="blog-title"><a href="#" class="cod__blue-color f-700">Contrary to Popular Belief Ipsum</a></span>
-                            <p class="f-400">Lorem ipsum dolor sit amet, consectetur adipiscing Sed tincidunt malesuada aliquam,</p>
-                            <a href="#" class="f-600 grenadier-color">Read More <i class="icofont-long-arrow-right grenadier-color"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="blog-single mb-60">
-                        <div class="image">
-                            <a href="#"><img src="img/offer/offer__thumb__28.jpg" class="img-fluid" alt=""></a>
-                        </div>
-                        <div class="content">
-                            <span class="dusty__gray-color f-400 pt-15">22 May 2020</span>
-                            <span class="blog-title"><a href="#" class="cod__blue-color f-700">Contrary to Popular Belief Ipsum</a></span>
-                            <p class="f-400">Lorem ipsum dolor sit amet, consectetur adipiscing Sed tincidunt malesuada aliquam,</p>
-                            <a href="#" class="f-600 grenadier-color">Read More <i class="icofont-long-arrow-right grenadier-color"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="blog-single mb-60">
-                        <div class="image">
-                            <a href="#"><img src="img/offer/offer__thumb__17.jpg" class="img-fluid" alt=""></a>
-                        </div>
-                        <div class="content">
-                            <span class="dusty__gray-color f-400 pt-15">22 May 2020</span>
-                            <span class="blog-title"><a href="#" class="cod__blue-color f-700">Contrary to Popular Belief Ipsum</a></span>
-                            <p class="f-400">Lorem ipsum dolor sit amet, consectetur adipiscing Sed tincidunt malesuada aliquam,</p>
-                            <a href="#" class="f-600 grenadier-color">Read More <i class="icofont-long-arrow-right grenadier-color"></i></a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, pariatur voluptas esse iusto expedita tempora saepe nesciunt vitae odit vero!
+
             </div>
             <div class="row">
                 <div class="col-sm-12">
@@ -141,4 +62,24 @@
         </div>
     </section>
     <!-- blog area end -->
+    <!-- Brand -->
+    <div class="brand">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="brand-active pt-4">
+                        @foreach ($layanan as $ly )
+
+                        <div class="single-brand">
+                            <img src="/storage/pegawai/{{ $ly->gambar }}" alt="" style="width: 120px; height: 120px; padding: 0px !important">
+                        </div>
+
+
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Brand End -->
 </x-main-layout>

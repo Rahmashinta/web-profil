@@ -1,6 +1,6 @@
 <x-main-layout>
     <!-- page banner area start -->
-    <section class="page-banner-area blog-page" data-background="img/bg/tes2.jpg">
+    <section class="page-banner-area blog-page" style="background-color: #4c6b99">
         <div class="container" style="padding: 0px !important">
             <div class="row">
                 <div class="col-sm-12">
@@ -26,7 +26,7 @@
                                         <div class="col-md-12 d-flex justify-content-center">
                                             <div class="about-single mb-10">
                                                 <div class="about-img mb-20">
-                                                    <img src="img/offer/about__thumb__24.jpg" class="img-fluid" alt="">
+                                                    <img src="img/struktur_organisasi.jpeg" class="img-fluid" alt="">
                                                 </div>
                                             </div>
                                         </div>

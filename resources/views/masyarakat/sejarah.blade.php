@@ -1,10 +1,11 @@
 <x-main-layout>
     <!-- page banner area start -->
-    <section class="page-banner-area blog-page" data-background="img/bg/tes2.jpg">
+    <!-- <section class="page-banner-area blog-page" data-background="img/bg/tes2.jpg"> -->
+    <section class="page-banner-area blog-page" style="background-color: #4c6b99">
         <div class="container" style="padding: 0px !important">
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="banner-text text-center pt-20 pb-20">
+                    <div class="banner-text text-center pt-10 pb-10">
                         <h2 class="f-800" style="color: white;">Sejarah</h2>
                     </div>
                 </div>
@@ -32,47 +33,11 @@
                                         </div>
 
                                         <div class="col-md-12">
-                                            <div class="single-content mb-20" style="text-align: justify">
-                                                <p>Praesent ornare, ex a interdum consectetur, lectus diam sodales elit, vitae egestas est enim ornare nisl. Nullam in lectus nec sem semper viverra. In lobortis egestas massa. Nam nec
-                                                    massa nisi. Suspendisse potenti. Quisque suscipit vulputate dui quis volutpUt id elit facilisis, feugiat est in, tempus lacus. Ut ultrices dictum meta ultricies ex vulputate ac. Ut id
-                                                    cursus tellus, non tempor quam. Morbi porta diam nisi, id finibus ntincidunt eu.
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla eaque, dignissimos sequi magni natus officia numquam quo consectetur possimus vel at? Esse, quae suscipit? Accusamus, earum quos. Voluptatem rerum sit itaque quia voluptas quis. Modi minima similique aliquid accusamus excepturi? Harum expedita doloribus aut! Ea, dicta dolores illum unde tenetur autem repellendus magni, voluptatum pariatur aut omnis mollitia accusantium necessitatibus! Est, deserunt. Ipsa nam sequi nulla eum optio nihil tempore, voluptatem maiores eveniet! Temporibus minus dolores sequi ea voluptatem, voluptatum, delectus vel vitae aliquid, ratione numquam explicabo tempore dolorem! Sapiente recusandae accusantium quasi illo expedita quae, magnam inventore neque consequuntur non eius quod molestias beatae, quia quas delectus distinctio. Harum at, repellat saepe, pariatur ab eveniet assumenda dicta tenetur laboriosam a distinctio odio! Rerum vero ipsa sit a necessitatibus ab aspernatur dolores nulla esse id molestias voluptas animi perferendis dolorum officiis et voluptatibus laboriosam earum, dolore atque laudantium quibusdam enim repellendus tempore. Nulla totam aut provident iusto? Error, fugiat! Temporibus quod ipsam itaque tenetur corporis nemo iusto quas! Voluptates labore eveniet, assumenda nemo et impedit. Aliquid error dolores veritatis, ex voluptatibus, amet illum eos voluptates dignissimos animi debitis alias neque praesentium perferendis repellendus voluptatum maxime. Quibusdam maxime saepe quia est!
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="contact11" role="tabpanel" aria-labelledby="contact-tab11">
-                                <div class="desc-content mt-60">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="single-content mb-40">
-                                                <h5 class="title">Perfactly Done</h5>
-                                                <p>Praesent ornare, ex a interdum consectetur, lectus diam sodales elit, vitae egestas est enim ornare nisl. Nullam in lectus nec sem semper viverra. In lobortis egestas massa. Nam nec
-                                                    massa nisi. Suspendisse potenti. Quisque suscipit vulputate dui quis volutpUt id elit facilisis, feugiat est in, tempus lacus. Ut ultrices dictum meta ultricies ex vulputate ac. Ut id
-                                                    cursus tellus, non tempor quam. Morbi porta diam nisi, id finibus ntincidunt eu.</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="single-content mb-40">
-                                                <h5 class="title">Freshly Design</h5>
-                                                <p>Praesent ornare, ex a interdum consectetur, lectus diam sodales elit, vitae egestas massa nisi. Suspendisse potenti. Quisque suscipit vulputate dui quis volutpat.Ut id cursus tellus, non tempor quam. Morbi.</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="single-content mb-40">
-                                                <h5 class="title">Fabolous Sound</h5>
-                                                <p>Praesent ornare, ex a interdum consectetur, lectus diam sodales elit, vitae egestas massa nisi. Suspendisse potenti. Quisque suscipit vulputate dui quis volutpat.Ut id cursus tellus, non tempor quam. Morbi.</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="single-content mb-40">
-                                                <h5 class="title">Inteligent Bettery</h5>
-                                                <p>Praesent ornare, ex a interdum consectetur, lectus diam sodales elit, vitae egestas est enim ornare nisl. Nullam in lectus nec sem semper viverra. In lobortis egestas massa. Nam nec
-                                                    massa nisi. Suspendisse potenti. Quisque suscipit vulputate dui quis volutpat. Ut id elit facilisis, feugiat est in, tempus lacus. Ut ultrices dictum metus, a ultricies ex vulputate ac. Ut id
-                                                    cursus tellus, non tempor quam. Morbi porta diam nisi, id finibus nunc tincidunt eu interdum consectetur, lectus diam sodales elit, vitae egestas est enim ornare nisl. Nullam in lectus
-                                                    nec sem semper viverra. In lobortis egestas massa. Nam nec massa nisi. Suspendisse potenti. Quisque suscipit vulputate</p>
+                                            <div class="single-content mb-20 p-3" style="text-align: justify">
+                                                <h6> &nbsp; &nbsp; &nbsp;Pembentukan Biro Pengadaan Barang dan Jasa Sekretariat Daerah Provinsi Riau berdasarkan Peraturan Gubernur Riau Nomor 61 Tahun 2021 tentang kedudukan, susunan organisasi dan tata kerja perangkat daerah di lingkungan pemerintah provinsi Riau. Terkait Peraturan Daerah Provinsi Riau Nomor 3 Tahun 2020 tentang Perubahan Kedua Atas Peraturan Daerah Nomor 4 tahun 2016 tentang Pembentukan dan Susunan Perangkat Daerah Provinsi Riau (Lembaran Daerah Provinsi Riau Tahun 2020 Nomor 7), maka ditetapkan Peraturan Gubernur tentang Kedudukan, Susunan Organisasi dan Tata Kerja Perangkat Daerah di Lingkungan Pemerintah Provinsi Riau
+                                                </h6>
+                                                <h6> &nbsp; &nbsp; &nbsp;Pada pasal 21 Peraturan Gubernur Riau Nomor 61 Tahun 2021, Biro Pengadaan Barang dan Jasa bertugas membantu Asisten Perekonomian dan Pembangunan dalam penyiapan perumusan kebijakan daerah, pengoordinasian pelaksanaan tugas Perangkat Daerah, pengoordinasian pelaksanaan tugas Perangkat Daerah di bidang pengelolaan pengadaan barang dan jasa, pengelolaan layanan pengadaan secara elektronik, pembinaan dan advokasi pengadaan barang dan jasa.
+                                                </h6>
                                             </div>
                                         </div>
                                     </div>

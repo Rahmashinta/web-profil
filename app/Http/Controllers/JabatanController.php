@@ -16,7 +16,7 @@ class JabatanController extends Controller
      */
     public function index()
     {
-        return view('pegawai.jabatan.index', [
+        return view('pegawai.jabatan', [
             'jabatan' => Jabatan::all()
         ]);
     }
@@ -45,7 +45,7 @@ class JabatanController extends Controller
 
         Jabatan::create($request->all());
 
-        return redirect()->route('jabatan.index')->with('success', 'Data Jabatan Berhasil Ditambahkan');
+        return redirect()->route('jabatan.index')->with('jabatan', 'Data Jabatan Berhasil Ditambahkan');
     }
 
     /**
@@ -85,7 +85,7 @@ class JabatanController extends Controller
     {
         Jabatan::find($id)->update($request->all());
 
-        return redirect()->route('jabatan.index')->with('success', 'Data Jabatan Berhasil Diperbaharui');
+        return redirect()->route('jabatan.index')->with('jabatan', 'Data Jabatan Berhasil Diperbaharui');
     }
 
     /**
@@ -98,6 +98,6 @@ class JabatanController extends Controller
     {
         Jabatan::destroy($jabatan->id);
 
-        return redirect()->route('jabatan.index')->with('error', 'Data Jabatan Berhasil Dihapus');;
+        return redirect()->route('jabatan.index')->with('error', 'Data Berhasil Dihapus');
     }
 }

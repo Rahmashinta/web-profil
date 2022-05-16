@@ -9,7 +9,7 @@
         <!-- contact google map end -->
 
         <!-- contact area start -->
-        <section class="contact-area pt-80 mb-20">
+        <section class="contact-area pt-30 mb-20">
             <div class="container">
                 <div class="row">
                     <div class="">
