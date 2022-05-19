@@ -20,22 +20,12 @@ class KontenController extends Controller
      */
     public function index()
     {
-        
+
         return view('pegawai.konten', [
             'konten' => Konten::all(),
             'navbar' => User::where('id', Auth::user()->id)->get(),
             // 'author' => $author
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        
     }
 
     /**
@@ -86,17 +76,6 @@ class KontenController extends Controller
             'navbar' => User::where('id', Auth::user()->id)->get(),
             'author' => $author
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Konten  $konten
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Konten $konten)
-    {
-        //
     }
 
     /**

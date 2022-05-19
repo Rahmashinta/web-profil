@@ -27,16 +27,6 @@ class LayananController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\LayananRequest;  $request
@@ -59,28 +49,6 @@ class LayananController extends Controller
         Alert::success('Berhasil', 'Data Layanan Berhasil Ditambah');
 
         return redirect()->route('layanan.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Layanan  $layanan
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Layanan $layanan)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Layanan  $layanan
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Layanan $layanan)
-    {
-        //
     }
 
     /**

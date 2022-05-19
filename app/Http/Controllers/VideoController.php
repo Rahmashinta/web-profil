@@ -25,16 +25,6 @@ class VideoController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\VideoRequest;  $request
@@ -47,28 +37,6 @@ class VideoController extends Controller
         Alert::success('Berhasil', 'Data Video Berhasil Ditambah');
 
         return redirect()->route('video.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Video  $video
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Video $video)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Video  $video
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Video $video)
-    {
-        //
     }
 
     /**
