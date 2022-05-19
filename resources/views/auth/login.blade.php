@@ -16,21 +16,21 @@
                             <div class="card-body">
                                 <div class="border p-4 rounded">
                                     <div class="text-center">
-                                        <h3 class="">Silahkan Login</h3>
+                                        <h3 class=" p-3" >Silahkan Login</h3>
                                     </div>
                                     <div class="form-body">
                                         <form class="row g-3" action="{{ route('login') }}" method="post">
                                             @csrf
                                             <div class="col-12">
-                                                <label for="username" class="form-label">Masukkan Username</label>
-                                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person-lines-fill"></i></span>
-                                                    <input type="text" class="form-control border-start-0 " id="username" placeholder="Masukkan Username" name="username" />
+                                                <label for="username" class="form-label">Username</label>
+                                                <div class="input-group"> <span class="input-group-text bg-transparent rounded"><i class="bi bi-person-lines-fill"></i></span>
+                                                    <input type="text" class="form-control border-start-0 p-3" id="username" placeholder="" name="username" autofocus/>
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <label for="password" class="form-label">Masukkan Password</label>
+                                                <label for="password" class="form-label">Password</label>
                                                 <div class="input-group" id="show_hide_password"> <span class="input-group-text bg-transparent"><i class="bi bi-key"></i></span>
-                                                    <input type="password" class="form-control border-start-0 border-end-0" id="password" placeholder="Masukkan password" name="password" /><a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
+                                                    <input type="password" class="form-control border-start-0 border-end-0 p-3" id="password"  name="password" /><a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
                                                 </div>
                                             </div>
                                             <div class="col-12 mt-4">

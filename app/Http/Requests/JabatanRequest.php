@@ -24,7 +24,7 @@ class JabatanRequest extends FormRequest
     public function rules()
     {
         return [
-            'kode_jabatan' => 'required|max:255|string|unique:jabatans,kode_jabatan',
+            'kode_jabatan' => 'required|max:255|string',
             'jabatan' => 'required|max:255|string',
         ];
     }

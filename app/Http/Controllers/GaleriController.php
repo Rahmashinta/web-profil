@@ -6,7 +6,10 @@ use App\Models\Galeri;
 use App\Models\Konten;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GaleriRequest;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class GaleriController extends Controller
 {
@@ -18,7 +21,8 @@ class GaleriController extends Controller
     public function index()
     {
         return view('pegawai.foto', [
-            'foto' => Galeri::all()
+            'foto' => Galeri::all(),
+            'navbar' => User::where('id', Auth::user()->id)->get(),
         ]);
     }
 
@@ -29,9 +33,7 @@ class GaleriController extends Controller
      */
     public function create()
     {
-        return view('pegawai.foto.create', [
-            'foto' => Galeri::all()
-        ]);
+        //
     }
 
     /**
@@ -55,7 +57,9 @@ class GaleriController extends Controller
         $data['file'] = $file->getClientOriginalName();
         Galeri::create($data);
 
-        return redirect()->route('galeri.index')->with('foto', 'Data Foto Berhasil Ditambah');
+        Alert::success('Berhasil', 'Data Foto Berhasil Ditambah');
+
+        return redirect()->route('galeri.index');
     }
 
     /**
@@ -66,7 +70,10 @@ class GaleriController extends Controller
      */
     public function show(Galeri $galeri)
     {
-        //
+        return view('pegawai.detailfoto', [
+            'foto' => $galeri,
+            'navbar' => User::where('id', Auth::user()->id)->get(),
+        ]);
     }
 
     /**
@@ -110,7 +117,9 @@ class GaleriController extends Controller
 
         Galeri::find($id)->update($data);
 
-        return redirect()->route('galeri.index')->with('foto', 'Data Konten Berhasil Diperbaharui');
+        Alert::success('Berhasil', 'Data Foto Berhasil Diubah');
+
+        return redirect()->route('galeri.index');
     }
 
     /**
@@ -122,6 +131,8 @@ class GaleriController extends Controller
     public function destroy(Galeri $galeri)
     {
         Galeri::destroy($galeri->id);
+
+        Alert::success('Berhasil', 'Data Foto Berhasil Dihapus');
 
         return redirect()->route('galeri.index');
     }

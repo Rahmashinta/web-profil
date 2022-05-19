@@ -1,5 +1,20 @@
 <x-main-layout>
     <!-- page banner area start -->
+    <div class="bottom header__bottom header__bottom--border custom-header-bottom">
+        <div class="container">
+            <div class="row">
+                <div>
+                    <div class="main-menu ">
+                        @include('layouts.navbarmobile')
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="mobile-menu"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <section class="page-banner-area blog-page" style="background-color: #4c6b99">
         <div class="container" style="padding: 0px !important">
             <div class="row">
@@ -41,43 +56,7 @@
                 @endforeach
 
             </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="common-pagination">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-left"></i> Prev</a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                <li class="page-item"><a class="page-link" href="#">Next <i class="fas fa-angle-right"></i></a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
     <!-- blog area end -->
-    <!-- Brand -->
-    <div class="brand">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="brand-active pt-4">
-                        @foreach ($layanan as $ly )
-
-                        <div class="single-brand">
-                            <img src="/storage/pegawai/{{ $ly->gambar }}" alt="" style="width: 120px; height: 120px; padding: 0px !important">
-                        </div>
-
-
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Brand End -->
 </x-main-layout>

@@ -1,4 +1,20 @@
 <x-main-layout>
+
+    <div class="bottom header__bottom header__bottom--border custom-header-bottom">
+        <div class="container">
+            <div class="row">
+                <div>
+                    <div class="main-menu ">
+                        @include('layouts.navbarmobile')
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="mobile-menu"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- page banner area start -->
     <section class="page-banner-area blog-page" style="background-color: #4c6b99">
         <div class="container" style="padding: 0px !important">
@@ -44,24 +60,6 @@
         </div>
     </section>
     <!-- blog area end -->
-    <!-- Brand -->
-    <div class="brand">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="brand-active pt-4">
-                        @foreach ($layanan as $ly )
 
-                        <div class="single-brand">
-                            <img src="/storage/pegawai/{{ $ly->gambar }}" alt="" style="width: 120px; height: 120px; padding: 0px !important">
-                        </div>
-
-
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Brand End -->
+    
 </x-main-layout>

@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Menu;
+use App\Models\Layanan;
 use App\Models\Kritiksaran;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class KritiksaranController extends Controller
 {
@@ -15,7 +21,8 @@ class KritiksaranController extends Controller
     public function index()
     {
         return view('pegawai.kritiksaran', [
-            'kritiksaran' => Kritiksaran::all()
+            'kritiksaran' => Kritiksaran::all(),
+            'navbar' => User::where('id', Auth::user()->id)->get(),
         ]);
     }
 
@@ -40,7 +47,12 @@ class KritiksaranController extends Controller
     {
         Kritiksaran::create($request->all());
 
-        return view('masyarakat.hubungikami');
+        Alert::success('Thank You', 'Kritik dan Saran Berhasil Dikirim');
+
+        return view('masyarakat.hubungikami',[
+            'layanan' => Layanan::all(),
+            'menu' => Menu::all(),
+        ]);
     }
 
     /**
@@ -51,9 +63,7 @@ class KritiksaranController extends Controller
      */
     public function show(Kritiksaran $kritiksaran)
     {
-        return view('pegawai.kritiksaran.show', [
-            'kritiksaran' => $kritiksaran
-        ]);
+        //
     }
 
     /**
@@ -89,6 +99,8 @@ class KritiksaranController extends Controller
     {
         Kritiksaran::destroy($kritiksaran->id);
 
-        return redirect()->route('kritiksaran.index')->with('error', 'Data Berhasil Dihapus');
+        Alert::success('Berhasil', 'Data Kritik dan Saran Berhasil Dihapus');
+
+        return redirect()->route('kritiksaran.index');
     }
 }

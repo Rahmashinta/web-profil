@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserRequest;
-
 use App\Models\User;
+
+use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
@@ -18,7 +20,8 @@ class UserController extends Controller
     public function index()
     {
         return view('pegawai.pengguna', [
-            'user' => User::all()
+            'user' => User::all(),
+            'navbar' => User::where('id', Auth::user()->id)->get(),
         ]);
     }
 
@@ -29,9 +32,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('pegawai.pengguna.create', [
-            'user' => User::all()
-        ]);
+        //
     }
 
     /**
@@ -42,15 +43,18 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        User::create([
-            'nama' => $request->nama,
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => $request->role,
+        $data = $request->all();
+        $data['password'] = Hash::make($data['password']);
+
+        $request->validated([
+            'username' => 'required|max:255|string|unique:users',
         ]);
 
-        return redirect()->route('pengguna.index')->with('pengguna', 'Data Pengguna Berhasil Ditambah');
+        User::create($data);
+
+        Alert::success('Berhasil', 'Data User Berhasil Ditambah');
+
+        return redirect()->route('user.index');
     }
 
     /**
@@ -72,9 +76,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('pegawai.pengguna.edit', [
-            'user' => $user
-        ]);
+        //
     }
 
     /**
@@ -86,9 +88,14 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
-        User::find($id)->update($request->all());
 
-        return redirect()->route('pengguna.index')->with('pengguna', 'Data Pengguna Berhasil Diperbaharui');
+        $data = $request->all();
+        $data['password'] = Hash::make($data['password']);
+        User::find($id)->update($data);
+
+        Alert::success('Berhasil', 'Data User Berhasil Diubah');
+
+        return redirect()->route('user.index');
     }
 
     /**
@@ -101,6 +108,8 @@ class UserController extends Controller
     {
         User::destroy($user->id);
 
-        return redirect()->route('pengguna.index')->with('error', 'Data Berhasil Dihapus');
+        Alert::success('Berhasil', 'Data User Berhasil Dihapus');
+
+        return redirect()->route('user.index')->with('error', 'Data Berhasil Dihapus');
     }
 }

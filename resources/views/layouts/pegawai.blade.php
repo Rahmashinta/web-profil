@@ -49,6 +49,8 @@
 
     {{ $slot }}
 
+    @include('sweetalert::alert')
+
     @include('layouts.footerpegawai')
 
     @yield('judul')

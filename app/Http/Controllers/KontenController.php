@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Konten;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\KontenRequest;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class KontenController extends Controller
@@ -17,8 +20,11 @@ class KontenController extends Controller
      */
     public function index()
     {
+        
         return view('pegawai.konten', [
-            'konten' => Konten::all()
+            'konten' => Konten::all(),
+            'navbar' => User::where('id', Auth::user()->id)->get(),
+            // 'author' => $author
         ]);
     }
 
@@ -29,9 +35,7 @@ class KontenController extends Controller
      */
     public function create()
     {
-        return view('pegawai.konten.create', [
-            'konten' => Konten::all()
-        ]);
+        
     }
 
     /**
@@ -51,12 +55,19 @@ class KontenController extends Controller
         //upload file
         $file->move($tujuan_upload, $file->getClientOriginalName());
 
+        $user = User::where('id', Auth::user()->id)->first();
+
         $data = $request->all();
-        $data['status'] = 'draf';
+        $data['user_id'] = $user['id'];
+        $data['status'] = 'Draf';
+        $data['author'] = $user['nama'];
         $data['gambar'] = $request->file('gambar')->getClientOriginalName();
+
         Konten::create($data);
 
-        return redirect()->route('konten.index')->with('konten', 'Data Konten Berhasil Ditambah');
+        Alert::success('Berhasil', 'Data Konten Berhasil Ditambah');
+
+        return redirect()->route('konten.index');
     }
 
     /**
@@ -67,8 +78,13 @@ class KontenController extends Controller
      */
     public function show(Konten $konten)
     {
-        return view('pegawai.konten.show', [
-            'konten' => $konten
+        $user_id = Konten::find($konten->id)->user_id;
+        $author = User::where('id', $user_id)->first();
+
+        return view('pegawai.detailkonten', [
+            'konten' => $konten,
+            'navbar' => User::where('id', Auth::user()->id)->get(),
+            'author' => $author
         ]);
     }
 
@@ -80,9 +96,7 @@ class KontenController extends Controller
      */
     public function edit(Konten $konten)
     {
-        return view('pegawai.konten.edit', [
-            'konten' => $konten
-        ]);
+        //
     }
 
     /**
@@ -116,7 +130,9 @@ class KontenController extends Controller
 
         Konten::find($id)->update($data);
 
-        return redirect()->route('konten.index')->with('konten', 'Data Konten Berhasil Diperbaharui');
+        Alert::success('Berhasil', 'Data Konten Berhasil Diubah');
+
+        return redirect()->route('konten.index');
     }
 
     /**
@@ -129,6 +145,8 @@ class KontenController extends Controller
     {
         Konten::destroy($konten->id);
 
-        return redirect()->route('konten.index')->with('error', 'Data Berhasil Dihapus');
+        Alert::success('Berhasil', 'Data Konten Berhasil Dihapus');
+
+        return redirect()->route('konten.index');
     }
 }

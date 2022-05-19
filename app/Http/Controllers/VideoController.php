@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Video;
+use Illuminate\Routing\Controller;
 use App\Http\Requests\VideoRequest;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class VideoController extends Controller
 {
@@ -15,7 +19,8 @@ class VideoController extends Controller
     public function index()
     {
         return view('pegawai.video', [
-            'video' => Video::all()
+            'video' => Video::all(),
+            'navbar' => User::where('id', Auth::user()->id)->get(),
         ]);
     }
 
@@ -26,9 +31,7 @@ class VideoController extends Controller
      */
     public function create()
     {
-        return view('pegawai.video.create', [
-            'video' => Video::all()
-        ]);
+        //
     }
 
     /**
@@ -41,7 +44,9 @@ class VideoController extends Controller
     {
         Video::create($request->all());
 
-        return redirect()->route('video.index')->with('video', 'Data Video Berhasil Ditambah');
+        Alert::success('Berhasil', 'Data Video Berhasil Ditambah');
+
+        return redirect()->route('video.index');
     }
 
     /**
@@ -63,9 +68,7 @@ class VideoController extends Controller
      */
     public function edit(Video $video)
     {
-        return view('pegawai.video.edit', [
-            'video' => $video
-        ]);
+        //
     }
 
     /**
@@ -79,7 +82,9 @@ class VideoController extends Controller
     {
         Video::find($id)->update($request->all());
 
-        return redirect()->route('video.index')->with('video', 'Data Video Berhasil Diperbaharui');
+        Alert::success('Berhasil', 'Data Video Berhasil Diubah');
+
+        return redirect()->route('video.index');
     }
 
     /**
@@ -92,6 +97,8 @@ class VideoController extends Controller
     {
         Video::destroy($video->id);
 
-        return redirect()->route('video.index')->with('error', 'Data Berhasil Dihapus');
+        Alert::success('Berhasil', 'Data Video Berhasil Dhapus');
+
+        return redirect()->route('video.index');
     }
 }

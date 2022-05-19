@@ -15,35 +15,6 @@
             <div class="page-content">
                 <div class="col">
 
-                    @if (session()->has('konten'))
-
-                    <div class="alert alert-success border-0 bg-success alert-dismissible fade show py-2">
-                        <div class="d-flex align-items-center">
-                            <div class="font-35 text-white"><i class='bx bxs-check-circle'></i>
-                            </div>
-                            <div class="ms-3">
-                                {{ session('konten') }}
-                            </div>
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-
-                    </div>
-
-                    @elseif (session()->has('error'))
-
-                    <div class="alert alert-success border-0 bg-success alert-dismissible fade show py-2">
-                        <div class="d-flex align-items-center">
-                            <div class="font-35 text-white"><i class='bx bxs-check-circle'></i>
-                            </div>
-                            <div class="ms-3">
-                                {{session('error')}}
-                            </div>
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-
-                    @endif
-
                     <div class="col">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambah">Tambah Data Konten</button>
@@ -58,12 +29,14 @@
                                     <div class="modal-body">
                                         <form class="row g-3" action="{{ route('konten.store') }}" method="post" enctype="multipart/form-data">
                                             @csrf
+                                            
                                             <div class="col-md-12">
                                                 <label for="judul_konten" class="form-label">Judul Konten</label>
-                                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-pencil-fill"></i></span>
-                                                    <input type="text" class="form-control border-start-0" id="judul_konten" placeholder="Judul Konten" name="judul_konten" value="{{old ('judul_konten') }}">
+                                                <div class="input-group">
+                                                    <textarea type="text" class="form-control border-start-0" id="judul_konten" name="judul_konten" value="{{old ('judul_konten') }}" autofocus required></textarea>
                                                 </div>
                                             </div>
+
                                             <div class="col-12">
                                                 <label class="form-label">Kategori Konten</label>
                                                 <select class="form-select mb-3" aria-label="Default select example" name="kategori_konten">
@@ -119,12 +92,13 @@
                                     @foreach ($konten as $ktn)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ substr($ktn->judul_konten, 0, 30); }} ...</td>
+                                        <td>{{ substr($ktn->judul_konten, 0, 30); }}</td>
                                         <td>{{ $ktn->created_at->format('d-M-Y') }}</td>
+
                                         <td>{{ $ktn->kategori_konten }}</td>
-                                        <td></td>
+                                        <td><span class="badge bg-info" style="font-size: 15px;">{{ $ktn->status }}</span></td>
                                         <td>
-                                            <a href="" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#show{{$ktn->id}}"><i class="bi bi-eye"></i></a>
+                                            <a href="{{ route('konten.update', $ktn->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
 
                                             <a href="" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#edit{{$ktn->id}}"><i class="bi bi-pencil-square"></i></a>
 
@@ -179,6 +153,14 @@
                                                             @method('put')
                                                             @csrf
 
+                                                            <div class="col-12">
+                                                                <label class="form-label">Status Konten</label>
+                                                                <select class="form-select mb-3" aria-label="Default select example" name="status">
+                                                                    <option selected value="{{old ('konten', $ktn->status) }}">{{old ('konten', $ktn->status) }}</option>
+                                                                    <option value="Publish">Publish</option>
+                                                                </select>
+                                                            </div>
+
                                                             <div class="col-md-12">
                                                                 <label for="judul_konten" class="form-label">Judul Konten</label>
                                                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-pencil-fill"></i></span>
@@ -230,7 +212,7 @@
                                                     </div>
 
                                                     <div class="modal-body">
-                                                        <form action="/pegawai/{{ $ktn->id}}" method="post" class="d-inline">
+                                                        <form action="{{ route('konten.destroy', $ktn->id) }}" method="post" class="d-inline">
                                                             @method('delete')
                                                             @csrf
                                                             <div class="div">

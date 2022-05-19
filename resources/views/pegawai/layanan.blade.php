@@ -15,35 +15,6 @@
             <div class="page-content">
                 <div class="col">
 
-                    @if (session()->has('layanan'))
-
-                    <div class="alert alert-success border-0 bg-success alert-dismissible fade show py-2">
-                        <div class="d-flex align-items-center">
-                            <div class="font-35 text-white"><i class='bx bxs-check-circle'></i>
-                            </div>
-                            <div class="ms-3">
-                                {{ session('layanan') }}
-                            </div>
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-
-                    </div>
-
-                    @elseif (session()->has('error'))
-
-                    <div class="alert alert-success border-0 bg-success alert-dismissible fade show py-2">
-                        <div class="d-flex align-items-center">
-                            <div class="font-35 text-white"><i class='bx bxs-check-circle'></i>
-                            </div>
-                            <div class="ms-3">
-                                {{session('error')}}
-                            </div>
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-
-                    @endif
-
                     <div class="col">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambah">Tambah Data Layanan</button>
@@ -60,14 +31,20 @@
                                             @csrf
                                             <div class="col-12">
                                                 <div class="mb-3">
-                                                    <label for="gambar" class="form-label">Gambar Konten</label>
-                                                    <input class="form-control" type="file" id="gambar" name="gambar" value="{{old ('gambar') }}">
+                                                    <label for="nama" class="form-label">Nama Layanan</label>
+                                                    <input class="form-control" type="teks" id="nama" name="nama" value="{{old ('nama') }}" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="mb-3">
+                                                    <label for="gambar" class="form-label">Gambar Layanan</label>
+                                                    <input class="form-control" type="file" id="gambar" name="gambar" value="{{old ('gambar') }}" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <label for="link" class="form-label">Link Layanan</label>
                                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-link"></i></span>
-                                                    <input type="text" class="form-control border-start-0" id="link" placeholder="Link Layanan" name="link" value="{{old ('link') }}" />
+                                                    <input type="text" class="form-control border-start-0" id="link" placeholder="Link Layanan" name="link" value="{{old ('link') }}" required />
                                                 </div>
                                             </div>
 
@@ -95,6 +72,7 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>Nama</th>
                                         <th>Gambar</th>
                                         <th>Link Layanan</th>
                                         <th>Aksi</th>
@@ -103,7 +81,8 @@
                                 <tbody>
                                     @foreach ($layanan as $ly)
                                     <tr>
-                                        <td>1</td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $ly->nama }}</td>
                                         <td><img src="/storage/layanan/{{ $ly->gambar }}" style="width: 100px; height: 100px; margin:auto; display:block; clear:both"></td>
                                         <td><a href=" {{ $ly->link }}">{{ $ly->link }}</a></td>
                                         <td>
@@ -128,6 +107,13 @@
                                                         <form class="row g-3" action="{{ route('layanan.update', $ly->id) }}" method="post" enctype="multipart/form-data">
                                                             @method('put')
                                                             @csrf
+
+                                                            <div class="col-12">
+                                                                <div class="mb-3">
+                                                                    <label for="nama" class="form-label">nama Konten</label>
+                                                                    <input class="form-control" type="teks" id="nama" name="nama" value="{{old ('layanan', $ly->nama) }}" required>
+                                                                </div>
+                                                            </div>
 
                                                             <div class="col-12">
                                                                 <div class="mb-3">

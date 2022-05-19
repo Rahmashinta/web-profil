@@ -15,35 +15,6 @@
             <div class="page-content">
                 <div class="col">
 
-                    @if (session()->has('pegawai'))
-
-                    <div class="alert alert-success border-0 bg-success alert-dismissible fade show py-2">
-                        <div class="d-flex align-items-center">
-                            <div class="font-35 text-white"><i class='bx bxs-check-circle'></i>
-                            </div>
-                            <div class="ms-3">
-                                {{ session('pegawai') }}
-                            </div>
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-
-                    </div>
-
-                    @elseif (session()->has('error'))
-
-                    <div class="alert alert-success border-0 bg-success alert-dismissible fade show py-2">
-                        <div class="d-flex align-items-center">
-                            <div class="font-35 text-white"><i class='bx bxs-check-circle'></i>
-                            </div>
-                            <div class="ms-3">
-                                {{session('error')}}
-                            </div>
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-
-                    @endif
-
                     <div class="col">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambah">Tambah Data Pegawai</button>
@@ -61,13 +32,13 @@
                                             <div class="col-md-6">
                                                 <label for="nama_pegawai" class="form-label">Nama Pegawai</label>
                                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person-fill"></i></span>
-                                                    <input type="text" class="form-control border-start-0 " id="nama_pegawai" placeholder="Nama Pegawai" name="nama_pegawai" value="{{old ('nama_pegawai') }}" />
+                                                    <input type="text" class="form-control border-start-0 " id="nama_pegawai" placeholder="Nama Pegawai" name="nama_pegawai" value="{{old ('nama_pegawai') }}" required/>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="nip" class="form-label">NIP</label>
                                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-123"></i></span>
-                                                    <input type="text" class="form-control border-start-0 " id="nip" placeholder="NIP" name="nip" value="{{old ('nip') }}" />
+                                                    <input type="text" class="form-control border-start-0 " id="nip" placeholder="NIP" name="nip" value="{{old ('nip') }}" required/>
                                                 </div>
                                             </div>
                                             <div class="col-12">
@@ -82,7 +53,7 @@
                                             <div class="col-12">
                                                 <div class="mb-3">
                                                     <label for="foto_pegawai" class="form-label">Foto Pegawai</label>
-                                                    <input class="form-control" type="file" id="foto_pegawai" name="foto_pegawai" value="{{old ('foto_pegawai') }}">
+                                                    <input class="form-control" type="file" id="foto_pegawai" name="foto_pegawai" value="{{old ('foto_pegawai') }}" required>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -118,12 +89,12 @@
 
                                     @foreach ($pegawai as $pgw )
                                     <tr>
-                                        <td>1</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $pgw->nama_pegawai }}</td>
                                         <td>{{ $pgw->nip }}</td>
                                         <td>{{ $pgw->jabatan }}</td>
                                         <td>
-                                            <a href="" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#show{{$pgw->id}}"><i class="bi bi-eye"></i></a>
+                                            <a href="{{ route('pegawai.show', $pgw->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
 
                                             <a href="" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#edit{{$pgw->id}}"><i class="bi bi-pencil-square"></i></a>
 

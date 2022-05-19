@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use App\Http\Requests\MenuRequest;
+use Illuminate\Routing\Controller;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MenuController extends Controller
 {
@@ -15,7 +19,8 @@ class MenuController extends Controller
     public function index()
     {
         return view('pegawai.menu', [
-            'menu' => Menu::all()
+            'menu' => Menu::all(),
+            'navbar' => User::where('id', Auth::user()->id)->get(),
         ]);
     }
 
@@ -26,9 +31,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        return view('pegawai.menu.create', [
-            'menu' => Menu::all()
-        ]);
+        //
     }
 
     /**
@@ -41,7 +44,9 @@ class MenuController extends Controller
     {
         Menu::create($request->all());
 
-        return redirect()->route('menu.index')->with('menu', 'Data Menu Berhasil Ditambah');
+        Alert::success('Berhasil', 'Data Menu Berhasil Ditambah');
+
+        return redirect()->route('menu.index');
     }
 
     /**
@@ -63,9 +68,7 @@ class MenuController extends Controller
      */
     public function edit(Menu $menu)
     {
-        return view('pegawai.menu.edit', [
-            'menu' => $menu
-        ]);
+        //
     }
 
     /**
@@ -79,7 +82,9 @@ class MenuController extends Controller
     {
         Menu::find($id)->update($request->all());
 
-        return redirect()->route('menu.index')->with('menu', 'Data Menu Berhasil Diperbaharui');
+        Alert::success('Berhasil', 'Data Menu Berhasil Diubah');
+
+        return redirect()->route('menu.index');
     }
 
     /**
@@ -92,6 +97,8 @@ class MenuController extends Controller
     {
         Menu::destroy($menu->id);
 
-        return redirect()->route('menu.index')->with('error', 'Data Berhasil Dihapus');
+        Alert::success('Berhasil', 'Data Menu Berhasil Dihapus');
+
+        return redirect()->route('menu.index');
     }
 }

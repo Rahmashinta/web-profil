@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Shupmax - Multipurpose eCommerce HTML Template</title>
+    <title>Biro Pengadaan Barang dan Jasa</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -34,6 +34,8 @@
     @include('layouts.header')
 
     {{ $slot }}
+
+    @include('sweetalert::alert')
 
     @include('layouts.footer')
 

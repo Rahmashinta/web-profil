@@ -2,7 +2,7 @@
 <div class="sidebar-wrapper" data-simplebar="true">
     <div class="sidebar-header">
         <div>
-            <img src="{{ asset('assets/images/logo-icon.png') }}" class="logo-icon" alt="logo icon">
+            <img src="{{ asset('assets/images/logo.png') }}" class="logo-icon" alt="logo icon" style="width: 30px;">
         </div>
         <div>
             <h4 class="logo-text" style="font-size: 15px">Biro Pengadaan Barang dan Jasa</h4>
@@ -68,7 +68,7 @@
             </a>
         </li>
         <li>
-            <a href="/pengguna">
+            <a href="/user">
                 <div class="parent-icon"><i class="bi bi-person"></i>
                 </div>
                 <div class="menu-title">Kelola Pengguna</div>

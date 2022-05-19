@@ -32,7 +32,7 @@
                                     @foreach ($kritiksaran as $ks)
 
                                     <tr>
-                                        <td>1</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $ks->nama }}</td>
                                         <td>{{ $ks->email }}</td>
                                         <td>

@@ -1,4 +1,20 @@
 <x-main-layout>
+
+    <div class="bottom header__bottom header__bottom--border custom-header-bottom">
+        <div class="container">
+            <div class="row">
+                <div>
+                    <div class="main-menu ">
+                        @include('layouts.navbarmobile')
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="mobile-menu"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Main -->
     <main class="main--wrapper">
 
@@ -30,6 +46,16 @@
             </div>
         </section>
         <!-- contact area end -->
+        <div class="brand">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="brand-active">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
     </main>

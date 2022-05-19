@@ -1,7 +1,7 @@
 <nav id="mobile-menu" class="navbar-center">
     <ul style="margin-bottom: 0px; padding-left:0px !important">
         <li class=" m-2">
-            <a href="#">Dashboard</a>
+            <a href="{{ route('masyarakat.home') }}">Home</a>
         </li>
         <li class="dropdown-icon m-2">
             <a href="#">Profil</a>
@@ -20,9 +20,6 @@
                 </li>
                 <li>
                     <a href="{{ route('masyarakat.profilpejabat') }}">Profil Pejabat </a>
-                </li>
-                <li>
-                    <a href="{{ route('masyarakat.bidangkerja') }}">Bidang Kerja </a>
                 </li>
             </ul>
         </li>
@@ -55,7 +52,10 @@
             <a href="#">Layanan</a>
             <ul class="submenu">
                 <li>
-                    <a href="#">LPSE</a>
+                    @foreach ($layanan as $ly )
+
+                    <a href="{{ $ly->link }}">{{ $ly->nama }}</a>
+                    @endforeach
                 </li>
             </ul>
         </li>
@@ -63,7 +63,10 @@
             <a href="#">Lainnya</a>
             <ul class="submenu">
                 <li>
-                    <a href="#">Belum Punya</a>
+                    @foreach ($menu as $mn )
+
+                    <a href="{{ $mn->link }}">{{ $mn->nama_menu }}</a>
+                    @endforeach
                 </li>
             </ul>
         </li>

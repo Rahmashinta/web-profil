@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Konten;
 use App\Models\Layanan;
 use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LayananRequest;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LayananController extends Controller
 {
@@ -18,7 +21,8 @@ class LayananController extends Controller
     public function index()
     {
         return view('pegawai.layanan', [
-            'layanan' => Layanan::all()
+            'layanan' => Layanan::all(),
+            'navbar' => User::where('id', Auth::user()->id)->get(),
         ]);
     }
 
@@ -29,9 +33,7 @@ class LayananController extends Controller
      */
     public function create()
     {
-        return view('pegawai.layanan.create', [
-            'layanan' => Layanan::all()
-        ]);
+        //
     }
 
     /**
@@ -54,7 +56,9 @@ class LayananController extends Controller
         $data['gambar'] = $request->file('gambar')->getClientOriginalName();
         Layanan::create($data);
 
-        return redirect()->route('layanan.index')->with('layanan', 'Data Layanan Berhasil Ditambah');
+        Alert::success('Berhasil', 'Data Layanan Berhasil Ditambah');
+
+        return redirect()->route('layanan.index');
     }
 
     /**
@@ -65,6 +69,7 @@ class LayananController extends Controller
      */
     public function show(Layanan $layanan)
     {
+        //
     }
 
     /**
@@ -75,9 +80,7 @@ class LayananController extends Controller
      */
     public function edit(Layanan $layanan)
     {
-        return view('pegawai.layanan.edit', [
-            'layanan' => $layanan
-        ]);
+        //
     }
 
     /**
@@ -110,7 +113,9 @@ class LayananController extends Controller
 
         Layanan::find($id)->update($data);
 
-        return redirect()->route('layanan.index')->with('layanan', 'Data Layanan Berhasil Diperbaharui');
+        Alert::success('Berhasil', 'Data Layanan Berhasil Diperbaharui');
+
+        return redirect()->route('layanan.index');
     }
 
     /**
@@ -123,6 +128,8 @@ class LayananController extends Controller
     {
         Layanan::destroy($layanan->id);
 
-        return redirect()->route('layanan.index')->with('error', 'Data Berhasil Dihapus');
+        Alert::success('Berhasil', 'Data Layanan Berhasil Dihapus');
+
+        return redirect()->route('layanan.index');
     }
 }

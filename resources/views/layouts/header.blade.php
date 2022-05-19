@@ -12,24 +12,15 @@
                         <div class="search--header__middle h1search--header__middle">
                             <p style="font-size: 35px; text-align:center; color:white; padding-left:250px; padding-right:30px; margin-bottom:0px; ">Biro Pengadaan Barang dan Jasa</p>
                         </div>
-                        <p class="nama" style="font-size: 15px; color:#000000; padding-left:150px; margin-bottom:0px !important">Login</p>
+                        <div class="col d-flex justify-content-end">
+                            <button class="border-0 p-2 rounded">
+                                <a href="{{ route('login') }}" class="text-black p-2">Login <i class="bi bi-box-arrow-in-right pl-2"></i> </a>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="bottom header__bottom header__bottom--border custom-header-bottom">
-        <div class="container">
-            <div class="row">
-                <div>
-                    <div class="main-menu ">
-                        @include('layouts.navbarmobile')
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="mobile-menu"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 </header>

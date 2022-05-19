@@ -15,35 +15,6 @@
             <div class="page-content">
                 <div class="col">
 
-                    @if (session()->has('video'))
-
-                    <div class="alert alert-success border-0 bg-success alert-dismissible fade show py-2">
-                        <div class="d-flex align-items-center">
-                            <div class="font-35 text-white"><i class='bx bxs-check-circle'></i>
-                            </div>
-                            <div class="ms-3">
-                                {{ session('video') }}
-                            </div>
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-
-                    </div>
-
-                    @elseif (session()->has('error'))
-
-                    <div class="alert alert-success border-0 bg-success alert-dismissible fade show py-2">
-                        <div class="d-flex align-items-center">
-                            <div class="font-35 text-white"><i class='bx bxs-check-circle'></i>
-                            </div>
-                            <div class="ms-3">
-                                {{session('error')}}
-                            </div>
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-
-                    @endif
-
                     <div class="col">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambah">Tambah Data Video</button>
@@ -61,13 +32,13 @@
                                             <div class="col-md-12">
                                                 <label for="judul" class="form-label">Judul Video</label>
                                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-pencil-fill"></i></span>
-                                                    <input type="text" class="form-control border-start-0" id="judul" placeholder="Judul Video" name="judul" value="{{old ('judul') }}" />
+                                                    <input type="text" class="form-control border-start-0" id="judul" placeholder="Judul Video" name="judul" value="{{old ('judul') }}" required />
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <label for="link" class="form-label">Link Video</label>
                                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-link"></i></span>
-                                                    <input type="text" class="form-control border-start-0" id="link" placeholder="Link Video" name="link" value="{{old ('link') }}" />
+                                                    <input type="text" class="form-control border-start-0" id="link" placeholder="Link Video" name="link" value="{{old ('link') }}" required />
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -111,10 +82,10 @@
                                 <tbody>
                                     @foreach ($video as $vd)
                                     <tr>
-                                        <td>1</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $vd->judul }}</td>
-                                        <td>{{ $vd->created_at }}</td>
-                                        <td><a href="{{ $vd->link  }}"> {{ $vd->link  }}</a></td>
+                                        <td>{{ $vd->created_at->format('d-M-Y') }}</td>
+                                        <td><a href="{{ $vd->link  }}"> {{ substr($vd->link, 0, 30); }}</a></td>
                                         <td>{{ $vd->keterangan}}</td>
                                         <td>
 

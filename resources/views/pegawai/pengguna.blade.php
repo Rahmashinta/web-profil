@@ -15,35 +15,6 @@
             <div class="page-content">
                 <div class="col">
 
-                    @if (session()->has('pengguna'))
-
-                    <div class="alert alert-success border-0 bg-success alert-dismissible fade show py-2">
-                        <div class="d-flex align-items-center">
-                            <div class="font-35 text-white"><i class='bx bxs-check-circle'></i>
-                            </div>
-                            <div class="ms-3">
-                                {{ session('pengguna') }}
-                            </div>
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-
-                    </div>
-
-                    @elseif (session()->has('error'))
-
-                    <div class="alert alert-success border-0 bg-success alert-dismissible fade show py-2">
-                        <div class="d-flex align-items-center">
-                            <div class="font-35 text-white"><i class='bx bxs-check-circle'></i>
-                            </div>
-                            <div class="ms-3">
-                                {{session('error')}}
-                            </div>
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-
-                    @endif
-
                     <div class="col">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambah">Tambah Data Pengguna</button>
@@ -56,18 +27,18 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="row g-3" action="{{ route('pengguna.store') }}" method="post" enctype="multipart/form-data">
+                                        <form class="row g-3" action="{{ route('user.store') }}" method="post" enctype="multipart/form-data">
                                             @csrf
                                             <div class="col-md-12">
                                                 <label for="nama" class="form-label">Nama Pengguna</label>
                                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person"></i></span>
-                                                    <input type="text" class="form-control border-start-0" id="nama" placeholder="Nama Pengguna" name="nama" value="{{old ('nama') }}" />
+                                                    <input type="text" class="form-control border-start-0" id="nama" placeholder="Nama Pengguna" name="nama" value="{{old ('nama') }}" required />
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <label for="username" class="form-label">Username</label>
                                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person-square"></i></span>
-                                                    <input type="text" class="form-control border-start-0" id="username" placeholder="username" name="username" value="{{old ('username') }}" />
+                                                    <input type="text" class="form-control border-start-0" id="username" placeholder="username" name="username" value="{{old ('username') }}" required />
                                                 </div>
                                             </div>
                                             <div class="col-12">
@@ -81,7 +52,7 @@
                                             <div class="col-md-12">
                                                 <label for="password" class="form-label">Password</label>
                                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-key"></i></span>
-                                                    <input type="text" class="form-control border-start-0" id="password" placeholder="Password" name="password" value="{{old ('password') }}" />
+                                                    <input type="text" class="form-control border-start-0" id="password" placeholder="Password" name="password" value="{{old ('password') }}" required />
                                                 </div>
                                             </div>
 
@@ -111,7 +82,6 @@
                                         <th>No</th>
                                         <th>Nama</th>
                                         <th>Username</th>
-                                        <th>Password</th>
                                         <th>Role</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -119,10 +89,9 @@
                                 <tbody>
                                     @foreach ($user as $us)
                                     <tr>
-                                        <td>1</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $us->nama }}</td>
                                         <td>{{ $us->username }}</td>
-                                        <td>{{ $us->password}}</td>
                                         <td>{{ $us->role }}</td>
                                         <td>
 
@@ -144,7 +113,7 @@
                                                     </div>
 
                                                     <div class="modal-body">
-                                                        <form class="row g-3" action="{{ route('pengguna.update', $us->id) }}" method="post" enctype="multipart/form-data">
+                                                        <form class="row g-3" action="{{ route('user.update', $us->id) }}" method="post" enctype="multipart/form-data">
                                                             @method('put')
                                                             @csrf
 
@@ -157,7 +126,7 @@
                                                             <div class="col-md-12">
                                                                 <label for="username" class="form-label">Username</label>
                                                                 <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person-square"></i></span>
-                                                                    <input type="text" class="form-control border-start-0" id="username" placeholder="username" name="username" value="{{old ('user', $us->username) }}" />
+                                                                    <input type="text" class="form-control border-start-0" id="username" placeholder="username" name="username" value="{{old ('user', $us->username) }}" readonly />
                                                                 </div>
                                                             </div>
                                                             <div class="col-12">
@@ -199,7 +168,7 @@
                                                     </div>
 
                                                     <div class="modal-body">
-                                                        <form action="/pengguna/{{ $us->id}}" method="post" class="d-inline">
+                                                        <form action="/user/{{ $us->id}}" method="post" class="d-inline">
                                                             @method('delete')
                                                             @csrf
                                                             <div class="div">

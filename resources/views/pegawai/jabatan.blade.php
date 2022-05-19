@@ -14,36 +14,6 @@
         <div class="page-wrapper">
             <div class="page-content">
                 <div class="col">
-
-                    @if (session()->has('jabatan'))
-
-                    <div class="alert alert-success border-0 bg-success alert-dismissible fade show py-2">
-                        <div class="d-flex align-items-center">
-                            <div class="font-35 text-white"><i class='bx bxs-check-circle'></i>
-                            </div>
-                            <div class="ms-3">
-                                {{ session('jabatan') }}
-                            </div>
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-
-                    </div>
-
-                    @elseif (session()->has('error'))
-
-                    <div class="alert alert-success border-0 bg-success alert-dismissible fade show py-2">
-                        <div class="d-flex align-items-center">
-                            <div class="font-35 text-white"><i class='bx bxs-check-circle'></i>
-                            </div>
-                            <div class="ms-3">
-                                {{session('error')}}
-                            </div>
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-
-                    @endif
-
                     <div class="col">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambah">Tambah Data Jabatan</button>
@@ -56,32 +26,30 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <form class="row g-3" action="{{ route('jabatan.store') }}" method="post" enctype="multipart/form-data">
-                                            @csrf
-                                            <div class="col-md-6">
-                                                <label for="jabatan" class="form-label @error('jabatan') is-invalid
-                                                @enderror">Nama Jabatan</label>
-                                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person-lines-fill"></i></span>
-                                                    <input type="text" class="form-control border-start-0 " id="jabatan" placeholder="Nama Jabatan" name="jabatan" value="{{old ('jabatan') }}" />
-                                                    @error('jabatan')
-                                                    <div class="invalid-feedback">
-                                                        {{ $message }}
+                                        <div class="card border-top border-0 border-4 border-primary">
+                                            <div class="card-body p-5">
+                                                <form class="row g-3" action="{{ route('jabatan.store') }}" method="post" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="col-md-6">
+                                                        <label for="jabatan" class="form-label">Nama Jabatan</label>
+                                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person-lines-fill"></i></span>
+                                                            <input type="text" class="form-control border-start-0 " id="jabatan" autofocus placeholder="Nama Jabatan" name="jabatan" value="{{old ('jabatan') }}" required />
+                                                        </div>
                                                     </div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="kode_jabatan" class="form-label">Kode Jabatan</label>
-                                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-pencil-square"></i></span>
-                                                    <input type="text" class="form-control border-start-0 " id="kode_jabatan" placeholder="Kode Jabatan" name="kode_jabatan" value="{{old ('kode_jabatan') }}" />
-                                                </div>
-                                            </div>
+                                                    <div class="col-md-6">
+                                                        <label for="kode_jabatan" class="form-label">Kode Jabatan</label>
+                                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-pencil-square"></i></span>
+                                                            <input type="text" class="form-control border-start-0 " id="kode_jabatan" placeholder="Kode Jabatan" name="kode_jabatan" value="{{old ('kode_jabatan') }}" required />
+                                                        </div>
+                                                    </div>
 
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    </div>
+                                                </form>
                                             </div>
-                                        </form>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -108,7 +76,7 @@
 
                                     @foreach ($jabatan as $jbt )
                                     <tr>
-                                        <td>1</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $jbt->jabatan}}</td>
                                         <td>{{ $jbt->kode_jabatan }}</td>
                                         <td>
@@ -132,35 +100,39 @@
                                                     </div>
 
                                                     <div class="modal-body">
-                                                        <form class="row g-3" action="{{ route('jabatan.update', $jbt->id) }}" method="post">
-                                                            @method('put')
-                                                            @csrf
-                                                            <div class="col-md-12 mt-2">
-                                                                <label for="jabatan" class="form-label">Nama Jabatan</label>
-                                                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person-lines-fill"></i></span>
-                                                                    <input type="text" class="form-control border-start-0" id="jabatan" placeholder="Nama Jabatan" name="jabatan" value="{{old ('jabatan', $jbt->jabatan) }}" />
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12 mt-2">
-                                                                <label for="kode_jabatan" class="form-label">Kode Jabatan</label>
-                                                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-pencil-square"></i></span>
-                                                                    <input type="text" class="form-control border-start-0" id="kode_jabatan" placeholder="Kode Jabatan" name="kode_jabatan" value="{{old ('jabatan', $jbt->kode_jabatan) }}" />
-                                                                </div>
-                                                            </div>
+                                                        <div class="card border-top border-0 border-4 border-primary">
+                                                            <div class="card-body p-5">
+                                                                <form class="row g-3" action="{{ route('jabatan.update', $jbt->id) }}" method="post">
+                                                                    @method('put')
+                                                                    @csrf
+                                                                    <div class="col-md-12 mt-2">
+                                                                        <label for="jabatan" class="form-label">Nama Jabatan</label>
+                                                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person-lines-fill"></i></span>
+                                                                            <input type="text" class="form-control border-start-0" id="jabatan" placeholder="Nama Jabatan" name="jabatan" value="{{old ('jabatan', $jbt->jabatan) }}" readonly/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12 mt-2">
+                                                                        <label for="kode_jabatan" class="form-label">Kode Jabatan</label>
+                                                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-pencil-square"></i></span>
+                                                                            <input type="text" class="form-control border-start-0" id="kode_jabatan" placeholder="Kode Jabatan" name="kode_jabatan" value="{{old ('jabatan', $jbt->kode_jabatan) }}" />
+                                                                        </div>
+                                                                    </div>
 
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                                            </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                                    </div>
 
-                                                        </form>
+                                                                </form>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- Modal Hapu -->
+                                    <!-- Modal Hapus -->
                                     <div class="col">
                                         <div class="modal fade" id="hapus{{$jbt->id}}" tabindex="-1" aria-hidden="true">
 

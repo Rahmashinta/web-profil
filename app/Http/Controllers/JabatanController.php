@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Jabatan;
+use App\Models\Pegawai;
 use Illuminate\Routing\Controller;
 use App\Http\Requests\JabatanRequest;
+use App\Models\User;
 use Illuminate\Auth\Events\Validated;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class JabatanController extends Controller
 {
@@ -17,7 +21,8 @@ class JabatanController extends Controller
     public function index()
     {
         return view('pegawai.jabatan', [
-            'jabatan' => Jabatan::all()
+            'jabatan' => Jabatan::all(),
+            'navbar' => User::where('id', Auth::user()->id)->get(),
         ]);
     }
 
@@ -28,7 +33,7 @@ class JabatanController extends Controller
      */
     public function create()
     {
-        return view('pegawai.jabatan.create');
+        // 
     }
 
     /**
@@ -39,13 +44,16 @@ class JabatanController extends Controller
      */
     public function store(JabatanRequest $request)
     {
-        // if ($request != Validated::class) {
-        //     return redirect()->route('jabatan.create')->withInput()->withErrors($request->validated());
-        // };
+        $request->validated([
+            'kode_jabatan' => 'required|max:255|string|unique:jabatans',
+            'jabatan' => 'required|max:255|string|unique:jabatans',
+        ]);
 
         Jabatan::create($request->all());
 
-        return redirect()->route('jabatan.index')->with('jabatan', 'Data Jabatan Berhasil Ditambahkan');
+        Alert::success('Berhasil', 'Data Jabatan Berhasil Ditambah');
+
+        return redirect()->route('jabatan.index');
     }
 
     /**
@@ -56,9 +64,7 @@ class JabatanController extends Controller
      */
     public function show(Jabatan $jabatan)
     {
-        return view('pegawai.jabatan.show', [
-            'jabatan' => $jabatan,
-        ]);
+        //
     }
 
     /**
@@ -69,9 +75,7 @@ class JabatanController extends Controller
      */
     public function edit(Jabatan $jabatan)
     {
-        return view('pegawai.jabatan.edit', [
-            'jabatan' => $jabatan
-        ]);
+        //
     }
 
     /**
@@ -83,9 +87,12 @@ class JabatanController extends Controller
      */
     public function update(JabatanRequest $request, $id)
     {
+
         Jabatan::find($id)->update($request->all());
 
-        return redirect()->route('jabatan.index')->with('jabatan', 'Data Jabatan Berhasil Diperbaharui');
+        Alert::success('Berhasil', 'Data Jabatan Berhasil Diperbaharui');
+
+        return redirect()->route('jabatan.index');
     }
 
     /**
@@ -98,6 +105,8 @@ class JabatanController extends Controller
     {
         Jabatan::destroy($jabatan->id);
 
-        return redirect()->route('jabatan.index')->with('error', 'Data Berhasil Dihapus');
+        Alert::success('Berhasil', 'Data Jabatan Berhasil Dihapus');
+
+        return redirect()->route('jabatan.index');
     }
 }

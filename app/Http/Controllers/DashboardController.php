@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -19,6 +21,7 @@ class DashboardController extends Controller
         $menu = DB::table('menus')->count();
         $pengguna = DB::table('users')->count();
         $kritiksaran = DB::table('kritiksarans')->count();
+
         return view('pegawai.dashboard', [
             'jabatan' =>  $jabatan,
             'pegawai' =>  $pegawai,
@@ -29,6 +32,7 @@ class DashboardController extends Controller
             'menu' =>  $menu,
             'pengguna' =>  $pengguna,
             'kritiksaran' =>  $kritiksaran,
+            'navbar' => User::where('id', Auth::user()->id)->get(),
         ]);
     }
 }

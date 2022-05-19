@@ -15,35 +15,6 @@
             <div class="page-content">
                 <div class="col">
 
-                    @if (session()->has('konten'))
-
-                    <div class="alert alert-success border-0 bg-success alert-dismissible fade show py-2">
-                        <div class="d-flex align-items-center">
-                            <div class="font-35 text-white"><i class='bx bxs-check-circle'></i>
-                            </div>
-                            <div class="ms-3">
-                                {{ session('konten') }}
-                            </div>
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-
-                    </div>
-
-                    @elseif (session()->has('error'))
-
-                    <div class="alert alert-success border-0 bg-success alert-dismissible fade show py-2">
-                        <div class="d-flex align-items-center">
-                            <div class="font-35 text-white"><i class='bx bxs-check-circle'></i>
-                            </div>
-                            <div class="ms-3">
-                                {{session('error')}}
-                            </div>
-                        </div>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-
-                    @endif
-
                     <div class="col">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambah">Tambah Data Foto</button>
@@ -62,14 +33,14 @@
                                             <div class="col-md-12">
                                                 <label for="judul" class="form-label">Judul Foto</label>
                                                 <div class="input-group "> <span class="input-group-text bg-transparent"><i class="bi bi-pencil-fill"></i></span>
-                                                    <input type="text" class="form-control border-start-0" id="judul" placeholder="Judul Foto" name="judul" value="{{old ('judul') }}" />
+                                                    <input type="text" autofocus class="form-control border-start-0" id="judul" placeholder="Judul Foto" name="judul" value="{{old ('judul') }}">
                                                 </div>
                                             </div>
 
                                             <div class="col-12">
                                                 <div class="mb-3">
                                                     <label for="file" class="form-label">Foto</label>
-                                                    <input class="form-control" type="file" id="file" name="file" value="{{old ('file') }}">
+                                                    <input class="form-control" type="file" id="file" name="file" value="{{old ('file') }}" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -110,10 +81,10 @@
                                 <tbody>
                                     @foreach ($foto as $ft)
                                     <tr>
-                                        <td>1</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $ft->judul }}</td>
                                         <td>
-                                            <a href="" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#show{{$ft->id}}"><i class="bi bi-eye"></i></a>
+                                            <a href="{{ route('galeri.show', $ft->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
 
                                             <a href="" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#edit{{$ft->id}}"><i class="bi bi-pencil-square"></i></a>
 
