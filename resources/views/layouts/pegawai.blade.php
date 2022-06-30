@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
-    <link rel="icon" href="{{ asset('assets/images/favicon-32x32.png') }}" type="image/png" />
+    <link rel="icon" href="{{ asset('assets/images/logo.png') }}" type="image/png" />
     <!--plugins-->
     <link href="{{ asset('assets/plugins/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
@@ -96,27 +96,6 @@
         });
     </script>
 
-    <!-- <script>
-        let baru = document.getElementById('baru');
-        let lama = document.getElementsByClassName('lama');
-        let tampil = document.getElementById('tampil');
-
-        function pilih() {
-            // tampil.style.display = 'block';
-            console.log('haloo');
-        };
-
-        for (let i = 0; i < lama.length; i++) {
-            lama[i].addEventListener('click', function() {
-                if (tampil.style.display === 'none') {
-                    tampil.style.display = 'block';
-                } else {
-                    tampil.style.display = 'none';
-                }
-            })
-        }
-    </script> -->
-
     <script>
         $(document).ready(function() {
             $('#example').DataTable();
@@ -140,6 +119,68 @@
                 $(".after-add-more").after(html);
             });
         });
+    </script>
+
+    <script>
+        document.addEventListener('trix-file-accept', function(e) {
+            e.preventDefault();
+        })
+
+        function previewImage() {
+            const foto_pegawai = document.querySelector('#foto_pegawai');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(foto_pegawai.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+
+        function previewImagekonten() {
+            const gambar = document.querySelector('#gambar');
+            const imgPreview1 = document.querySelector('.img-preview');
+
+            imgPreview1.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(gambar.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview1.src = oFREvent.target.result;
+            }
+        }
+
+        function previewImagefoto() {
+            const file = document.querySelector('#file');
+            const imgPreview1 = document.querySelector('.img-preview');
+
+            imgPreview1.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(file.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview1.src = oFREvent.target.result;
+            }
+        }
+
+        function previewImagelayanan() {
+            const gambar = document.querySelector('#gambar');
+            const imgPreview1 = document.querySelector('.img-preview');
+
+            imgPreview1.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(gambar.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview1.src = oFREvent.target.result;
+            }
+        }
     </script>
 
 </body>

@@ -22,7 +22,7 @@ class PegawaiController extends Controller
     public function index()
     {
         return view('pegawai.pegawai', [
-            'pegawai' => Pegawai::all(),
+            'pegawai' => Pegawai::orderBy('created_at', 'desc')->get(),
             'jabatan' => Jabatan::all(),
             'navbar' => User::where('id', Auth::user()->id)->get(),
         ]);
@@ -45,11 +45,18 @@ class PegawaiController extends Controller
         $file->move($tujuan_upload, $file->getClientOriginalName());
 
         $data = $request->all();
-        $data['foto_pegawai'] = $request->file('foto_pegawai')->getClientOriginalName();
-        Pegawai::create($data);
 
-        Alert::success('Berhasil', 'Data Pegawai Berhasil Ditambah');
-
+        if ($data['nip'] == Pegawai::where('nip', $data['nip'])->value('nip')) {
+            Alert::error('NIP sudah ada!', 'Gagal');
+        } else {
+            Pegawai::create([
+                'nip' => $data['nip'],
+                'nama_pegawai' => $data['nama_pegawai'],
+                'jabatan' => $data['jabatan'],
+                'foto_pegawai' => $file->getClientOriginalName(),
+            ]);
+            Alert::success('Berhasil', 'Data Pegawai Berhasil Ditambah');
+        }
         return redirect()->route('pegawai.index');
     }
 

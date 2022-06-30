@@ -26,28 +26,33 @@
                                         <h5 class="modal-title">Tambah Menu</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
+
                                     <div class="modal-body">
-                                        <form class="row g-3" action="{{ route('menu.store') }}" method="post" enctype="multipart/form-data">
-                                            @csrf
-                                            <div class="col-md-12">
-                                                <label for="nama_menu" class="form-label">Nama Menu</label>
-                                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-menu-button-wide"></i></span>
-                                                    <input type="text" class="form-control border-start-0" id="nama_menu" placeholder="Nama Menu" name="nama_menu" value="{{old ('nama_menu') }}" required />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <label for="link" class="form-label">Link Menu</label>
-                                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-link"></i></span>
-                                                    <input type="text" class="form-control border-start-0" id="link" placeholder="Link Menu" name="link" value="{{old ('link') }}" required />
-                                                </div>
-                                            </div>
+                                        <div class="card border-top border-0 border-4 border-primary">
+                                            <div class="card-body p-4">
+                                                <form class="row g-3" action="{{ route('menu.store') }}" method="post" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="col-md-12">
+                                                        <label for="nama_menu" class="form-label">Nama Menu</label>
+                                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-menu-button-wide"></i></span>
+                                                            <input type="text" class="form-control border-start-0" id="nama_menu" placeholder="Nama Menu" name="nama_menu" value="{{old ('nama_menu') }}" required />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <label for="link" class="form-label">Link Menu</label>
+                                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-link"></i></span>
+                                                            <input type="text" class="form-control border-start-0" id="link" placeholder="Link Menu" name="link" value="{{old ('link') }}" required />
+                                                        </div>
+                                                    </div>
 
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                            </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    </div>
 
-                                        </form>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -85,83 +90,91 @@
                                         </td>
                                     </tr>
 
-                                </tbody>
 
-                                <!-- Modal Edit -->
-                                <div class="col">
-                                    <div class="modal fade" id="edit{{$mn->id}}" tabindex="-1" aria-hidden="true">
 
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Form Edit Pegawai</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
+                                    <!-- Modal Edit -->
+                                    <div class="col">
+                                        <div class="modal fade" id="edit{{$mn->id}}" tabindex="-1" aria-hidden="true">
 
-                                                <div class="modal-body">
-                                                    <form class="row g-3" action="{{ route('menu.update', $mn->id) }}" method="post" enctype="multipart/form-data">
-                                                        @method('put')
-                                                        @csrf
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Form Edit Pegawai</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
 
-                                                        <div class="col-md-12">
-                                                            <label for="nama_menu" class="form-label">Nama Menu</label>
-                                                            <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-menu-button-wide"></i></span>
-                                                                <input type="text" class="form-control border-start-0" id="nama_menu" placeholder="Nama Menu" name="nama_menu" value="{{old ('menu', $mn->nama_menu) }}" />
+                                                    <div class="modal-body">
+                                                        <div class="card border-top border-0 border-4 border-primary">
+                                                            <div class="card-body p-5">
+                                                                <form class="row g-3" action="{{ route('menu.update', $mn->id) }}" method="post" enctype="multipart/form-data">
+                                                                    @method('put')
+                                                                    @csrf
+
+                                                                    <div class="col-md-12">
+                                                                        <label for="nama_menu" class="form-label">Nama Menu</label>
+                                                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-menu-button-wide"></i></span>
+                                                                            <input type="text" class="form-control border-start-0" id="nama_menu" placeholder="Nama Menu" name="nama_menu" value="{{old ('menu', $mn->nama_menu) }}" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <label for="link" class="form-label">Link Menu</label>
+                                                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-link"></i></span>
+                                                                            <input type="text" class="form-control border-start-0" id="link" placeholder="Link Menu" name="link" value="{{old ('menu', $mn->link) }}" />
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                                    </div>
+
+                                                                </form>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-12">
-                                                            <label for="link" class="form-label">Link Menu</label>
-                                                            <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-link"></i></span>
-                                                                <input type="text" class="form-control border-start-0" id="link" placeholder="Link Menu" name="link" value="{{old ('menu', $mn->link) }}" />
-                                                            </div>
-                                                        </div>
+                                                    </div>
 
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                            <button type="submit" class="btn btn-primary">Simpan</button>
-                                                        </div>
+                                                    <div class="modal-body">
 
-                                                    </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <!-- Modal Hapus -->
-                                <div class="col">
-                                    <div class="modal fade" id="hapus{{$mn->id}}" tabindex="-1" aria-hidden="true">
+                                    <!-- Modal Hapus -->
+                                    <div class="col">
+                                        <div class="modal fade" id="hapus{{$mn->id}}" tabindex="-1" aria-hidden="true">
 
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Hapus Menu</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Hapus Menu</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+
+                                                    <div class="modal-body">
+                                                        <form action="/menu/{{ $mn->id}}" method="post" class="d-inline">
+                                                            @method('delete')
+                                                            @csrf
+                                                            <div class="div">
+                                                                <p>Yakin Ingin Menghapus Menu <b>{{ $mn->nama_menu }} </b> ? </p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                                            </div>
+
+                                                        </form>
+                                                    </div>
+
+
                                                 </div>
-
-                                                <div class="modal-body">
-                                                    <form action="/menu/{{ $mn->id}}" method="post" class="d-inline">
-                                                        @method('delete')
-                                                        @csrf
-                                                        <div class="div">
-                                                            <p>Yakin Ingin Menghapus Menu <b>{{ $mn->nama_menu }} </b> ? </p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                            <button type="submit" class="btn btn-danger">Hapus</button>
-                                                        </div>
-
-                                                    </form>
-                                                </div>
-
-
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- Modal Show -->
+                                    <!-- Modal Show -->
 
-                                @endforeach
+                                    @endforeach
 
                                 </tbody>
                             </table>

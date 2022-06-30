@@ -21,7 +21,7 @@ class KritiksaranController extends Controller
     public function index()
     {
         return view('pegawai.kritiksaran', [
-            'kritiksaran' => Kritiksaran::all(),
+            'kritiksaran' => Kritiksaran::orderBy('created_at', 'desc')->get(),
             'navbar' => User::where('id', Auth::user()->id)->get(),
         ]);
     }

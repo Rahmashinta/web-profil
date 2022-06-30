@@ -26,34 +26,40 @@
                                         <h5 class="modal-title">Tambah Layanan</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
+
                                     <div class="modal-body">
-                                        <form class="row g-3" action="{{ route('layanan.store') }}" method="post" enctype="multipart/form-data">
-                                            @csrf
-                                            <div class="col-12">
-                                                <div class="mb-3">
-                                                    <label for="nama" class="form-label">Nama Layanan</label>
-                                                    <input class="form-control" type="teks" id="nama" name="nama" value="{{old ('nama') }}" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="mb-3">
-                                                    <label for="gambar" class="form-label">Gambar Layanan</label>
-                                                    <input class="form-control" type="file" id="gambar" name="gambar" value="{{old ('gambar') }}" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <label for="link" class="form-label">Link Layanan</label>
-                                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-link"></i></span>
-                                                    <input type="text" class="form-control border-start-0" id="link" placeholder="Link Layanan" name="link" value="{{old ('link') }}" required />
-                                                </div>
-                                            </div>
+                                        <div class="card border-top border-0 border-4 border-primary">
+                                            <div class="card-body p-4">
+                                                <form class="row g-3" action="{{ route('layanan.store') }}" method="post" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="col-12">
+                                                        <div class="mb-3">
+                                                            <label for="nama" class="form-label">Nama Layanan</label>
+                                                            <input class="form-control" type="teks" id="nama" name="nama" value="{{old ('nama') }}" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="mb-3">
+                                                            <label for="gambar" class="form-label">Gambar Layanan</label>
+                                                            <img class="img-preview mx-auto mb-3 col-sm-5">
+                                                            <input class="form-control" type="file" id="gambar" name="gambar" onchange="previewImagelayanan()" value="{{old ('gambar') }}" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <label for="link" class="form-label">Link Layanan</label>
+                                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-link"></i></span>
+                                                            <input type="text" class="form-control border-start-0" id="link" placeholder="Link Layanan" name="link" value="{{old ('link') }}" required />
+                                                        </div>
+                                                    </div>
 
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                            </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    </div>
 
-                                        </form>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -104,38 +110,50 @@
                                                     </div>
 
                                                     <div class="modal-body">
-                                                        <form class="row g-3" action="{{ route('layanan.update', $ly->id) }}" method="post" enctype="multipart/form-data">
-                                                            @method('put')
-                                                            @csrf
+                                                        <div class="card border-top border-0 border-4 border-primary">
+                                                            <div class="card-body p-5">
+                                                                <form class="row g-3" action="{{ route('layanan.update', $ly->id) }}" method="post" enctype="multipart/form-data">
+                                                                    @method('put')
+                                                                    @csrf
 
-                                                            <div class="col-12">
-                                                                <div class="mb-3">
-                                                                    <label for="nama" class="form-label">nama Konten</label>
-                                                                    <input class="form-control" type="teks" id="nama" name="nama" value="{{old ('layanan', $ly->nama) }}" required>
-                                                                </div>
-                                                            </div>
+                                                                    <div class="col-12">
+                                                                        <div class="mb-3">
+                                                                            <label for="nama" class="form-label">Nama Layanan</label>
+                                                                            <input class="form-control" type="teks" id="nama" name="nama" value="{{old ('layanan', $ly->nama) }}" required>
+                                                                        </div>
+                                                                    </div>
 
-                                                            <div class="col-12">
-                                                                <div class="mb-3">
-                                                                    <label for="gambar" class="form-label">Gambar Layanan</label>
-                                                                    <input type="hidden" name="oldImage" value="{{ $ly->gambar}}">
-                                                                    <input class="form-control" type="file" id="gambar" name="gambar" value="{{old ('layanan', $ly->gambar) }}">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <label for="link" class="form-label">Link Layanan</label>
-                                                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-link"></i></span>
-                                                                    <input type="text" class="form-control border-start-0" id="link" placeholder="Link Layanan" name="link" value="{{old ('layanan', $ly->link) }}" />
-                                                                </div>
-                                                            </div>
+                                                                    <div class="col-12">
+                                                                        <div class="mb-3">
+                                                                            <label for="gambar" class="form-label">Gambar Layanan</label>
+                                                                            <input type="hidden" name="oldImage" value="{{ $ly->gambar}}">
 
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                                            </div>
+                                                                            @if ($ly->gambar)
+                                                                            <img src="/storage/layanan/{{ $ly->gambar }}" class="img-preview mx-auto mb-3 col-sm-5 d-block">
+                                                                            @else
+                                                                            <img class="img-preview mx auto mb-3 col-sm-5">
+                                                                            @endif
 
-                                                        </form>
+                                                                            <input class="form-control" type="file" id="gambar" name="gambar" onchange="previewImagelayanan()" value="{{old ('layanan', $ly->gambar) }}">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <label for="link" class="form-label">Link Layanan</label>
+                                                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-link"></i></span>
+                                                                            <input type="text" class="form-control border-start-0" id="link" placeholder="Link Layanan" name="link" value="{{old ('layanan', $ly->link) }}" />
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                                    </div>
+
+                                                                </form>
+                                                            </div>
+                                                        </div>
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>

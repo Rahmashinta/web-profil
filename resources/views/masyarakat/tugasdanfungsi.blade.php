@@ -49,7 +49,7 @@
                                                                         <div class="col-md-12">
                                                                             <div class="single-content">
                                                                                 <h5 class="title" style="padding-left:30px; background-color:#ffd700">Tugas</h5>
-                                                                                <p style=" margin: 10px">Praesent ornare, ex a interdum consectetur, lectus diam sodales elit, vitae egestas massa nisi. Suspendisse potenti. Quisque suscipit vulputate dui quis volutpat.Ut id cursus tellus, non tempor quam. Morbi.</p>
+                                                                                <p style=" margin: 10px">Biro Pengadaan Barang dan Jasa, menyelenggarakan tugas membantu Asisten Perekonomian dan Pembangungan dalam penyiapan perumusan kebijakan daerah, pengoordinasian pelaksanaan tugas Perangkat Daerah, pengoordinasian pelaksanaan tugas Perangkat Daerah di bidang pengelolaan pengadaan barang dan jasa, pengelolaan layanan pengadaan secara elektronik, pembinaan dan advokasi pengadaan barang dan jasa.</p>
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-12">
@@ -57,13 +57,16 @@
                                                                                 <h5 class="title" style="padding-left:30px; background-color:#ffd700"">Fungsi</h5>
                                                                     <ol type=" a">
                                                                                     <li>
-                                                                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia veniam sunt ab et, quae iste.</p>
+                                                                                        <p>Penyiapan perumusan kebijakan daerah di bidang pengelolaan pengadaan barang dan jasa, pengelolaan layanan pengadaan secara elektronik, pembinaan dan advokasi pengadaan barang dan jasa</p>
                                                                                     </li>
                                                                                     <li>
-                                                                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia veniam sunt ab et, quae iste.</p>
+                                                                                        <p>Penyiapan pengoordinasian pelaksanaan tugas Perangkat Daerah di bidang pengelolaan pengadaan barang dan jasa, pengelolaan layanan pengadaan secara elektronik, pembinaan dan advokasi pengadaan barang dan jasa.</p>
                                                                                     </li>
                                                                                     <li>
-                                                                                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia veniam sunt ab et, quae iste.</p>
+                                                                                        <p>Penyiapan pemantauan dan evaluasi pelaksanaan kebijakan di bidang pengelolaan pengadaan barang dan jasa, pengelolaan layanan pengadaan secara elektronik, pembinaan dan advokasi pengadaan barang dan jasa.</p>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <p>Pelaksanaan fungsi lain yang diberikan oleh Asisten Perekonomian dan Pembangungan yang berkaitan dengan tugasnya. </p>
                                                                                     </li>
                                                                                     </ol>
                                                                             </div>
@@ -86,7 +89,7 @@
 
                                 <div class="common-cat">
                                     <div class="side-title">
-                                        <h6>Konten</h6>
+                                        <h6>Berita</h6>
                                     </div>
 
                                     @foreach ($berita as $br )

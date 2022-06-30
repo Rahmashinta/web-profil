@@ -17,7 +17,7 @@ class MasyarakatController extends Controller
     {
         return view('masyarakat.home', [
             'layanan' => Layanan::all(),
-            'video' => Video::limit(2)->orderBy('created_at', 'desc')->get(),
+            'video' => Video::limit(3)->orderBy('created_at', 'desc')->get(),
             'foto' => Galeri::limit(4)->orderBy('created_at', 'desc')->get(),
             'berita' => Konten::where('kategori_konten', 'Berita')->where('status', 'Publish')->limit(5)->orderBy('created_at', 'desc')->get(),
             'artikel' => Konten::where('kategori_konten', 'Artikel')->where('status', 'Publish')->limit(5)->orderBy('created_at', 'desc')->get(),
@@ -86,8 +86,9 @@ class MasyarakatController extends Controller
     }
     public function berita()
     {
+
         return view('masyarakat.berita', [
-            'berita' => Konten::where('kategori_konten', 'Berita')->where('status', 'Publish')->get(),
+            'berita' => Konten::where('kategori_konten', 'Berita')->where('status', 'Publish')->orderBy('created_at', 'desc')->get(),
             'layanan' => Layanan::all(),
             'menu' => Menu::all(),
         ]);
@@ -95,7 +96,7 @@ class MasyarakatController extends Controller
     public function detailberita($berita)
     {
         return view('masyarakat.detailberita', [
-            'berita' => Konten::where('id', $berita),
+            'berita' => Konten::all()->where('id', $berita),
             'layanan' => Layanan::all(),
             'menu' => Menu::all(),
         ]);
@@ -103,7 +104,7 @@ class MasyarakatController extends Controller
     public function artikel()
     {
         return view('masyarakat.artikel', [
-            'artikel' => Konten::where('kategori_konten', 'Artikel')->where('status', 'Publish')->get(),
+            'artikel' => Konten::where('kategori_konten', 'Artikel')->where('status', 'Publish')->orderBy('created_at', 'desc')->get(),
             'layanan' => Layanan::all(),
             'menu' => Menu::all(),
         ]);
@@ -119,7 +120,7 @@ class MasyarakatController extends Controller
     public function pengumuman()
     {
         return view('masyarakat.pengumuman', [
-            'pengumuman' => Konten::where('kategori_konten', 'Pengumuman')->where('status', 'Publish')->get(),
+            'pengumuman' => Konten::where('kategori_konten', 'Pengumuman')->where('status', 'Publish')->orderBy('created_at', 'desc')->get(),
             'layanan' => Layanan::all(),
             'menu' => Menu::all(),
         ]);
@@ -135,7 +136,7 @@ class MasyarakatController extends Controller
     public function foto()
     {
         return view('masyarakat.foto', [
-            'foto' => Galeri::all(),
+            'foto' => Galeri::orderBy('created_at', 'desc')->get(),
             'layanan' => Layanan::all(),
             'menu' => Menu::all(),
         ]);
@@ -143,7 +144,7 @@ class MasyarakatController extends Controller
     public function video()
     {
         return view('masyarakat.video', [
-            'video' => Video::all(),
+            'video' => Video::orderBy('created_at', 'desc')->get(),
             'layanan' => Layanan::all(),
             'menu' => Menu::all(),
         ]);

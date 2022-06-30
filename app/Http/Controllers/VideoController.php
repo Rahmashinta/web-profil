@@ -19,7 +19,7 @@ class VideoController extends Controller
     public function index()
     {
         return view('pegawai.video', [
-            'video' => Video::all(),
+            'video' => Video::orderBy('created_at', 'desc')->get(),
             'navbar' => User::where('id', Auth::user()->id)->get(),
         ]);
     }

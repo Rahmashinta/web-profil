@@ -40,7 +40,7 @@
                         <div class="about-img">
                             <img src="/storage/foto/{{ $ft->file }}" data-bs-toggle="modal" data-bs-target="#show{{ $ft->id }}" class="img-fluid text-center" alt="" style="position: relative; width:250px; height:200px">
                         </div>
-                        <div class="about-text" style="text-align: center !important">
+                        <div class="about-text" style="text-align: justify !important">
                             <h6 class="f-700 pt-2"><a href="#" data-bs-toggle="modal" data-bs-target="#show{{ $ft->id }}" style="text-decoration: none !important">{{ $ft->judul }}</a></h6>
                             <p>{{ $ft->keterangan }}</p>
                         </div>
@@ -60,6 +60,5 @@
             </div>
     </section>
 
-    @include('layouts.footer')
 
 </x-main-layout>

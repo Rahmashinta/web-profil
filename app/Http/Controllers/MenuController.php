@@ -19,7 +19,7 @@ class MenuController extends Controller
     public function index()
     {
         return view('pegawai.menu', [
-            'menu' => Menu::all(),
+            'menu' => Menu::orderBy('created_at', 'desc')->get(),
             'navbar' => User::where('id', Auth::user()->id)->get(),
         ]);
     }

@@ -26,41 +26,47 @@
                                         <h5 class="modal-title">Tambah Pegawai</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
+
                                     <div class="modal-body">
-                                        <form class="row g-3" action="{{ route('pegawai.store') }}" method="post" enctype="multipart/form-data">
-                                            @csrf
-                                            <div class="col-md-6">
-                                                <label for="nama_pegawai" class="form-label">Nama Pegawai</label>
-                                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person-fill"></i></span>
-                                                    <input type="text" class="form-control border-start-0 " id="nama_pegawai" placeholder="Nama Pegawai" name="nama_pegawai" value="{{old ('nama_pegawai') }}" required/>
-                                                </div>
+                                        <div class="card border-top border-0 border-4 border-primary">
+                                            <div class="card-body p-5">
+                                                <form class="row g-3" action="{{ route('pegawai.store') }}" method="post" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="col-md-6">
+                                                        <label for="nama_pegawai" class="form-label">Nama Pegawai</label>
+                                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person-fill"></i></span>
+                                                            <input type="text" class="form-control border-start-0 " id="nama_pegawai" placeholder="Nama Pegawai" name="nama_pegawai" value="{{old ('nama_pegawai') }}" required />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="nip" class="form-label">NIP</label>
+                                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-123"></i></span>
+                                                            <input type="text" class="form-control border-start-0 " id="nip" placeholder="NIP" name="nip" value="{{old ('nip') }}" required />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <label class="form-label">Jabatan</label>
+                                                        <select class="form-select mb-3" aria-label="Default select example" name="jabatan">
+                                                            <option selected>Pilih Jabatan</option>
+                                                            @foreach ($jabatan as $jbt)
+                                                            <option value="{{$jbt->jabatan}}" class="lama">{{$jbt->jabatan}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="mb-3">
+                                                            <label for="foto_pegawai" class="form-label">Foto Pegawai</label>
+                                                            <img class="img-preview mx-auto mb-3 col-sm-5">
+                                                            <input class="form-control" type="file" id="foto_pegawai" name="foto_pegawai" onchange="previewImage()" value="{{old ('foto_pegawai') }}" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    </div>
+                                                </form>
                                             </div>
-                                            <div class="col-md-6">
-                                                <label for="nip" class="form-label">NIP</label>
-                                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-123"></i></span>
-                                                    <input type="text" class="form-control border-start-0 " id="nip" placeholder="NIP" name="nip" value="{{old ('nip') }}" required/>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <label class="form-label">Jabatan</label>
-                                                <select class="form-select mb-3" aria-label="Default select example" name="jabatan">
-                                                    <option selected>Pilih Jabatan</option>
-                                                    @foreach ($jabatan as $jbt)
-                                                    <option value="{{$jbt->jabatan}}" class="lama">{{$jbt->jabatan}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="mb-3">
-                                                    <label for="foto_pegawai" class="form-label">Foto Pegawai</label>
-                                                    <input class="form-control" type="file" id="foto_pegawai" name="foto_pegawai" value="{{old ('foto_pegawai') }}" required>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                            </div>
-                                        </form>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -101,51 +107,6 @@
                                             <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#hapus{{$pgw->id}}"><i class="bi bi-trash3"></i></button>
                                     </tr>
 
-
-                                    <!-- Modal Show -->
-                                    <div class="col">
-                                        <div class="modal fade" id="show{{$pgw->id}}" tabindex="-1" aria-hidden="true">
-
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Detail Pegawai</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-
-                                                    <div class="modal-body">
-                                                        <div class="card m-2">
-                                                            <img src="/storage/pegawai/{{ $pgw->foto_pegawai }}" class="card-img-top mt-4" alt="..." style="width: 500px; height: 400px; margin:auto; display:block; clear:both ">
-
-                                                            <div class="card-body">
-                                                                <div class="row g-3 d-flex justify-content-center">
-
-                                                                    <div class="col-md-4 btn btn-primary m-2">
-                                                                        <h6 class="card-title" style="text-align: center; color:white "> Nama Pegawai </h6>
-                                                                        <p class="card-title" style="text-align: center; "> {{ $pgw->nama_pegawai }}</p>
-                                                                    </div>
-                                                                    <div class="col-md-2 btn btn-primary m-2">
-                                                                        <h6 class="card-title" style="text-align: center; color:white "> NIP </h6>
-                                                                        <p class="card-title" style="text-align: center; "> {{ $pgw->nip }}</p>
-                                                                    </div>
-                                                                    <div class="col-md-3 btn btn-primary m-2">
-                                                                        <h6 class="card-title" style="text-align: center; color:white "> Jabatan </h6>
-                                                                        <p class="card-title" style="text-align: center; "> {{ $pgw->jabatan }}</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                     <!-- Modal Edit -->
                                     <div class="col">
                                         <div class="modal fade" id="edit{{$pgw->id}}" tabindex="-1" aria-hidden="true">
@@ -158,45 +119,55 @@
                                                     </div>
 
                                                     <div class="modal-body">
-                                                        <form class="row g-3" action="{{ route('pegawai.update', $pgw->id) }}" method="post" enctype="multipart/form-data">
-                                                            @method('put')
-                                                            @csrf
+                                                        <div class="card border-top border-0 border-4 border-primary">
+                                                            <div class="card-body p-5">
+                                                                <form class="row g-3" action="{{ route('pegawai.update', $pgw->id) }}" method="post" enctype="multipart/form-data">
+                                                                    @method('put')
+                                                                    @csrf
 
-                                                            <div class="col m-2">
-                                                                <label for="nama_pegawai" class="form-label">Nama Pegawai</label>
-                                                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person-fill"></i></span>
-                                                                    <input type="text" class="form-control border-start-0 " id="nama_pegawai" placeholder="Nama Pegawai" name="nama_pegawai" value="{{old ('pegawai', $pgw->nama_pegawai) }}" />
-                                                                </div>
-                                                            </div>
-                                                            <div class="col m-2">
-                                                                <label for="nip" class="form-label">NIP</label>
-                                                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-123"></i></span>
-                                                                    <input type="text" class="form-control border-start-0 " id="nip" placeholder="NIP" name="nip" value="{{old ('pegawai', $pgw->nip) }}" />
-                                                                </div>
-                                                            </div>
-                                                            <div class="col m-2">
-                                                                <label class="form-label">Jabatan</label>
-                                                                <select class="form-select mb-3" aria-label="Default select example" name="jabatan">
-                                                                    <option selected>{{old ('pegawai', $pgw->jabatan) }}</option>
-                                                                    @foreach ($jabatan as $jbt)
-                                                                    <option value="{{$jbt->jabatan}}" class="lama">{{$jbt->jabatan}}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                            </div>
-                                                            <div class="col m-2">
-                                                                <div class="mb-3">
-                                                                    <label for="foto_pegawai" class="form-label">Foto Pegawai</label>
-                                                                    <input type="hidden" name="oldImage" value="{{ $pgw->foto_pegawai}}">
+                                                                    <div class="col m-2">
+                                                                        <label for="nama_pegawai" class="form-label">Nama Pegawai</label>
+                                                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person-fill"></i></span>
+                                                                            <input type="text" class="form-control border-start-0 " id="nama_pegawai" placeholder="Nama Pegawai" name="nama_pegawai" value="{{old ('pegawai', $pgw->nama_pegawai) }}" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col m-2">
+                                                                        <label for="nip" class="form-label">NIP</label>
+                                                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-123"></i></span>
+                                                                            <input type="text" class="form-control border-start-0 " id="nip" placeholder="NIP" name="nip" value="{{old ('pegawai', $pgw->nip) }}" readonly />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col m-2">
+                                                                        <label class="form-label">Jabatan</label>
+                                                                        <select class="form-select mb-3" aria-label="Default select example" name="jabatan">
+                                                                            <option selected>{{old ('pegawai', $pgw->jabatan) }}</option>
+                                                                            @foreach ($jabatan as $jbt)
+                                                                            <option value="{{$jbt->jabatan}}" class="lama">{{$jbt->jabatan}}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col m-2">
+                                                                        <div class="mb-3">
+                                                                            <label for="foto_pegawai" class="form-label">Foto Pegawai</label>
+                                                                            <input type="hidden" name="oldImage" value="{{ $pgw->foto_pegawai}}">
 
-                                                                    <input class="form-control" type="file" id="foto_pegawai" name="foto_pegawai" value="{{old ('pegawai', $pgw->foto_pegawai) }}">
-                                                                </div>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                                            </div>
+                                                                            @if ($pgw->foto_pegawai)
+                                                                            <img src="/storage/pegawai/{{ $pgw->foto_pegawai }}" class="img-preview mx-auto mb-3 col-sm-5 d-block">
+                                                                            @else
+                                                                            <img class="img-preview mx-auto mb-3 col-sm-5">
+                                                                            @endif
 
-                                                        </form>
+                                                                            <input class="form-control" type="file" id="foto_pegawai" name="foto_pegawai" onchange="previewImage()" value=" {{old ('pegawai', $pgw->foto_pegawai) }}">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                                    </div>
+
+                                                                </form>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -252,9 +223,6 @@
         <!--end overlay-->
         <!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
         <!--End Back To Top Button-->
-        <footer class="page-footer">
-            <p class="mb-0">Copyright © 2021. All right reserved.</p>
-        </footer>
     </div>
     <!--end wrapper-->
 </x-pegawai-layout>

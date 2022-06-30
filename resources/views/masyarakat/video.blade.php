@@ -40,7 +40,7 @@
                         <iframe width="560" height="315" src="{{ $v->link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
                         <div class="about-text">
-                            <h6 class="f-700 pt-2"><a href="{{ $v->link }}" style="text-decoration: none !important">Pekanbaru</a></h6>
+                            <h6 class="f-700 pt-2"><a href="{{ $v->link }}" style="text-decoration: none !important">{{ $v->judul }}</a></h6>
                         </div>
                     </div>
                 </div>

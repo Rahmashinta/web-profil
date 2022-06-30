@@ -45,7 +45,7 @@
                                     <div class="tanggal">
                                         <span class="dusty__gray-color f-500 pt-15" style="font-size: 13px;">{{ $br->created_at->format('d-M-Y') }}</span>
                                     </div>
-                                    <span class="blog-title"><a href="{{ route('masyarakat.detailberita', $br->id) }}" class="cod__blue-color f-700">{!! substr($br->judul_konten, 0, 50); !!}</a></span>
+                                    <span class="blog-title"><a href="{{ route('masyarakat.detailberita', $br->id) }}" class="cod__blue-color f-700">{!! substr($br->judul_konten, 0, 60); !!}</a></span>
                                     <p class="f-400">{!! substr($br->isi_konten, 0, 100); !!} ...</p>
                                     <a href="{{ route('masyarakat.detailberita', $br->id) }}" class="f-600 grenadier-color">Read More <i class="icofont-long-arrow-right grenadier-color"></i></a>
                                 </div>

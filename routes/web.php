@@ -58,7 +58,7 @@ Route::controller(MasyarakatController::class)->group(function () {
 });
 
 Route::controller(TambahController::class)->middleware('auth', 'verified', 'is_pegawai')->group(function () {
-    Route::get('tambahkonten', 'index');
+    Route::get('tambahkonten', 'index')->name('tambah.index');
     Route::post('tambahkonten', 'store')->name('tambahkonten.store');
 });
 

@@ -22,7 +22,7 @@ class KontenController extends Controller
     {
 
         return view('pegawai.konten', [
-            'konten' => Konten::all(),
+            'konten' => Konten::orderBy('created_at', 'desc')->get(),
             'navbar' => User::where('id', Auth::user()->id)->get(),
             // 'author' => $author
         ]);

@@ -131,6 +131,11 @@
                         <div class="row text-center mb-4 " style="background-color: #4c6b99;">
                             <h1 class="text-white">Foto</h1>
                         </div>
+                        <div class="col">
+                            <div class="all__product--link text-right">
+                                <a class="all-link" href="{{ route('masyarakat.foto') }}">Lihat Selengkapnya ...<span class="lnr lnr-arrow-right"></span></a>
+                            </div>
+                        </div>
                         <div class="container">
                             <div class="row">
                                 @foreach ($foto as $ft)
@@ -206,18 +211,23 @@
                 <div class="row text-center mb-4 " style="background-color: #4c6b99;">
                     <h1 class="text-white">Video</h1>
                 </div>
+                <div class="col">
+                    <div class="all__product--link text-right mb-2">
+                        <a class="all-link" href="{{ route('masyarakat.video') }}">Lihat Selengkapnya ...<span class="lnr lnr-arrow-right"></span></a>
+                    </div>
+                </div>
 
                 <div class="row">
                     @foreach ($video as $v)
                     <div class="col-lg-4 m-10">
                         <div class="col-sm-2">
-                            <div class="about-single m-2">
+                            <div class="about-single">
                                 <iframe width="300" height="315" src="{{ $v->link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-                                <div class="about-text">
-                                    <h6 class="f-700 pt-2"><a href="https://www.youtube.com/embed/pFnJ97g-wSs" style="text-decoration: none !important">Pekanbaru</a></h6>
-                                </div>
                             </div>
+                        </div>
+                        <div class="about-text mt-2">
+                            <h6 class="f-700 pt-2"><a href="https://www.youtube.com/embed/pFnJ97g-wSs" style="text-decoration: none !important">{{ $v->judul }}</a></h6>
                         </div>
                     </div>
                     @endforeach

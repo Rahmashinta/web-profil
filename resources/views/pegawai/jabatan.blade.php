@@ -108,7 +108,7 @@
                                                                     <div class="col-md-12 mt-2">
                                                                         <label for="jabatan" class="form-label">Nama Jabatan</label>
                                                                         <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person-lines-fill"></i></span>
-                                                                            <input type="text" class="form-control border-start-0" id="jabatan" placeholder="Nama Jabatan" name="jabatan" value="{{old ('jabatan', $jbt->jabatan) }}" readonly/>
+                                                                            <input type="text" class="form-control border-start-0" id="jabatan" placeholder="Nama Jabatan" name="jabatan" value="{{old ('jabatan', $jbt->jabatan) }}" readonly />
                                                                         </div>
                                                                     </div>
                                                                     <div class="col-md-12 mt-2">
@@ -181,9 +181,6 @@
         <!--end overlay-->
         <!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
         <!--End Back To Top Button-->
-        <footer class="page-footer">
-            <p class="mb-0">Copyright © 2021. All right reserved.</p>
-        </footer>
     </div>
     <!--end wrapper-->
 </x-pegawai-layout>

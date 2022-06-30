@@ -26,42 +26,47 @@
                                         <h5 class="modal-title">Tambah Pengguna</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
+
                                     <div class="modal-body">
-                                        <form class="row g-3" action="{{ route('user.store') }}" method="post" enctype="multipart/form-data">
-                                            @csrf
-                                            <div class="col-md-12">
-                                                <label for="nama" class="form-label">Nama Pengguna</label>
-                                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person"></i></span>
-                                                    <input type="text" class="form-control border-start-0" id="nama" placeholder="Nama Pengguna" name="nama" value="{{old ('nama') }}" required />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <label for="username" class="form-label">Username</label>
-                                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person-square"></i></span>
-                                                    <input type="text" class="form-control border-start-0" id="username" placeholder="username" name="username" value="{{old ('username') }}" required />
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <label class="form-label">Role</label>
-                                                <select class="form-select mb-3" aria-label="Default select example" name="role">
-                                                    <option selected>Pilih Role Pengguna</option>
-                                                    <option value=" Admin">Admin</option>
-                                                    <option value="Pegawai">Pegawai</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <label for="password" class="form-label">Password</label>
-                                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-key"></i></span>
-                                                    <input type="text" class="form-control border-start-0" id="password" placeholder="Password" name="password" value="{{old ('password') }}" required />
-                                                </div>
-                                            </div>
+                                        <div class="card border-top border-0 border-4 border-primary">
+                                            <div class="card-body p-4">
+                                                <form class="row g-3" action="{{ route('user.store') }}" method="post" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="col-md-12">
+                                                        <label for="nama" class="form-label">Nama Pengguna</label>
+                                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person"></i></span>
+                                                            <input type="text" class="form-control border-start-0" id="nama" placeholder="Nama Pengguna" name="nama" value="{{old ('nama') }}" required />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <label for="username" class="form-label">Username</label>
+                                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person-square"></i></span>
+                                                            <input type="text" class="form-control border-start-0" id="username" placeholder="username" name="username" value="{{old ('username') }}" required />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <label class="form-label">Role</label>
+                                                        <select class="form-select mb-3" aria-label="Default select example" name="role">
+                                                            <option selected>Pilih Role Pengguna</option>
+                                                            <option value=" Admin">Admin</option>
+                                                            <option value="Pegawai">Pegawai</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <label for="password" class="form-label">Password</label>
+                                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-key"></i></span>
+                                                            <input type="text" class="form-control border-start-0" id="password" placeholder="Password" name="password" value="{{old ('password') }}" required />
+                                                        </div>
+                                                    </div>
 
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                            </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    </div>
 
-                                        </form>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -113,44 +118,49 @@
                                                     </div>
 
                                                     <div class="modal-body">
-                                                        <form class="row g-3" action="{{ route('user.update', $us->id) }}" method="post" enctype="multipart/form-data">
-                                                            @method('put')
-                                                            @csrf
+                                                        <div class="card border-top border-0 border-4 border-primary">
+                                                            <div class="card-body p-5">
+                                                                <form class="row g-3" action="{{ route('user.update', $us->id) }}" method="post" enctype="multipart/form-data">
+                                                                    @method('put')
+                                                                    @csrf
 
-                                                            <div class="col-md-12">
-                                                                <label for="nama" class="form-label">Nama Pengguna</label>
-                                                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person"></i></span>
-                                                                    <input type="text" class="form-control border-start-0" id="nama" placeholder="Nama Pengguna" name="nama" value="{{old ('user', $us->nama) }}" />
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <label for="username" class="form-label">Username</label>
-                                                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person-square"></i></span>
-                                                                    <input type="text" class="form-control border-start-0" id="username" placeholder="username" name="username" value="{{old ('user', $us->username) }}" readonly />
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-12">
-                                                                <label class="form-label">Role</label>
-                                                                <select class="form-select mb-3" aria-label="Default select example" name="role">
-                                                                    <option selected value="{{old ('user', $us->role) }}">{{old ('user', $us->role) }}</option>
-                                                                    <option value=" Admin">Admin</option>
-                                                                    <option value="Pegawai">Pegawai</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <label for="password" class="form-label">Password</label>
-                                                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-key"></i></span>
-                                                                    <input type="text" class="form-control border-start-0" id="password" placeholder="Password" name="password" value="{{old ('user', $us->password) }}" />
-                                                                </div>
-                                                            </div>
+                                                                    <div class="col-md-12">
+                                                                        <label for="nama" class="form-label">Nama Pengguna</label>
+                                                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person"></i></span>
+                                                                            <input type="text" class="form-control border-start-0" id="nama" placeholder="Nama Pengguna" name="nama" value="{{old ('user', $us->nama) }}" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <label for="username" class="form-label">Username</label>
+                                                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-person-square"></i></span>
+                                                                            <input type="text" class="form-control border-start-0" id="username" placeholder="username" name="username" value="{{old ('user', $us->username) }}" readonly />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <label class="form-label">Role</label>
+                                                                        <select class="form-select mb-3" aria-label="Default select example" name="role">
+                                                                            <option selected value="{{old ('user', $us->role) }}">{{old ('user', $us->role) }}</option>
+                                                                            <option value=" Admin">Admin</option>
+                                                                            <option value="Pegawai">Pegawai</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <label for="password" class="form-label">Password</label>
+                                                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-key"></i></span>
+                                                                            <input type="text" class="form-control border-start-0" id="password" placeholder="Password" name="password" value="{{old ('user', $us->password) }}" />
+                                                                        </div>
+                                                                    </div>
 
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                                            </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                                    </div>
 
-                                                        </form>
+                                                                </form>
+                                                            </div>
+                                                        </div>
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>

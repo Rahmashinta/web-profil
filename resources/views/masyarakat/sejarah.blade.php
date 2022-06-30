@@ -73,7 +73,7 @@
 
                                 <div class="common-cat">
                                     <div class="side-title">
-                                        <h6>Konten</h6>
+                                        <h6>Berita</h6>
                                     </div>
 
                                     @foreach ($berita as $br )

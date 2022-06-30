@@ -26,36 +26,42 @@
                                         <h5 class="modal-title">Tambah Foto</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
+
                                     <div class="modal-body">
-                                        <form class="row g-3" action="{{ route('galeri.store') }}" method="post" enctype="multipart/form-data">
-                                            @csrf
+                                        <div class="card border-top border-0 border-4 border-primary">
+                                            <div class="card-body p-5">
+                                                <form class="row g-3" action="{{ route('galeri.store') }}" method="post" enctype="multipart/form-data">
+                                                    @csrf
 
-                                            <div class="col-md-12">
-                                                <label for="judul" class="form-label">Judul Foto</label>
-                                                <div class="input-group "> <span class="input-group-text bg-transparent"><i class="bi bi-pencil-fill"></i></span>
-                                                    <input type="text" autofocus class="form-control border-start-0" id="judul" placeholder="Judul Foto" name="judul" value="{{old ('judul') }}">
-                                                </div>
-                                            </div>
+                                                    <div class="col-md-12">
+                                                        <label for="judul" class="form-label">Judul Foto</label>
+                                                        <div class="input-group "> <span class="input-group-text bg-transparent"><i class="bi bi-pencil-fill"></i></span>
+                                                            <input type="text" autofocus class="form-control border-start-0" id="judul" placeholder="Judul Foto" name="judul" value="{{old ('judul') }}">
+                                                        </div>
+                                                    </div>
 
-                                            <div class="col-12">
-                                                <div class="mb-3">
-                                                    <label for="file" class="form-label">Foto</label>
-                                                    <input class="form-control" type="file" id="file" name="file" value="{{old ('file') }}" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <label for="keterangan" class="form-label">Keterangan Foto</label>
-                                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-card-text"></i></span>
-                                                    <input type="text" class="form-control border-start-0" id="keterangan" placeholder="Keterangan Foto" name="keterangan" value="{{old ('keterangan') }}" />
-                                                </div>
-                                            </div>
+                                                    <div class="col-12">
+                                                        <div class="mb-3">
+                                                            <label for="file" class="form-label">Foto</label>
+                                                            <img class="img-preview mx-auto mb-3 col-sm-5">
+                                                            <input class="form-control" type="file" id="file" name="file" onchange="previewImagefoto()" value="{{old ('file') }}" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <label for="keterangan" class="form-label">Keterangan Foto</label>
+                                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-card-text"></i></span>
+                                                            <input type="text" class="form-control border-start-0" id="keterangan" placeholder="Keterangan Foto" name="keterangan" value="{{old ('keterangan') }}" />
+                                                        </div>
+                                                    </div>
 
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                            </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    </div>
 
-                                        </form>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -82,7 +88,7 @@
                                     @foreach ($foto as $ft)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $ft->judul }}</td>
+                                        <td>{{ substr($ft->judul, 0, 100); }}</td>
                                         <td>
                                             <a href="{{ route('galeri.show', $ft->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
 
@@ -90,38 +96,6 @@
 
                                             <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#hapus{{$ft->id}}"><i class="bi bi-trash3"></i></button>
                                     </tr>
-
-
-                                    <!-- Modal Show -->
-                                    <div class="col">
-                                        <div class="modal fade" id="show{{$ft->id}}" tabindex="-1" aria-hidden="true">
-
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Detail Foto</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-
-                                                    <div class="modal-body">
-                                                        <div class="card m-2">
-                                                            <img src="/storage/foto/{{ $ft->file }}" class="card-img-top" alt="...">
-                                                            <div class="card-body">
-                                                                <h5 class="card-title">{{ $ft->judul }}</h5>
-                                                                <p class="card-text">{{ $ft->keterangan }}</p>
-                                                                </p>
-                                                            </div>
-
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
 
                                     <!-- Modal Edit -->
                                     <div class="col">
@@ -135,36 +109,47 @@
                                                     </div>
 
                                                     <div class="modal-body">
-                                                        <form class="row g-3" action="{{ route('galeri.update', $ft->id) }}" method="post" enctype="multipart/form-data">
-                                                            @method('put')
-                                                            @csrf
+                                                        <div class="card border-top border-0 border-4 border-primary">
+                                                            <div class="card-body p-5">
+                                                                <form class="row g-3" action="{{ route('galeri.update', $ft->id) }}" method="post" enctype="multipart/form-data">
+                                                                    @method('put')
+                                                                    @csrf
 
-                                                            <div class="col-md-12">
-                                                                <label for="judul" class="form-label">Judul Foto</label>
-                                                                <div class="input-group "> <span class="input-group-text bg-transparent"><i class="bi bi-pencil-fill"></i></span>
-                                                                    <input type="text" class="form-control border-start-0" id="judul" placeholder="Judul Foto" name="judul" value="{{old ('galeri', $ft->judul) }}" />
-                                                                </div>
-                                                            </div>
+                                                                    <div class="col-md-12">
+                                                                        <label for="judul" class="form-label">Judul Foto</label>
+                                                                        <div class="input-group "> <span class="input-group-text bg-transparent"><i class="bi bi-pencil-fill"></i></span>
+                                                                            <input type="text" class="form-control border-start-0" id="judul" placeholder="Judul Foto" name="judul" value="{{old ('galeri', $ft->judul) }}" />
+                                                                        </div>
+                                                                    </div>
 
-                                                            <div class="col-12">
-                                                                <div class="mb-3">
-                                                                    <label for="file" class="form-label">Foto</label>
-                                                                    <input type="hidden" name="oldImage" value="{{ $ft->file}}">
-                                                                    <input class="form-control" type="file" id="file" name="file" value="{{old ('galeri', $ft->file) }}">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <label for="keterangan" class="form-label">Keterangan Foto</label>
-                                                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-card-text"></i></span>
-                                                                    <input type="text" class="form-control border-start-0" id="keterangan" placeholder="Keterangan Foto" name="keterangan" value="{{old ('galeri', $ft->keterangan) }}" />
-                                                                </div>
-                                                            </div>
+                                                                    <div class="col-12">
+                                                                        <div class="mb-3">
+                                                                            <label for="file" class="form-label">Foto</label>
+                                                                            <input type="hidden" name="oldImage" value="{{ $ft->file}}">
 
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                                                            @if ($ft->file)
+                                                                            <img src="/storage/foto/{{ $ft->file }}" class="img-preview mx-auto mb-3 col-sm-5 d-block">
+                                                                            @else
+                                                                            <img class="img-preview mx auto mb-3 col-sm-5">
+                                                                            @endif
+
+                                                                            <input class="form-control" type="file" id="file" name="file" onchange="previewImagefoto()" value="{{old ('galeri', $ft->file) }}">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <label for="keterangan" class="form-label">Keterangan Foto</label>
+                                                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-card-text"></i></span>
+                                                                            <input type="text" class="form-control border-start-0" id="keterangan" placeholder="Keterangan Foto" name="keterangan" value="{{old ('galeri', $ft->keterangan) }}" />
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                                    </div>
+                                                                </form>
                                                             </div>
-                                                        </form>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -187,7 +172,7 @@
                                                             @method('delete')
                                                             @csrf
                                                             <div class="div">
-                                                                <p>Yakin ingin Menghapus <b>{{ $ft->judul }} </b> ? </p>
+                                                                <p>Yakin ingin Menghapus Foto ? </p>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -220,9 +205,6 @@
         <!--end overlay-->
         <!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
         <!--End Back To Top Button-->
-        <footer class="page-footer">
-            <p class="mb-0">Copyright © 2021. All right reserved.</p>
-        </footer>
     </div>
     <!--end wrapper-->
 </x-pegawai-layout>

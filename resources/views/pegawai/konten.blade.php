@@ -26,43 +26,53 @@
                                         <h5 class="modal-title">Tambah Konten</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
+
                                     <div class="modal-body">
-                                        <form class="row g-3" action="{{ route('konten.store') }}" method="post" enctype="multipart/form-data">
-                                            @csrf
-                                            
-                                            <div class="col-md-12">
-                                                <label for="judul_konten" class="form-label">Judul Konten</label>
-                                                <div class="input-group">
-                                                    <textarea type="text" class="form-control border-start-0" id="judul_konten" name="judul_konten" value="{{old ('judul_konten') }}" autofocus required></textarea>
-                                                </div>
-                                            </div>
+                                        <div class="card border-top border-0 border-4 border-primary">
+                                            <div class="card-body p-4">
+                                                <form class="row g-3" action="{{ route('konten.store') }}" method="post" enctype="multipart/form-data">
+                                                    @csrf
 
-                                            <div class="col-12">
-                                                <label class="form-label">Kategori Konten</label>
-                                                <select class="form-select mb-3" aria-label="Default select example" name="kategori_konten">
-                                                    <option selected>Pilih Kategori Konten</option>
-                                                    <option value=" Berita">Berita</option>
-                                                    <option value="Artikel">Artikel</option>
-                                                    <option value="Pengumuman">Pengumuman</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="mb-3">
-                                                    <label for="gambar" class="form-label">Gambar Konten</label>
-                                                    <input class="form-control" type="file" id="gambar" name="gambar" value="{{old ('gambar') }}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <label for="isi_konten" class="form-label">Isi Konten</label>
-                                                <textarea id="isi_konten" name="isi_konten" value="{{old ('isi_konten') }}">Hello, World!</textarea>
-                                            </div>
+                                                    <div class="col-md-12">
+                                                        <label for="judul_konten" class="form-label">Judul Konten</label>
+                                                        <div class="input-group">
+                                                            <textarea type="text" class="form-control" id="judul_konten" name="judul_konten" value="{{old ('judul_konten') }}" autofocus required></textarea>
+                                                        </div>
+                                                    </div>
 
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                            </div>
+                                                    <div class="col-12">
+                                                        <label class="form-label">Kategori Konten</label>
+                                                        <select class="form-select mb-3" aria-label="Default select example" name="kategori_konten" required>
+                                                            <option selected>Pilih Kategori Konten</option>
+                                                            <option value=" Berita">Berita</option>
+                                                            <option value="Artikel">Artikel</option>
+                                                            <option value="Pengumuman">Pengumuman</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="mb-3">
+                                                            <label for="gambar" class="form-label">Gambar Konten</label>
+                                                            <img class="img-preview mx-auto mb-3 col-sm-5">
+                                                            <input class="form-control" type="file" id="gambar" name="gambar" onchange="previewImagekonten()" value="{{old ('gambar') }}" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <label for="isi_konten" class="form-label">Isi Konten</label>
+                                                        <textarea id="isi_konten" name="isi_konten" value="{{old ('isi_konten') }}" required>Hello, World!</textarea>
+                                                    </div>
 
-                                        </form>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    </div>
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-body">
+
                                     </div>
 
                                 </div>
@@ -98,44 +108,12 @@
                                         <td>{{ $ktn->kategori_konten }}</td>
                                         <td><span class="badge bg-info" style="font-size: 15px;">{{ $ktn->status }}</span></td>
                                         <td>
-                                            <a href="{{ route('konten.update', $ktn->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
+                                            <a href="{{ route('konten.show', $ktn->id) }}" class="btn btn-primary btn-sm"><i class="bi bi-eye"></i></a>
 
                                             <a href="" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#edit{{$ktn->id}}"><i class="bi bi-pencil-square"></i></a>
 
                                             <button type="submit" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#hapus{{$ktn->id}}"><i class="bi bi-trash3"></i></button>
                                     </tr>
-
-
-                                    <!-- Modal Show -->
-                                    <div class="col">
-                                        <div class="modal fade" id="show{{$ktn->id}}" tabindex="-1" aria-hidden="true">
-
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Detail Konten</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-
-                                                    <div class="modal-body">
-                                                        <div class="card m-2">
-                                                            <img src="/storage/konten/{{ $ktn->gambar }}" class="card-img-top mt-4" alt="..." style="width: 500px; height: 400px; margin:auto; display:block; clear:both ">
-                                                            <div class="card-body">
-                                                                <h5 class="card-title" style="text-align: center; color:#008cff">{{ $ktn->judul_konten }}</h5>
-                                                                <p class=" card-text"> {!! $ktn->isi_konten !!}</p>
-                                                                </p>
-                                                            </div>
-
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
 
                                     <!-- Modal Edit -->
                                     <div class="col">
@@ -149,51 +127,63 @@
                                                     </div>
 
                                                     <div class="modal-body">
-                                                        <form class="row g-3" action="{{ route('konten.update', $ktn->id) }}" method="post" enctype="multipart/form-data">
-                                                            @method('put')
-                                                            @csrf
+                                                        <div class="card border-top border-0 border-4 border-primary">
+                                                            <div class="card-body p-5">
+                                                                <form class="row g-3" action="{{ route('konten.update', $ktn->id) }}" method="post" enctype="multipart/form-data">
+                                                                    @method('put')
+                                                                    @csrf
 
-                                                            <div class="col-12">
-                                                                <label class="form-label">Status Konten</label>
-                                                                <select class="form-select mb-3" aria-label="Default select example" name="status">
-                                                                    <option selected value="{{old ('konten', $ktn->status) }}">{{old ('konten', $ktn->status) }}</option>
-                                                                    <option value="Publish">Publish</option>
-                                                                </select>
-                                                            </div>
+                                                                    <div class="col-12">
+                                                                        <label class="form-label">Status Konten</label>
+                                                                        <select class="form-select mb-3" aria-label="Default select example" name="status">
+                                                                            <option selected value="{{old ('konten', $ktn->status) }}">{{old ('konten', $ktn->status) }}</option>
+                                                                            <option value="Publish">Publish</option>
+                                                                        </select>
+                                                                    </div>
 
-                                                            <div class="col-md-12">
-                                                                <label for="judul_konten" class="form-label">Judul Konten</label>
-                                                                <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-pencil-fill"></i></span>
-                                                                    <input type="text" class="form-control border-start-0" id="judul_konten" placeholder="Judul Konten" name="judul_konten" value="{{old ('konten', $ktn->judul_konten) }}" />
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-12">
-                                                                <label class="form-label">Kategori Konten</label>
-                                                                <select class="form-select mb-3" aria-label="Default select example" name="kategori_konten">
-                                                                    <option selected value="{{old ('konten', $ktn->kategori_konten) }}">{{old ('konten', $ktn->kategori_konten) }}</option>
-                                                                    <option value=" Berita">Berita</option>
-                                                                    <option value="Artikel">Artikel</option>
-                                                                    <option value="Pengumuman">Pengumuman</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-12">
-                                                                <div class="mb-3">
-                                                                    <label for="gambar" class="form-label">Gambar Konten</label>
-                                                                    <input type="hidden" name="oldImage" value="{{ $ktn->gambar}}">
-                                                                    <input class="form-control" type="file" id="gambar" name="gambar" value="{{old ('konten', $ktn->gambar) }}">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-12">
-                                                                <label for="isi_konten" class="form-label">Isi Konten</label>
-                                                                <textarea id="isi_konten" name="isi_konten" value="{{old ('konten', $ktn->isi_konten) }}">{{old ('konten', $ktn->isi_konten) }}</textarea>
-                                                            </div>
+                                                                    <div class="col-md-12">
+                                                                        <label for="judul_konten" class="form-label">Judul Konten</label>
+                                                                        <div class="input-group"> <span class="input-group-text bg-transparent"><i class="bi bi-pencil-fill"></i></span>
+                                                                            <input type="text" class="form-control border-start-0 " id="judul_konten" placeholder="Judul Konten" name="judul_konten" value="{{old ('konten', $ktn->judul_konten) }}">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <label class="form-label">Kategori Konten</label>
+                                                                        <select class="form-select mb-3" aria-label="Default select example" name="kategori_konten">
+                                                                            <option selected value="{{old ('konten', $ktn->kategori_konten) }}">{{old ('konten', $ktn->kategori_konten) }}</option>
+                                                                            <option value=" Berita">Berita</option>
+                                                                            <option value="Artikel">Artikel</option>
+                                                                            <option value="Pengumuman">Pengumuman</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <div class="mb-3">
+                                                                            <label for="gambar" class="form-label">Gambar Konten</label>
+                                                                            <input type="hidden" name="oldImage" value="{{ $ktn->gambar}}">
 
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                                            </div>
+                                                                            @if ($ktn->gambar)
+                                                                            <img src="/storage/konten/{{ $ktn->gambar }}" class="img-preview mx-auto mb-3 col-sm-5 d-block">
+                                                                            @else
+                                                                            <img class="img-preview mx auto mb-3 col-sm-5">
+                                                                            @endif
 
-                                                        </form>
+
+                                                                            <input class="form-control" type="file" id="gambar" name="gambar" onchange="previewImagekonten()" value="{{old ('konten', $ktn->gambar) }}">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                                                        <label for="isi_konten" class="form-label">Isi Konten</label>
+                                                                        <textarea id="isi_konten" name="isi_konten" value="{{old ('konten', $ktn->isi_konten) }}">{{old ('konten', $ktn->isi_konten) }}</textarea>
+                                                                    </div>
+
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                                                    </div>
+
+                                                                </form>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -216,7 +206,7 @@
                                                             @method('delete')
                                                             @csrf
                                                             <div class="div">
-                                                                <p>Yakin Ingin Menghapus Konten <b>{{ $ktn->judul_konten }} </b> ? </p>
+                                                                <p>Yakin Ingin Menghapus Konten ? </p>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -249,9 +239,7 @@
         <!--end overlay-->
         <!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
         <!--End Back To Top Button-->
-        <footer class="page-footer">
-            <p class="mb-0">Copyright © 2021. All right reserved.</p>
-        </footer>
     </div>
     <!--end wrapper-->
+
 </x-pegawai-layout>

@@ -37,8 +37,10 @@
                             <h5 class="text-white mt-50 ">Sosial Media</h5>
                         </div>
                         <div class="contacts-address">
-                            <div class="contacts-address--text">
-                                <i class="bi bi-instagram text-white" style="padding-right: 30px;"></i><span style="color: #C9C9C9;">Instagram</span>
+                            <div class="contacts-address--text text-white">
+                                <a href="https://www.instagram.com/pbj.provriau/">
+                                    <i class="bi bi-instagram text-white" style="padding-right: 30px;"></i><span style="color: #C9C9C9;"> Instagram</span>
+                                </a>
                             </div>
                         </div>
                         <div class="contacts-address">
@@ -47,8 +49,10 @@
                             </div>
                         </div>
                         <div class="contacts-address">
-                            <div class="contacts-address--text">
-                                <i class="bi bi-youtube text-white" style="padding-right: 30px;"></i><span style="color: #C9C9C9;">Youtube</span>
+                            <div class="contacts-address--text text-white">
+                                <a href="https://www.youtube.com/channel/UCbGtumsaBvku6Ik8y5wlcBg">
+                                    <i class="bi bi-youtube text-white" style="padding-right: 30px;"></i><span style="color: #C9C9C9;">Youtube</span>
+                                </a>
                             </div>
                         </div>
                     </div>

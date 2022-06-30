@@ -46,7 +46,7 @@
                                                     @foreach ($pegawai as $pgw)
 
 
-                                                    <div class="col-lg-2 col-sm-6">
+                                                    <div class="col-lg-3 col-sm-4">
                                                         <div class="blog-single mb-30">
                                                             <div class="image text-center">
                                                                 <img src="/storage/pegawai/{{ $pgw->foto_pegawai }}" class="rounded-circle" alt="" height="150px" width="150px">
@@ -75,7 +75,7 @@
 
                                 <div class="common-cat">
                                     <div class="side-title">
-                                        <h6>Konten</h6>
+                                        <h6>Berita</h6>
                                     </div>
 
                                     @foreach ($berita as $br )

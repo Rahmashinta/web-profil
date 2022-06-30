@@ -21,7 +21,7 @@ class JabatanController extends Controller
     public function index()
     {
         return view('pegawai.jabatan', [
-            'jabatan' => Jabatan::all(),
+            'jabatan' => Jabatan::orderBy('id', 'DESC')->get(),
             'navbar' => User::where('id', Auth::user()->id)->get(),
         ]);
     }
@@ -34,14 +34,16 @@ class JabatanController extends Controller
      */
     public function store(JabatanRequest $request)
     {
-        $request->validated([
-            'kode_jabatan' => 'required|max:255|string|unique:jabatans',
-            'jabatan' => 'required|max:255|string|unique:jabatans',
-        ]);
 
-        Jabatan::create($request->all());
-
-        Alert::success('Berhasil', 'Data Jabatan Berhasil Ditambah');
+        if ($request) {
+            Jabatan::create([
+                'kode_jabatan' => $request->kode_jabatan,
+                'jabatan' => $request->jabatan,
+            ]);
+            Alert::success('Berhasil', 'Data berhasil ditambahkan');
+        } else {
+            Alert::error('Gagal', 'Data gagal ditambahkan');
+        }
 
         return redirect()->route('jabatan.index');
     }

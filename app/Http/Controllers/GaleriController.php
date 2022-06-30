@@ -21,7 +21,7 @@ class GaleriController extends Controller
     public function index()
     {
         return view('pegawai.foto', [
-            'foto' => Galeri::all(),
+            'foto' => Galeri::orderBy('created_at', 'desc')->get(),
             'navbar' => User::where('id', Auth::user()->id)->get(),
         ]);
     }
